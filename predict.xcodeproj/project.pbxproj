@@ -1,0 +1,1255 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D0DF97E15C1732D0089BA59 /* predixerPlayCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DF97D15C1732D0089BA59 /* predixerPlayCommentsController.m */; };
+		2D0DF98B15C190BE0089BA59 /* predixerSettingsViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DF98915C190BE0089BA59 /* predixerSettingsViewControllerViewController.m */; };
+		2D0DF98C15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0DF98A15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib */; };
+		2D10402A15AFC9B0004492CC /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D10402915AFC9B0004492CC /* RadioButton.m */; };
+		2D10402D15AFCA53004492CC /* CheckBox_Deselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D10402B15AFCA53004492CC /* CheckBox_Deselected.png */; };
+		2D10402E15AFCA53004492CC /* CheckBox_Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D10402C15AFCA53004492CC /* CheckBox_Selected.png */; };
+		2D1A120615BFEA130079E1DD /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A120115BFEA130079E1DD /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D1A120715BFEA130079E1DD /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A120315BFEA130079E1DD /* NSDate+InternetDateTime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D1A120815BFEA130079E1DD /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A120515BFEA130079E1DD /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D2BA423158A38BE0052D13C /* CustomTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BA422158A38BE0052D13C /* CustomTabBarItem.m */; };
+		2D2BA43C158A3D2C0052D13C /* predixerGameFindFriendsInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BA43A158A3D2C0052D13C /* predixerGameFindFriendsInviteController.m */; };
+		2D2BA43D158A3D2C0052D13C /* predixerGameFindFriendsInviteController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D2BA43B158A3D2C0052D13C /* predixerGameFindFriendsInviteController.xib */; };
+		2D2BA43F158A3F380052D13C /* tabBar_Bkd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D2BA43E158A3F380052D13C /* tabBar_Bkd.png */; };
+		2D39EE48157D14B9005173B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D39EE47157D14B9005173B6 /* UIKit.framework */; };
+		2D39EE4A157D14B9005173B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D39EE49157D14B9005173B6 /* Foundation.framework */; };
+		2D39EE4C157D14B9005173B6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D39EE4B157D14B9005173B6 /* CoreGraphics.framework */; };
+		2D39EE52157D14B9005173B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE50157D14B9005173B6 /* InfoPlist.strings */; };
+		2D39EE54157D14B9005173B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D39EE53157D14B9005173B6 /* main.m */; };
+		2D39EE58157D14B9005173B6 /* predixerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D39EE57157D14B9005173B6 /* predixerAppDelegate.m */; };
+		2D39EE5B157D14B9005173B6 /* predixerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D39EE5A157D14B9005173B6 /* predixerViewController.m */; };
+		2D39EE5E157D14B9005173B6 /* predixerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE5C157D14B9005173B6 /* predixerViewController.xib */; };
+		2D39EE67157D14F6005173B6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE65157D14F6005173B6 /* Default.png */; };
+		2D39EE68157D14F6005173B6 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE66157D14F6005173B6 /* Default@2x.png */; };
+		2D39EE6B157D159D005173B6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE69157D159D005173B6 /* Icon.png */; };
+		2D39EE6C157D159D005173B6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE6A157D159D005173B6 /* Icon@2x.png */; };
+		2D39EE70157D179B005173B6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE6D157D179B005173B6 /* Icon-72.png */; };
+		2D39EE71157D179B005173B6 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE6E157D179B005173B6 /* Icon-Small.png */; };
+		2D39EE72157D179B005173B6 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE6F157D179B005173B6 /* Icon-Small@2x.png */; };
+		2D39EE76157D1BAA005173B6 /* predixerLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D39EE74157D1BAA005173B6 /* predixerLoginViewController.m */; };
+		2D39EE77157D1BAA005173B6 /* predixerLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE75157D1BAA005173B6 /* predixerLoginViewController.xib */; };
+		2D39EE83157D1C23005173B6 /* btn_About_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7A157D1C23005173B6 /* btn_About_up.png */; };
+		2D39EE84157D1C23005173B6 /* btn_About.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7B157D1C23005173B6 /* btn_About.png */; };
+		2D39EE85157D1C23005173B6 /* btn_Facebook_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7C157D1C23005173B6 /* btn_Facebook_up.png */; };
+		2D39EE86157D1C23005173B6 /* btn_Facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7D157D1C23005173B6 /* btn_Facebook.png */; };
+		2D39EE87157D1C23005173B6 /* btn_HowTo_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7E157D1C23005173B6 /* btn_HowTo_up.png */; };
+		2D39EE88157D1C23005173B6 /* btn_HowTo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE7F157D1C23005173B6 /* btn_HowTo.png */; };
+		2D39EE89157D1C23005173B6 /* btn_Submit_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE80157D1C23005173B6 /* btn_Submit_up.png */; };
+		2D39EE8A157D1C23005173B6 /* btn_Submit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE81157D1C23005173B6 /* btn_Submit.png */; };
+		2D39EE8B157D1C23005173B6 /* Login_bkd.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D39EE82157D1C23005173B6 /* Login_bkd.png */; };
+		2D3B36411590C64C00E40373 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3B363C1590C62C00E40373 /* libSDWebImageARC.a */; };
+		2D3B36431590D5EF00E40373 /* bkd_section.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D3B36421590D5EF00E40373 /* bkd_section.png */; };
+		2D3BB2E315BF952C004100B5 /* DataFacebookUserAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3BB2E215BF952C004100B5 /* DataFacebookUserAdd.m */; };
+		2D3C949815C124B300228404 /* DataComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C949715C124B300228404 /* DataComments.m */; };
+		2D3C94A615C12E2900228404 /* DataCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C94A515C12E2900228404 /* DataCommentsController.m */; };
+		2D3C94A915C130EF00228404 /* DataCommentAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C94A815C130EF00228404 /* DataCommentAddController.m */; };
+		2D45A0D715E9495F00868A08 /* predixerPlayCommentsAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0D515E9495F00868A08 /* predixerPlayCommentsAllController.m */; };
+		2D45A0D815E9495F00868A08 /* predixerPlayCommentsAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0D615E9495F00868A08 /* predixerPlayCommentsAllController.xib */; };
+		2D45A0DA15E94CB700868A08 /* bkd_CommentsAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0D915E94CB700868A08 /* bkd_CommentsAll.png */; };
+		2D45A0DE15E9724E00868A08 /* predixerTermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0DC15E9724E00868A08 /* predixerTermsViewController.m */; };
+		2D45A0DF15E9724E00868A08 /* predixerTermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0DD15E9724E00868A08 /* predixerTermsViewController.xib */; };
+		2D45A0E315E9725E00868A08 /* predixerPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0E115E9725D00868A08 /* predixerPrivacyViewController.m */; };
+		2D45A0E415E9725E00868A08 /* predixerPrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0E215E9725D00868A08 /* predixerPrivacyViewController.xib */; };
+		2D45A0E815E9727300868A08 /* predixerAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0E615E9727200868A08 /* predixerAccountViewController.m */; };
+		2D45A0E915E9727300868A08 /* predixerAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0E715E9727300868A08 /* predixerAccountViewController.xib */; };
+		2D45A0ED15E9728500868A08 /* predixerHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0EB15E9728400868A08 /* predixerHistoryViewController.m */; };
+		2D45A0EE15E9728500868A08 /* predixerHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0EC15E9728500868A08 /* predixerHistoryViewController.xib */; };
+		2D45A0F215E9729100868A08 /* predixerPointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0F015E9729000868A08 /* predixerPointsViewController.m */; };
+		2D45A0F315E9729100868A08 /* predixerPointsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0F115E9729100868A08 /* predixerPointsViewController.xib */; };
+		2D4F340515DD758600D988C5 /* bkd_Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340215DD758600D988C5 /* bkd_Bottom.png */; };
+		2D4F340615DD758600D988C5 /* btn_InviteFriends_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340315DD758600D988C5 /* btn_InviteFriends_up.png */; };
+		2D4F340715DD758600D988C5 /* btn_InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340415DD758600D988C5 /* btn_InviteFriends.png */; };
+		2D53E7C2158AF466003E5183 /* predixerGameFindFriendsPlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53E7C0158AF466003E5183 /* predixerGameFindFriendsPlayController.m */; };
+		2D53E7C3158AF466003E5183 /* predixerGameFindFriendsPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53E7C1158AF466003E5183 /* predixerGameFindFriendsPlayController.xib */; };
+		2D53E7CA158AF4B8003E5183 /* facebookAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53E7C8158AF4B8003E5183 /* facebookAPIViewController.m */; };
+		2D53E7CB158AF4B8003E5183 /* facebookAPIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53E7C9158AF4B8003E5183 /* facebookAPIViewController.xib */; };
+		2D55901315AD4BB700EADB4B /* DataQuestions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55901215AD4BB700EADB4B /* DataQuestions.m */; };
+		2D55901615AD4BCC00EADB4B /* DataQuestionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D55901515AD4BCC00EADB4B /* DataQuestionsController.m */; };
+		2D55905F15AD5D0100EADB4B /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2D55905215AD5D0100EADB4B /* FBDialog.bundle */; };
+		2D55906015AD5D0100EADB4B /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D55905815AD5D0100EADB4B /* libfacebook_ios_sdk.a */; };
+		2D5B3FF415EA09DC005E3A8F /* DataFriendInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D5B3FF315EA09DC005E3A8F /* DataFriendInviteController.m */; };
+		2D605C5C15BF049300EC50A3 /* DataFacebookUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D605C5B15BF049300EC50A3 /* DataFacebookUser.m */; };
+		2D605C5F15BF09AA00EC50A3 /* DataFacebookUserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D605C5E15BF09AA00EC50A3 /* DataFacebookUserController.m */; };
+		2D7EBEF4157EEC7200F02CA6 /* predixerGameMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF2157EEC7200F02CA6 /* predixerGameMenuViewController.m */; };
+		2D7EBEF5157EEC7200F02CA6 /* predixerGameMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF3157EEC7200F02CA6 /* predixerGameMenuViewController.xib */; };
+		2D7EBEFE157EF18600F02CA6 /* btn_menu_findfriends_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF6157EF18600F02CA6 /* btn_menu_findfriends_up.png */; };
+		2D7EBEFF157EF18600F02CA6 /* btn_menu_findfriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF7157EF18600F02CA6 /* btn_menu_findfriends.png */; };
+		2D7EBF00157EF18600F02CA6 /* btn_menu_leagues_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF8157EF18600F02CA6 /* btn_menu_leagues_up.png */; };
+		2D7EBF01157EF18600F02CA6 /* btn_menu_leagues.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEF9157EF18600F02CA6 /* btn_menu_leagues.png */; };
+		2D7EBF02157EF18600F02CA6 /* btn_menu_play_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEFA157EF18600F02CA6 /* btn_menu_play_up.png */; };
+		2D7EBF03157EF18600F02CA6 /* btn_menu_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEFB157EF18600F02CA6 /* btn_menu_play.png */; };
+		2D7EBF04157EF18600F02CA6 /* btn_menu_pointforprizes_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEFC157EF18600F02CA6 /* btn_menu_pointforprizes_up.png */; };
+		2D7EBF05157EF18600F02CA6 /* btn_menu_pointforprizes.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBEFD157EF18600F02CA6 /* btn_menu_pointforprizes.png */; };
+		2D7EBF09157F020500F02CA6 /* predixerGamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EBF07157F020500F02CA6 /* predixerGamePlayViewController.m */; };
+		2D7EBF0A157F020500F02CA6 /* predixerGamePlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF08157F020500F02CA6 /* predixerGamePlayViewController.xib */; };
+		2D7EBF0E157F021A00F02CA6 /* predixerGameFindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EBF0C157F021900F02CA6 /* predixerGameFindFriendsViewController.m */; };
+		2D7EBF0F157F021A00F02CA6 /* predixerGameFindFriendsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF0D157F021900F02CA6 /* predixerGameFindFriendsViewController.xib */; };
+		2D7EBF13157F022E00F02CA6 /* predixerGamePrizesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EBF11157F022E00F02CA6 /* predixerGamePrizesViewController.m */; };
+		2D7EBF14157F022E00F02CA6 /* predixerGamePrizesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF12157F022E00F02CA6 /* predixerGamePrizesViewController.xib */; };
+		2D7EBF18157F023E00F02CA6 /* predixerGameLeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EBF16157F023E00F02CA6 /* predixerGameLeaguesViewController.m */; };
+		2D7EBF19157F023E00F02CA6 /* predixerGameLeaguesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF17157F023E00F02CA6 /* predixerGameLeaguesViewController.xib */; };
+		2D7EBF23157F080F00F02CA6 /* btn_Play_Entertainment_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1A157F080F00F02CA6 /* btn_Play_Entertainment_up.png */; };
+		2D7EBF24157F080F00F02CA6 /* btn_Play_Entertainment.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1B157F080F00F02CA6 /* btn_Play_Entertainment.png */; };
+		2D7EBF25157F080F00F02CA6 /* btn_Play_News_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1C157F080F00F02CA6 /* btn_Play_News_up.png */; };
+		2D7EBF26157F080F00F02CA6 /* btn_Play_News.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1D157F080F00F02CA6 /* btn_Play_News.png */; };
+		2D7EBF27157F080F00F02CA6 /* btn_Play_Sports_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1E157F080F00F02CA6 /* btn_Play_Sports_up.png */; };
+		2D7EBF28157F080F00F02CA6 /* btn_Play_Sports.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF1F157F080F00F02CA6 /* btn_Play_Sports.png */; };
+		2D7EBF29157F080F00F02CA6 /* btn_Play_Stocks_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF20157F080F00F02CA6 /* btn_Play_Stocks_up.png */; };
+		2D7EBF2A157F080F00F02CA6 /* btn_Play_Stocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF21157F080F00F02CA6 /* btn_Play_Stocks.png */; };
+		2D7EBF2B157F080F00F02CA6 /* txt_ChooseCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7EBF22157F080F00F02CA6 /* txt_ChooseCategory.png */; };
+		2D812DCB1590721D00559741 /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D812DCA1590721D00559741 /* Placeholder.png */; };
+		2D812DE01590762D00559741 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D812DDF1590762D00559741 /* ImageIO.framework */; };
+		2D8E17C015A458E80070D6F3 /* q_answerBox_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17BC15A458E80070D6F3 /* q_answerBox_checked.png */; };
+		2D8E17C115A458E80070D6F3 /* q_answerBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17BD15A458E80070D6F3 /* q_answerBox.png */; };
+		2D8E17C215A458E80070D6F3 /* q_Box.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17BE15A458E80070D6F3 /* q_Box.png */; };
+		2D8E17C415A45A1A0070D6F3 /* btn_qSubmit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C315A45A1A0070D6F3 /* btn_qSubmit.png */; };
+		2D8E17C615A45AB90070D6F3 /* bkd_Comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C515A45AB90070D6F3 /* bkd_Comments.png */; };
+		2D8E17C815A45C2A0070D6F3 /* btn_MoreComments.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C715A45C2A0070D6F3 /* btn_MoreComments.png */; };
+		2D9F9D6D157DE04900E2EAE8 /* predixerAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */; };
+		2D9F9D6E157DE04900E2EAE8 /* predixerAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */; };
+		2D9F9D72157DE05800E2EAE8 /* predixerHowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9D70157DE05800E2EAE8 /* predixerHowToViewController.m */; };
+		2D9F9D73157DE05800E2EAE8 /* predixerHowToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D71157DE05800E2EAE8 /* predixerHowToViewController.xib */; };
+		2D9F9D75157DE09900E2EAE8 /* Screens.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D74157DE09900E2EAE8 /* Screens.png */; };
+		2D9F9D7D157DE32F00E2EAE8 /* bkd_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D76157DE32F00E2EAE8 /* bkd_Logo.png */; };
+		2D9F9D7E157DE32F00E2EAE8 /* bkd_navBar_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D77157DE32F00E2EAE8 /* bkd_navBar_Logo.png */; };
+		2D9F9D7F157DE32F00E2EAE8 /* bkd_navBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D78157DE32F00E2EAE8 /* bkd_navBar.png */; };
+		2D9F9D80157DE32F00E2EAE8 /* btn_Back_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D79157DE32F00E2EAE8 /* btn_Back_up.png */; };
+		2D9F9D81157DE32F00E2EAE8 /* btn_Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D7A157DE32F00E2EAE8 /* btn_Back.png */; };
+		2D9F9D82157DE32F00E2EAE8 /* btn_Settings_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D7B157DE32F00E2EAE8 /* btn_Settings_up.png */; };
+		2D9F9D83157DE32F00E2EAE8 /* btn_Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D7C157DE32F00E2EAE8 /* btn_Settings.png */; };
+		2DAA779415B434F000DAE815 /* n0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA778F15B434F000DAE815 /* n0.png */; };
+		2DAA779515B434F000DAE815 /* n1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779015B434F000DAE815 /* n1.png */; };
+		2DAA779615B434F000DAE815 /* n2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779115B434F000DAE815 /* n2.png */; };
+		2DAA779715B434F000DAE815 /* n3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779215B434F000DAE815 /* n3.png */; };
+		2DAA779815B434F000DAE815 /* n4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779315B434F000DAE815 /* n4.png */; };
+		2DAA779A15B4397F00DAE815 /* bkd_HowTo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779915B4397F00DAE815 /* bkd_HowTo.png */; };
+		2DBB0344158BAC5900D6AC97 /* btn_fb_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0343158BAC5900D6AC97 /* btn_fb_play.png */; };
+		2DBB0348158BAEB900D6AC97 /* btn_fb_invite.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0346158BAEB900D6AC97 /* btn_fb_invite.png */; };
+		2DBB0349158BAEB900D6AC97 /* btn_fb_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0347158BAEB900D6AC97 /* btn_fb_share.png */; };
+		2DC1B6F915AD70F6009BA23F /* DataQuestionAnswers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC1B6F815AD70F6009BA23F /* DataQuestionAnswers.m */; };
+		2DC1B6FC15AD7105009BA23F /* DataQuestionAnswersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DC1B6FB15AD7105009BA23F /* DataQuestionAnswersController.m */; };
+		2DDC681115A414F90016E2AB /* predixerPlayEntertainmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC680F15A414F90016E2AB /* predixerPlayEntertainmentViewController.m */; };
+		2DDC681215A414F90016E2AB /* predixerPlayEntertainmentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC681015A414F90016E2AB /* predixerPlayEntertainmentViewController.xib */; };
+		2DDC681615A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC681415A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.m */; };
+		2DDC681715A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC681515A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.xib */; };
+		2DDC681E15A42B9C0016E2AB /* predixerPlaySportsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC681C15A42B9C0016E2AB /* predixerPlaySportsViewController.m */; };
+		2DDC681F15A42B9C0016E2AB /* predixerPlaySportsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC681D15A42B9C0016E2AB /* predixerPlaySportsViewController.xib */; };
+		2DDC682315A42BB00016E2AB /* predixerPlaySportsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC682115A42BB00016E2AB /* predixerPlaySportsDetailsViewController.m */; };
+		2DDC682415A42BB00016E2AB /* predixerPlaySportsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC682215A42BB00016E2AB /* predixerPlaySportsDetailsViewController.xib */; };
+		2DDC682815A42BC60016E2AB /* predixerPlayStocksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC682615A42BC60016E2AB /* predixerPlayStocksViewController.m */; };
+		2DDC682915A42BC60016E2AB /* predixerPlayStocksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC682715A42BC60016E2AB /* predixerPlayStocksViewController.xib */; };
+		2DDC682D15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC682B15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.m */; };
+		2DDC682E15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC682C15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.xib */; };
+		2DDC683215A42BE60016E2AB /* predixerPlayNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC683015A42BE60016E2AB /* predixerPlayNewsViewController.m */; };
+		2DDC683315A42BE60016E2AB /* predixerPlayNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC683115A42BE60016E2AB /* predixerPlayNewsViewController.xib */; };
+		2DDC683715A42C050016E2AB /* predixerPlayNewsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC683515A42C050016E2AB /* predixerPlayNewsDetailsViewController.m */; };
+		2DDC683815A42C050016E2AB /* predixerPlayNewsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC683615A42C050016E2AB /* predixerPlayNewsDetailsViewController.xib */; };
+		2DDC684415A438E10016E2AB /* btn_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDC684315A438E10016E2AB /* btn_Logo.png */; };
+		2DDE65E215E7692F0082A36C /* predixerPlayCommentsDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DDE65E015E7692F0082A36C /* predixerPlayCommentsDetailsController.m */; };
+		2DDE65E315E7692F0082A36C /* predixerPlayCommentsDetailsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DDE65E115E7692F0082A36C /* predixerPlayCommentsDetailsController.xib */; };
+		2DDE65E515E76B960082A36C /* bkd_CommentsDetails.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDE65E415E76B960082A36C /* bkd_CommentsDetails.png */; };
+		2DDE65E815E774100082A36C /* btn_Like_Dwn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDE65E615E774100082A36C /* btn_Like_Dwn.png */; };
+		2DDE65E915E774100082A36C /* btn_Like_Up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DDE65E715E774100082A36C /* btn_Like_Up.png */; };
+		2DE9F75F15C0D40700555C12 /* DataUserQuestionAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9F75E15C0D40700555C12 /* DataUserQuestionAnswer.m */; };
+		2DE9F76215C0D41500555C12 /* DataUserQuestionAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9F76115C0D41500555C12 /* DataUserQuestionAnswerController.m */; };
+		2DE9F76915C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9F76815C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m */; };
+		2DEE696615C04F2600D713F2 /* DataFacebookUserRecordLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE696515C04F2600D713F2 /* DataFacebookUserRecordLogin.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2D3B36391590C62C00E40373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		2D3B363B1590C62C00E40373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		2D3B363D1590C62C00E40373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage ARC+MKAnnotation";
+		};
+		2D3B363F1590C64600E40373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53761307155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2D0DF97C15C1732D0089BA59 /* predixerPlayCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayCommentsController.h; sourceTree = "<group>"; };
+		2D0DF97D15C1732D0089BA59 /* predixerPlayCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayCommentsController.m; sourceTree = "<group>"; };
+		2D0DF98815C190BE0089BA59 /* predixerSettingsViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerSettingsViewControllerViewController.h; sourceTree = "<group>"; };
+		2D0DF98915C190BE0089BA59 /* predixerSettingsViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerSettingsViewControllerViewController.m; sourceTree = "<group>"; };
+		2D0DF98A15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerSettingsViewControllerViewController.xib; sourceTree = "<group>"; };
+		2D10402815AFC9B0004492CC /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
+		2D10402915AFC9B0004492CC /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
+		2D10402B15AFCA53004492CC /* CheckBox_Deselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckBox_Deselected.png; path = predict/images/CheckBox_Deselected.png; sourceTree = "<group>"; };
+		2D10402C15AFCA53004492CC /* CheckBox_Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = CheckBox_Selected.png; path = predict/images/CheckBox_Selected.png; sourceTree = "<group>"; };
+		2D1A120015BFEA130079E1DD /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		2D1A120115BFEA130079E1DD /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		2D1A120215BFEA130079E1DD /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		2D1A120315BFEA130079E1DD /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		2D1A120415BFEA130079E1DD /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		2D1A120515BFEA130079E1DD /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		2D2BA421158A38BE0052D13C /* CustomTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarItem.h; sourceTree = "<group>"; };
+		2D2BA422158A38BE0052D13C /* CustomTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarItem.m; sourceTree = "<group>"; };
+		2D2BA439158A3D2C0052D13C /* predixerGameFindFriendsInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameFindFriendsInviteController.h; sourceTree = "<group>"; };
+		2D2BA43A158A3D2C0052D13C /* predixerGameFindFriendsInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameFindFriendsInviteController.m; sourceTree = "<group>"; };
+		2D2BA43B158A3D2C0052D13C /* predixerGameFindFriendsInviteController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameFindFriendsInviteController.xib; sourceTree = "<group>"; };
+		2D2BA43E158A3F380052D13C /* tabBar_Bkd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tabBar_Bkd.png; path = predict/images/tabBar_Bkd.png; sourceTree = "<group>"; };
+		2D39EE43157D14B9005173B6 /* predict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = predict.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D39EE47157D14B9005173B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2D39EE49157D14B9005173B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2D39EE4B157D14B9005173B6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2D39EE4F157D14B9005173B6 /* predict-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "predict-Info.plist"; sourceTree = "<group>"; };
+		2D39EE51157D14B9005173B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2D39EE53157D14B9005173B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2D39EE55157D14B9005173B6 /* predict-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "predict-Prefix.pch"; sourceTree = "<group>"; };
+		2D39EE56157D14B9005173B6 /* predixerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = predixerAppDelegate.h; sourceTree = "<group>"; };
+		2D39EE57157D14B9005173B6 /* predixerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = predixerAppDelegate.m; sourceTree = "<group>"; };
+		2D39EE59157D14B9005173B6 /* predixerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = predixerViewController.h; sourceTree = "<group>"; };
+		2D39EE5A157D14B9005173B6 /* predixerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = predixerViewController.m; sourceTree = "<group>"; };
+		2D39EE5D157D14B9005173B6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/predixerViewController.xib; sourceTree = "<group>"; };
+		2D39EE65157D14F6005173B6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = predict/images/Default.png; sourceTree = "<group>"; };
+		2D39EE66157D14F6005173B6 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "predict/images/Default@2x.png"; sourceTree = "<group>"; };
+		2D39EE69157D159D005173B6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = predict/images/Icon.png; sourceTree = "<group>"; };
+		2D39EE6A157D159D005173B6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "predict/images/Icon@2x.png"; sourceTree = "<group>"; };
+		2D39EE6D157D179B005173B6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "predict/images/Icon-72.png"; sourceTree = "<group>"; };
+		2D39EE6E157D179B005173B6 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "predict/images/Icon-Small.png"; sourceTree = "<group>"; };
+		2D39EE6F157D179B005173B6 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "predict/images/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		2D39EE73157D1BAA005173B6 /* predixerLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerLoginViewController.h; sourceTree = "<group>"; };
+		2D39EE74157D1BAA005173B6 /* predixerLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerLoginViewController.m; sourceTree = "<group>"; };
+		2D39EE75157D1BAA005173B6 /* predixerLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerLoginViewController.xib; sourceTree = "<group>"; };
+		2D39EE7A157D1C23005173B6 /* btn_About_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_About_up.png; path = predict/images/btn_About_up.png; sourceTree = "<group>"; };
+		2D39EE7B157D1C23005173B6 /* btn_About.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_About.png; path = predict/images/btn_About.png; sourceTree = "<group>"; };
+		2D39EE7C157D1C23005173B6 /* btn_Facebook_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Facebook_up.png; path = predict/images/btn_Facebook_up.png; sourceTree = "<group>"; };
+		2D39EE7D157D1C23005173B6 /* btn_Facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Facebook.png; path = predict/images/btn_Facebook.png; sourceTree = "<group>"; };
+		2D39EE7E157D1C23005173B6 /* btn_HowTo_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_HowTo_up.png; path = predict/images/btn_HowTo_up.png; sourceTree = "<group>"; };
+		2D39EE7F157D1C23005173B6 /* btn_HowTo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_HowTo.png; path = predict/images/btn_HowTo.png; sourceTree = "<group>"; };
+		2D39EE80157D1C23005173B6 /* btn_Submit_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Submit_up.png; path = predict/images/btn_Submit_up.png; sourceTree = "<group>"; };
+		2D39EE81157D1C23005173B6 /* btn_Submit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Submit.png; path = predict/images/btn_Submit.png; sourceTree = "<group>"; };
+		2D39EE82157D1C23005173B6 /* Login_bkd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Login_bkd.png; path = predict/images/Login_bkd.png; sourceTree = "<group>"; };
+		2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		2D3B36421590D5EF00E40373 /* bkd_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_section.png; path = predict/images/bkd_section.png; sourceTree = "<group>"; };
+		2D3BB2E115BF952C004100B5 /* DataFacebookUserAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFacebookUserAdd.h; path = data/DataFacebookUserAdd.h; sourceTree = "<group>"; };
+		2D3BB2E215BF952C004100B5 /* DataFacebookUserAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFacebookUserAdd.m; path = data/DataFacebookUserAdd.m; sourceTree = "<group>"; };
+		2D3C949615C124B300228404 /* DataComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataComments.h; path = data/DataComments.h; sourceTree = "<group>"; };
+		2D3C949715C124B300228404 /* DataComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataComments.m; path = data/DataComments.m; sourceTree = "<group>"; };
+		2D3C94A415C12E2900228404 /* DataCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataCommentsController.h; path = data/DataCommentsController.h; sourceTree = "<group>"; };
+		2D3C94A515C12E2900228404 /* DataCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataCommentsController.m; path = data/DataCommentsController.m; sourceTree = "<group>"; };
+		2D3C94A715C130EF00228404 /* DataCommentAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataCommentAddController.h; path = data/DataCommentAddController.h; sourceTree = "<group>"; };
+		2D3C94A815C130EF00228404 /* DataCommentAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataCommentAddController.m; path = data/DataCommentAddController.m; sourceTree = "<group>"; };
+		2D45A0D415E9495F00868A08 /* predixerPlayCommentsAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayCommentsAllController.h; sourceTree = "<group>"; };
+		2D45A0D515E9495F00868A08 /* predixerPlayCommentsAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayCommentsAllController.m; sourceTree = "<group>"; };
+		2D45A0D615E9495F00868A08 /* predixerPlayCommentsAllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayCommentsAllController.xib; sourceTree = "<group>"; };
+		2D45A0D915E94CB700868A08 /* bkd_CommentsAll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_CommentsAll.png; path = predict/images/bkd_CommentsAll.png; sourceTree = "<group>"; };
+		2D45A0DB15E9724D00868A08 /* predixerTermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerTermsViewController.h; sourceTree = "<group>"; };
+		2D45A0DC15E9724E00868A08 /* predixerTermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerTermsViewController.m; sourceTree = "<group>"; };
+		2D45A0DD15E9724E00868A08 /* predixerTermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerTermsViewController.xib; sourceTree = "<group>"; };
+		2D45A0E015E9725D00868A08 /* predixerPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPrivacyViewController.h; sourceTree = "<group>"; };
+		2D45A0E115E9725D00868A08 /* predixerPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPrivacyViewController.m; sourceTree = "<group>"; };
+		2D45A0E215E9725D00868A08 /* predixerPrivacyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPrivacyViewController.xib; sourceTree = "<group>"; };
+		2D45A0E515E9727200868A08 /* predixerAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerAccountViewController.h; sourceTree = "<group>"; };
+		2D45A0E615E9727200868A08 /* predixerAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerAccountViewController.m; sourceTree = "<group>"; };
+		2D45A0E715E9727300868A08 /* predixerAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerAccountViewController.xib; sourceTree = "<group>"; };
+		2D45A0EA15E9728400868A08 /* predixerHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerHistoryViewController.h; sourceTree = "<group>"; };
+		2D45A0EB15E9728400868A08 /* predixerHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerHistoryViewController.m; sourceTree = "<group>"; };
+		2D45A0EC15E9728500868A08 /* predixerHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerHistoryViewController.xib; sourceTree = "<group>"; };
+		2D45A0EF15E9729000868A08 /* predixerPointsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPointsViewController.h; sourceTree = "<group>"; };
+		2D45A0F015E9729000868A08 /* predixerPointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPointsViewController.m; sourceTree = "<group>"; };
+		2D45A0F115E9729100868A08 /* predixerPointsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPointsViewController.xib; sourceTree = "<group>"; };
+		2D4F340215DD758600D988C5 /* bkd_Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_Bottom.png; path = predict/images/bkd_Bottom.png; sourceTree = "<group>"; };
+		2D4F340315DD758600D988C5 /* btn_InviteFriends_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_InviteFriends_up.png; path = predict/images/btn_InviteFriends_up.png; sourceTree = "<group>"; };
+		2D4F340415DD758600D988C5 /* btn_InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_InviteFriends.png; path = predict/images/btn_InviteFriends.png; sourceTree = "<group>"; };
+		2D53E7BF158AF466003E5183 /* predixerGameFindFriendsPlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameFindFriendsPlayController.h; sourceTree = "<group>"; };
+		2D53E7C0158AF466003E5183 /* predixerGameFindFriendsPlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameFindFriendsPlayController.m; sourceTree = "<group>"; };
+		2D53E7C1158AF466003E5183 /* predixerGameFindFriendsPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameFindFriendsPlayController.xib; sourceTree = "<group>"; };
+		2D53E7C7158AF4B8003E5183 /* facebookAPIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebookAPIViewController.h; sourceTree = "<group>"; };
+		2D53E7C8158AF4B8003E5183 /* facebookAPIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = facebookAPIViewController.m; sourceTree = "<group>"; };
+		2D53E7C9158AF4B8003E5183 /* facebookAPIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = facebookAPIViewController.xib; sourceTree = "<group>"; };
+		2D55901115AD4BB700EADB4B /* DataQuestions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataQuestions.h; path = data/DataQuestions.h; sourceTree = "<group>"; };
+		2D55901215AD4BB700EADB4B /* DataQuestions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataQuestions.m; path = data/DataQuestions.m; sourceTree = "<group>"; };
+		2D55901415AD4BCC00EADB4B /* DataQuestionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataQuestionsController.h; path = data/DataQuestionsController.h; sourceTree = "<group>"; };
+		2D55901515AD4BCC00EADB4B /* DataQuestionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataQuestionsController.m; path = data/DataQuestionsController.m; sourceTree = "<group>"; };
+		2D55905015AD5D0100EADB4B /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		2D55905115AD5D0100EADB4B /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		2D55905215AD5D0100EADB4B /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		2D55905315AD5D0100EADB4B /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		2D55905415AD5D0100EADB4B /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFrictionlessRequestSettings.h; sourceTree = "<group>"; };
+		2D55905515AD5D0100EADB4B /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		2D55905615AD5D0100EADB4B /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		2D55905715AD5D0100EADB4B /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		2D55905815AD5D0100EADB4B /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfacebook_ios_sdk.a; sourceTree = "<group>"; };
+		2D55905915AD5D0100EADB4B /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		2D55905A15AD5D0100EADB4B /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		2D55905B15AD5D0100EADB4B /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		2D55905C15AD5D0100EADB4B /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		2D55905D15AD5D0100EADB4B /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		2D55905E15AD5D0100EADB4B /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		2D5B3FF215EA09DC005E3A8F /* DataFriendInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFriendInviteController.h; path = data/DataFriendInviteController.h; sourceTree = "<group>"; };
+		2D5B3FF315EA09DC005E3A8F /* DataFriendInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFriendInviteController.m; path = data/DataFriendInviteController.m; sourceTree = "<group>"; };
+		2D605C5A15BF049300EC50A3 /* DataFacebookUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFacebookUser.h; path = data/DataFacebookUser.h; sourceTree = "<group>"; };
+		2D605C5B15BF049300EC50A3 /* DataFacebookUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFacebookUser.m; path = data/DataFacebookUser.m; sourceTree = "<group>"; };
+		2D605C5D15BF09AA00EC50A3 /* DataFacebookUserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFacebookUserController.h; path = data/DataFacebookUserController.h; sourceTree = "<group>"; };
+		2D605C5E15BF09AA00EC50A3 /* DataFacebookUserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFacebookUserController.m; path = data/DataFacebookUserController.m; sourceTree = "<group>"; };
+		2D7EBEF1157EEC7200F02CA6 /* predixerGameMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameMenuViewController.h; sourceTree = "<group>"; };
+		2D7EBEF2157EEC7200F02CA6 /* predixerGameMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameMenuViewController.m; sourceTree = "<group>"; };
+		2D7EBEF3157EEC7200F02CA6 /* predixerGameMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameMenuViewController.xib; sourceTree = "<group>"; };
+		2D7EBEF6157EF18600F02CA6 /* btn_menu_findfriends_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_findfriends_up.png; path = predict/images/btn_menu_findfriends_up.png; sourceTree = "<group>"; };
+		2D7EBEF7157EF18600F02CA6 /* btn_menu_findfriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_findfriends.png; path = predict/images/btn_menu_findfriends.png; sourceTree = "<group>"; };
+		2D7EBEF8157EF18600F02CA6 /* btn_menu_leagues_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_leagues_up.png; path = predict/images/btn_menu_leagues_up.png; sourceTree = "<group>"; };
+		2D7EBEF9157EF18600F02CA6 /* btn_menu_leagues.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_leagues.png; path = predict/images/btn_menu_leagues.png; sourceTree = "<group>"; };
+		2D7EBEFA157EF18600F02CA6 /* btn_menu_play_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_play_up.png; path = predict/images/btn_menu_play_up.png; sourceTree = "<group>"; };
+		2D7EBEFB157EF18600F02CA6 /* btn_menu_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_play.png; path = predict/images/btn_menu_play.png; sourceTree = "<group>"; };
+		2D7EBEFC157EF18600F02CA6 /* btn_menu_pointforprizes_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_pointforprizes_up.png; path = predict/images/btn_menu_pointforprizes_up.png; sourceTree = "<group>"; };
+		2D7EBEFD157EF18600F02CA6 /* btn_menu_pointforprizes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_menu_pointforprizes.png; path = predict/images/btn_menu_pointforprizes.png; sourceTree = "<group>"; };
+		2D7EBF06157F020500F02CA6 /* predixerGamePlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGamePlayViewController.h; sourceTree = "<group>"; };
+		2D7EBF07157F020500F02CA6 /* predixerGamePlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGamePlayViewController.m; sourceTree = "<group>"; };
+		2D7EBF08157F020500F02CA6 /* predixerGamePlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGamePlayViewController.xib; sourceTree = "<group>"; };
+		2D7EBF0B157F021900F02CA6 /* predixerGameFindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameFindFriendsViewController.h; sourceTree = "<group>"; };
+		2D7EBF0C157F021900F02CA6 /* predixerGameFindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameFindFriendsViewController.m; sourceTree = "<group>"; };
+		2D7EBF0D157F021900F02CA6 /* predixerGameFindFriendsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameFindFriendsViewController.xib; sourceTree = "<group>"; };
+		2D7EBF10157F022E00F02CA6 /* predixerGamePrizesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGamePrizesViewController.h; sourceTree = "<group>"; };
+		2D7EBF11157F022E00F02CA6 /* predixerGamePrizesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGamePrizesViewController.m; sourceTree = "<group>"; };
+		2D7EBF12157F022E00F02CA6 /* predixerGamePrizesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGamePrizesViewController.xib; sourceTree = "<group>"; };
+		2D7EBF15157F023E00F02CA6 /* predixerGameLeaguesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameLeaguesViewController.h; sourceTree = "<group>"; };
+		2D7EBF16157F023E00F02CA6 /* predixerGameLeaguesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameLeaguesViewController.m; sourceTree = "<group>"; };
+		2D7EBF17157F023E00F02CA6 /* predixerGameLeaguesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameLeaguesViewController.xib; sourceTree = "<group>"; };
+		2D7EBF1A157F080F00F02CA6 /* btn_Play_Entertainment_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Entertainment_up.png; path = predict/images/btn_Play_Entertainment_up.png; sourceTree = "<group>"; };
+		2D7EBF1B157F080F00F02CA6 /* btn_Play_Entertainment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Entertainment.png; path = predict/images/btn_Play_Entertainment.png; sourceTree = "<group>"; };
+		2D7EBF1C157F080F00F02CA6 /* btn_Play_News_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_News_up.png; path = predict/images/btn_Play_News_up.png; sourceTree = "<group>"; };
+		2D7EBF1D157F080F00F02CA6 /* btn_Play_News.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_News.png; path = predict/images/btn_Play_News.png; sourceTree = "<group>"; };
+		2D7EBF1E157F080F00F02CA6 /* btn_Play_Sports_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Sports_up.png; path = predict/images/btn_Play_Sports_up.png; sourceTree = "<group>"; };
+		2D7EBF1F157F080F00F02CA6 /* btn_Play_Sports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Sports.png; path = predict/images/btn_Play_Sports.png; sourceTree = "<group>"; };
+		2D7EBF20157F080F00F02CA6 /* btn_Play_Stocks_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Stocks_up.png; path = predict/images/btn_Play_Stocks_up.png; sourceTree = "<group>"; };
+		2D7EBF21157F080F00F02CA6 /* btn_Play_Stocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Play_Stocks.png; path = predict/images/btn_Play_Stocks.png; sourceTree = "<group>"; };
+		2D7EBF22157F080F00F02CA6 /* txt_ChooseCategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = txt_ChooseCategory.png; path = predict/images/txt_ChooseCategory.png; sourceTree = "<group>"; };
+		2D812DCA1590721D00559741 /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Placeholder.png; path = predict/images/Placeholder.png; sourceTree = "<group>"; };
+		2D812DDF1590762D00559741 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		2D8E17BC15A458E80070D6F3 /* q_answerBox_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = q_answerBox_checked.png; path = predict/images/q_answerBox_checked.png; sourceTree = "<group>"; };
+		2D8E17BD15A458E80070D6F3 /* q_answerBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = q_answerBox.png; path = predict/images/q_answerBox.png; sourceTree = "<group>"; };
+		2D8E17BE15A458E80070D6F3 /* q_Box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = q_Box.png; path = predict/images/q_Box.png; sourceTree = "<group>"; };
+		2D8E17C315A45A1A0070D6F3 /* btn_qSubmit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_qSubmit.png; path = predict/images/btn_qSubmit.png; sourceTree = "<group>"; };
+		2D8E17C515A45AB90070D6F3 /* bkd_Comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_Comments.png; path = predict/images/bkd_Comments.png; sourceTree = "<group>"; };
+		2D8E17C715A45C2A0070D6F3 /* btn_MoreComments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_MoreComments.png; path = predict/images/btn_MoreComments.png; sourceTree = "<group>"; };
+		2D9F9D6A157DE04900E2EAE8 /* predixerAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerAboutViewController.h; sourceTree = "<group>"; };
+		2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerAboutViewController.m; sourceTree = "<group>"; };
+		2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerAboutViewController.xib; sourceTree = "<group>"; };
+		2D9F9D6F157DE05800E2EAE8 /* predixerHowToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerHowToViewController.h; sourceTree = "<group>"; };
+		2D9F9D70157DE05800E2EAE8 /* predixerHowToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerHowToViewController.m; sourceTree = "<group>"; };
+		2D9F9D71157DE05800E2EAE8 /* predixerHowToViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerHowToViewController.xib; sourceTree = "<group>"; };
+		2D9F9D74157DE09900E2EAE8 /* Screens.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Screens.png; path = predict/images/Screens.png; sourceTree = "<group>"; };
+		2D9F9D76157DE32F00E2EAE8 /* bkd_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_Logo.png; path = predict/images/bkd_Logo.png; sourceTree = "<group>"; };
+		2D9F9D77157DE32F00E2EAE8 /* bkd_navBar_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_navBar_Logo.png; path = predict/images/bkd_navBar_Logo.png; sourceTree = "<group>"; };
+		2D9F9D78157DE32F00E2EAE8 /* bkd_navBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_navBar.png; path = predict/images/bkd_navBar.png; sourceTree = "<group>"; };
+		2D9F9D79157DE32F00E2EAE8 /* btn_Back_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Back_up.png; path = predict/images/btn_Back_up.png; sourceTree = "<group>"; };
+		2D9F9D7A157DE32F00E2EAE8 /* btn_Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Back.png; path = predict/images/btn_Back.png; sourceTree = "<group>"; };
+		2D9F9D7B157DE32F00E2EAE8 /* btn_Settings_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Settings_up.png; path = predict/images/btn_Settings_up.png; sourceTree = "<group>"; };
+		2D9F9D7C157DE32F00E2EAE8 /* btn_Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Settings.png; path = predict/images/btn_Settings.png; sourceTree = "<group>"; };
+		2DAA778F15B434F000DAE815 /* n0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n0.png; path = predict/images/n0.png; sourceTree = "<group>"; };
+		2DAA779015B434F000DAE815 /* n1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n1.png; path = predict/images/n1.png; sourceTree = "<group>"; };
+		2DAA779115B434F000DAE815 /* n2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n2.png; path = predict/images/n2.png; sourceTree = "<group>"; };
+		2DAA779215B434F000DAE815 /* n3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n3.png; path = predict/images/n3.png; sourceTree = "<group>"; };
+		2DAA779315B434F000DAE815 /* n4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n4.png; path = predict/images/n4.png; sourceTree = "<group>"; };
+		2DAA779915B4397F00DAE815 /* bkd_HowTo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_HowTo.png; path = predict/images/bkd_HowTo.png; sourceTree = "<group>"; };
+		2DBB0343158BAC5900D6AC97 /* btn_fb_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_play.png; path = predict/images/btn_fb_play.png; sourceTree = "<group>"; };
+		2DBB0346158BAEB900D6AC97 /* btn_fb_invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_invite.png; path = predict/images/btn_fb_invite.png; sourceTree = "<group>"; };
+		2DBB0347158BAEB900D6AC97 /* btn_fb_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_share.png; path = predict/images/btn_fb_share.png; sourceTree = "<group>"; };
+		2DC1B6F715AD70F5009BA23F /* DataQuestionAnswers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataQuestionAnswers.h; path = data/DataQuestionAnswers.h; sourceTree = "<group>"; };
+		2DC1B6F815AD70F6009BA23F /* DataQuestionAnswers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataQuestionAnswers.m; path = data/DataQuestionAnswers.m; sourceTree = "<group>"; };
+		2DC1B6FA15AD7105009BA23F /* DataQuestionAnswersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataQuestionAnswersController.h; path = data/DataQuestionAnswersController.h; sourceTree = "<group>"; };
+		2DC1B6FB15AD7105009BA23F /* DataQuestionAnswersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataQuestionAnswersController.m; path = data/DataQuestionAnswersController.m; sourceTree = "<group>"; };
+		2DDC680E15A414F90016E2AB /* predixerPlayEntertainmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayEntertainmentViewController.h; sourceTree = "<group>"; };
+		2DDC680F15A414F90016E2AB /* predixerPlayEntertainmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayEntertainmentViewController.m; sourceTree = "<group>"; };
+		2DDC681015A414F90016E2AB /* predixerPlayEntertainmentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayEntertainmentViewController.xib; sourceTree = "<group>"; };
+		2DDC681315A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayEntertainmentDetailsViewController.h; sourceTree = "<group>"; };
+		2DDC681415A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayEntertainmentDetailsViewController.m; sourceTree = "<group>"; };
+		2DDC681515A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayEntertainmentDetailsViewController.xib; sourceTree = "<group>"; };
+		2DDC681B15A42B9C0016E2AB /* predixerPlaySportsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlaySportsViewController.h; sourceTree = "<group>"; };
+		2DDC681C15A42B9C0016E2AB /* predixerPlaySportsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlaySportsViewController.m; sourceTree = "<group>"; };
+		2DDC681D15A42B9C0016E2AB /* predixerPlaySportsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlaySportsViewController.xib; sourceTree = "<group>"; };
+		2DDC682015A42BB00016E2AB /* predixerPlaySportsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlaySportsDetailsViewController.h; sourceTree = "<group>"; };
+		2DDC682115A42BB00016E2AB /* predixerPlaySportsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlaySportsDetailsViewController.m; sourceTree = "<group>"; };
+		2DDC682215A42BB00016E2AB /* predixerPlaySportsDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlaySportsDetailsViewController.xib; sourceTree = "<group>"; };
+		2DDC682515A42BC60016E2AB /* predixerPlayStocksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayStocksViewController.h; sourceTree = "<group>"; };
+		2DDC682615A42BC60016E2AB /* predixerPlayStocksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayStocksViewController.m; sourceTree = "<group>"; };
+		2DDC682715A42BC60016E2AB /* predixerPlayStocksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayStocksViewController.xib; sourceTree = "<group>"; };
+		2DDC682A15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayStocksDetailsViewController.h; sourceTree = "<group>"; };
+		2DDC682B15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayStocksDetailsViewController.m; sourceTree = "<group>"; };
+		2DDC682C15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayStocksDetailsViewController.xib; sourceTree = "<group>"; };
+		2DDC682F15A42BE60016E2AB /* predixerPlayNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayNewsViewController.h; sourceTree = "<group>"; };
+		2DDC683015A42BE60016E2AB /* predixerPlayNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayNewsViewController.m; sourceTree = "<group>"; };
+		2DDC683115A42BE60016E2AB /* predixerPlayNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayNewsViewController.xib; sourceTree = "<group>"; };
+		2DDC683415A42C050016E2AB /* predixerPlayNewsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayNewsDetailsViewController.h; sourceTree = "<group>"; };
+		2DDC683515A42C050016E2AB /* predixerPlayNewsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayNewsDetailsViewController.m; sourceTree = "<group>"; };
+		2DDC683615A42C050016E2AB /* predixerPlayNewsDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayNewsDetailsViewController.xib; sourceTree = "<group>"; };
+		2DDC684315A438E10016E2AB /* btn_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Logo.png; path = predict/images/btn_Logo.png; sourceTree = "<group>"; };
+		2DDE65DF15E7692F0082A36C /* predixerPlayCommentsDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayCommentsDetailsController.h; sourceTree = "<group>"; };
+		2DDE65E015E7692F0082A36C /* predixerPlayCommentsDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayCommentsDetailsController.m; sourceTree = "<group>"; };
+		2DDE65E115E7692F0082A36C /* predixerPlayCommentsDetailsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayCommentsDetailsController.xib; sourceTree = "<group>"; };
+		2DDE65E415E76B960082A36C /* bkd_CommentsDetails.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_CommentsDetails.png; path = predict/images/bkd_CommentsDetails.png; sourceTree = "<group>"; };
+		2DDE65E615E774100082A36C /* btn_Like_Dwn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Like_Dwn.png; path = predict/images/btn_Like_Dwn.png; sourceTree = "<group>"; };
+		2DDE65E715E774100082A36C /* btn_Like_Up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Like_Up.png; path = predict/images/btn_Like_Up.png; sourceTree = "<group>"; };
+		2DE9F75D15C0D40700555C12 /* DataUserQuestionAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserQuestionAnswer.h; path = data/DataUserQuestionAnswer.h; sourceTree = "<group>"; };
+		2DE9F75E15C0D40700555C12 /* DataUserQuestionAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserQuestionAnswer.m; path = data/DataUserQuestionAnswer.m; sourceTree = "<group>"; };
+		2DE9F76015C0D41500555C12 /* DataUserQuestionAnswerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserQuestionAnswerController.h; path = data/DataUserQuestionAnswerController.h; sourceTree = "<group>"; };
+		2DE9F76115C0D41500555C12 /* DataUserQuestionAnswerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserQuestionAnswerController.m; path = data/DataUserQuestionAnswerController.m; sourceTree = "<group>"; };
+		2DE9F76715C0F03600555C12 /* DataUserQuestionAnswerSubmitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserQuestionAnswerSubmitController.h; path = data/DataUserQuestionAnswerSubmitController.h; sourceTree = "<group>"; };
+		2DE9F76815C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserQuestionAnswerSubmitController.m; path = data/DataUserQuestionAnswerSubmitController.m; sourceTree = "<group>"; };
+		2DEE696415C04F2600D713F2 /* DataFacebookUserRecordLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFacebookUserRecordLogin.h; path = data/DataFacebookUserRecordLogin.h; sourceTree = "<group>"; };
+		2DEE696515C04F2600D713F2 /* DataFacebookUserRecordLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFacebookUserRecordLogin.m; path = data/DataFacebookUserRecordLogin.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D39EE40157D14B9005173B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D3B36411590C64C00E40373 /* libSDWebImageARC.a in Frameworks */,
+				2D812DE01590762D00559741 /* ImageIO.framework in Frameworks */,
+				2D39EE48157D14B9005173B6 /* UIKit.framework in Frameworks */,
+				2D39EE4A157D14B9005173B6 /* Foundation.framework in Frameworks */,
+				2D39EE4C157D14B9005173B6 /* CoreGraphics.framework in Frameworks */,
+				2D55906015AD5D0100EADB4B /* libfacebook_ios_sdk.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D1A11FF15BFEA130079E1DD /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				2D1A120015BFEA130079E1DD /* GTMNSString+HTML.h */,
+				2D1A120115BFEA130079E1DD /* GTMNSString+HTML.m */,
+				2D1A120215BFEA130079E1DD /* NSDate+InternetDateTime.h */,
+				2D1A120315BFEA130079E1DD /* NSDate+InternetDateTime.m */,
+				2D1A120415BFEA130079E1DD /* NSString+HTML.h */,
+				2D1A120515BFEA130079E1DD /* NSString+HTML.m */,
+			);
+			path = categories;
+			sourceTree = "<group>";
+		};
+		2D2BA41F158A389D0052D13C /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				2D2BA421158A38BE0052D13C /* CustomTabBarItem.h */,
+				2D2BA422158A38BE0052D13C /* CustomTabBarItem.m */,
+				2D10402815AFC9B0004492CC /* RadioButton.h */,
+				2D10402915AFC9B0004492CC /* RadioButton.m */,
+			);
+			name = tabbar;
+			sourceTree = "<group>";
+		};
+		2D2BA424158A391F0052D13C /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				2D7EBEF1157EEC7200F02CA6 /* predixerGameMenuViewController.h */,
+				2D7EBEF2157EEC7200F02CA6 /* predixerGameMenuViewController.m */,
+				2D7EBEF3157EEC7200F02CA6 /* predixerGameMenuViewController.xib */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
+		2D2BA425158A393D0052D13C /* play */ = {
+			isa = PBXGroup;
+			children = (
+				2D7EBF06157F020500F02CA6 /* predixerGamePlayViewController.h */,
+				2D7EBF07157F020500F02CA6 /* predixerGamePlayViewController.m */,
+				2D7EBF08157F020500F02CA6 /* predixerGamePlayViewController.xib */,
+			);
+			name = play;
+			sourceTree = "<group>";
+		};
+		2D2BA426158A39470052D13C /* findfriends */ = {
+			isa = PBXGroup;
+			children = (
+				2D7EBF0B157F021900F02CA6 /* predixerGameFindFriendsViewController.h */,
+				2D7EBF0C157F021900F02CA6 /* predixerGameFindFriendsViewController.m */,
+				2D7EBF0D157F021900F02CA6 /* predixerGameFindFriendsViewController.xib */,
+				2D2BA439158A3D2C0052D13C /* predixerGameFindFriendsInviteController.h */,
+				2D2BA43A158A3D2C0052D13C /* predixerGameFindFriendsInviteController.m */,
+				2D2BA43B158A3D2C0052D13C /* predixerGameFindFriendsInviteController.xib */,
+				2D53E7BF158AF466003E5183 /* predixerGameFindFriendsPlayController.h */,
+				2D53E7C0158AF466003E5183 /* predixerGameFindFriendsPlayController.m */,
+				2D53E7C1158AF466003E5183 /* predixerGameFindFriendsPlayController.xib */,
+				2D53E7C7158AF4B8003E5183 /* facebookAPIViewController.h */,
+				2D53E7C8158AF4B8003E5183 /* facebookAPIViewController.m */,
+				2D53E7C9158AF4B8003E5183 /* facebookAPIViewController.xib */,
+			);
+			name = findfriends;
+			sourceTree = "<group>";
+		};
+		2D2BA427158A39520052D13C /* prizes */ = {
+			isa = PBXGroup;
+			children = (
+				2D7EBF10157F022E00F02CA6 /* predixerGamePrizesViewController.h */,
+				2D7EBF11157F022E00F02CA6 /* predixerGamePrizesViewController.m */,
+				2D7EBF12157F022E00F02CA6 /* predixerGamePrizesViewController.xib */,
+			);
+			name = prizes;
+			sourceTree = "<group>";
+		};
+		2D2BA428158A395C0052D13C /* leagues */ = {
+			isa = PBXGroup;
+			children = (
+				2D7EBF15157F023E00F02CA6 /* predixerGameLeaguesViewController.h */,
+				2D7EBF16157F023E00F02CA6 /* predixerGameLeaguesViewController.m */,
+				2D7EBF17157F023E00F02CA6 /* predixerGameLeaguesViewController.xib */,
+			);
+			name = leagues;
+			sourceTree = "<group>";
+		};
+		2D39EE38157D14B9005173B6 = {
+			isa = PBXGroup;
+			children = (
+				2D1A11FF15BFEA130079E1DD /* categories */,
+				2D55904F15AD5D0100EADB4B /* facebook-ios-sdk */,
+				2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */,
+				2D55900315AD44E600EADB4B /* data */,
+				2D39EE64157D14E5005173B6 /* images */,
+				2D39EE4D157D14B9005173B6 /* predict */,
+				2D39EE46157D14B9005173B6 /* Frameworks */,
+				2D39EE44157D14B9005173B6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D39EE44157D14B9005173B6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D39EE43157D14B9005173B6 /* predict.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D39EE46157D14B9005173B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D812DDF1590762D00559741 /* ImageIO.framework */,
+				2D39EE47157D14B9005173B6 /* UIKit.framework */,
+				2D39EE49157D14B9005173B6 /* Foundation.framework */,
+				2D39EE4B157D14B9005173B6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D39EE4D157D14B9005173B6 /* predict */ = {
+			isa = PBXGroup;
+			children = (
+				2D2BA41F158A389D0052D13C /* tabbar */,
+				2D7EBEEF157EEC5B00F02CA6 /* game */,
+				2D9F9D69157DE01E00E2EAE8 /* generic */,
+				2D39EE79157D1BC3005173B6 /* main */,
+				2D39EE78157D1BB5005173B6 /* login */,
+				2D39EE4E157D14B9005173B6 /* Supporting Files */,
+			);
+			path = predict;
+			sourceTree = "<group>";
+		};
+		2D39EE4E157D14B9005173B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D39EE4F157D14B9005173B6 /* predict-Info.plist */,
+				2D39EE50157D14B9005173B6 /* InfoPlist.strings */,
+				2D39EE53157D14B9005173B6 /* main.m */,
+				2D39EE55157D14B9005173B6 /* predict-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2D39EE64157D14E5005173B6 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				2D45A0D915E94CB700868A08 /* bkd_CommentsAll.png */,
+				2DDE65E615E774100082A36C /* btn_Like_Dwn.png */,
+				2DDE65E715E774100082A36C /* btn_Like_Up.png */,
+				2DDE65E415E76B960082A36C /* bkd_CommentsDetails.png */,
+				2D4F340215DD758600D988C5 /* bkd_Bottom.png */,
+				2D4F340315DD758600D988C5 /* btn_InviteFriends_up.png */,
+				2D4F340415DD758600D988C5 /* btn_InviteFriends.png */,
+				2DAA779915B4397F00DAE815 /* bkd_HowTo.png */,
+				2DAA778F15B434F000DAE815 /* n0.png */,
+				2DAA779015B434F000DAE815 /* n1.png */,
+				2DAA779115B434F000DAE815 /* n2.png */,
+				2DAA779215B434F000DAE815 /* n3.png */,
+				2DAA779315B434F000DAE815 /* n4.png */,
+				2D10402B15AFCA53004492CC /* CheckBox_Deselected.png */,
+				2D10402C15AFCA53004492CC /* CheckBox_Selected.png */,
+				2D8E17C715A45C2A0070D6F3 /* btn_MoreComments.png */,
+				2D8E17C515A45AB90070D6F3 /* bkd_Comments.png */,
+				2D8E17C315A45A1A0070D6F3 /* btn_qSubmit.png */,
+				2D8E17BC15A458E80070D6F3 /* q_answerBox_checked.png */,
+				2D8E17BD15A458E80070D6F3 /* q_answerBox.png */,
+				2D8E17BE15A458E80070D6F3 /* q_Box.png */,
+				2DDC684315A438E10016E2AB /* btn_Logo.png */,
+				2D3B36421590D5EF00E40373 /* bkd_section.png */,
+				2D812DCA1590721D00559741 /* Placeholder.png */,
+				2DBB0346158BAEB900D6AC97 /* btn_fb_invite.png */,
+				2DBB0347158BAEB900D6AC97 /* btn_fb_share.png */,
+				2DBB0343158BAC5900D6AC97 /* btn_fb_play.png */,
+				2D2BA43E158A3F380052D13C /* tabBar_Bkd.png */,
+				2D7EBF1A157F080F00F02CA6 /* btn_Play_Entertainment_up.png */,
+				2D7EBF1B157F080F00F02CA6 /* btn_Play_Entertainment.png */,
+				2D7EBF1C157F080F00F02CA6 /* btn_Play_News_up.png */,
+				2D7EBF1D157F080F00F02CA6 /* btn_Play_News.png */,
+				2D7EBF1E157F080F00F02CA6 /* btn_Play_Sports_up.png */,
+				2D7EBF1F157F080F00F02CA6 /* btn_Play_Sports.png */,
+				2D7EBF20157F080F00F02CA6 /* btn_Play_Stocks_up.png */,
+				2D7EBF21157F080F00F02CA6 /* btn_Play_Stocks.png */,
+				2D7EBF22157F080F00F02CA6 /* txt_ChooseCategory.png */,
+				2D7EBEF6157EF18600F02CA6 /* btn_menu_findfriends_up.png */,
+				2D7EBEF7157EF18600F02CA6 /* btn_menu_findfriends.png */,
+				2D7EBEF8157EF18600F02CA6 /* btn_menu_leagues_up.png */,
+				2D7EBEF9157EF18600F02CA6 /* btn_menu_leagues.png */,
+				2D7EBEFA157EF18600F02CA6 /* btn_menu_play_up.png */,
+				2D7EBEFB157EF18600F02CA6 /* btn_menu_play.png */,
+				2D7EBEFC157EF18600F02CA6 /* btn_menu_pointforprizes_up.png */,
+				2D7EBEFD157EF18600F02CA6 /* btn_menu_pointforprizes.png */,
+				2D9F9D76157DE32F00E2EAE8 /* bkd_Logo.png */,
+				2D9F9D77157DE32F00E2EAE8 /* bkd_navBar_Logo.png */,
+				2D9F9D78157DE32F00E2EAE8 /* bkd_navBar.png */,
+				2D9F9D79157DE32F00E2EAE8 /* btn_Back_up.png */,
+				2D9F9D7A157DE32F00E2EAE8 /* btn_Back.png */,
+				2D9F9D7B157DE32F00E2EAE8 /* btn_Settings_up.png */,
+				2D9F9D7C157DE32F00E2EAE8 /* btn_Settings.png */,
+				2D9F9D74157DE09900E2EAE8 /* Screens.png */,
+				2D39EE7A157D1C23005173B6 /* btn_About_up.png */,
+				2D39EE7B157D1C23005173B6 /* btn_About.png */,
+				2D39EE7C157D1C23005173B6 /* btn_Facebook_up.png */,
+				2D39EE7D157D1C23005173B6 /* btn_Facebook.png */,
+				2D39EE7E157D1C23005173B6 /* btn_HowTo_up.png */,
+				2D39EE7F157D1C23005173B6 /* btn_HowTo.png */,
+				2D39EE80157D1C23005173B6 /* btn_Submit_up.png */,
+				2D39EE81157D1C23005173B6 /* btn_Submit.png */,
+				2D39EE82157D1C23005173B6 /* Login_bkd.png */,
+				2D39EE6D157D179B005173B6 /* Icon-72.png */,
+				2D39EE6E157D179B005173B6 /* Icon-Small.png */,
+				2D39EE6F157D179B005173B6 /* Icon-Small@2x.png */,
+				2D39EE69157D159D005173B6 /* Icon.png */,
+				2D39EE6A157D159D005173B6 /* Icon@2x.png */,
+				2D39EE65157D14F6005173B6 /* Default.png */,
+				2D39EE66157D14F6005173B6 /* Default@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		2D39EE78157D1BB5005173B6 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				2D39EE73157D1BAA005173B6 /* predixerLoginViewController.h */,
+				2D39EE74157D1BAA005173B6 /* predixerLoginViewController.m */,
+				2D39EE75157D1BAA005173B6 /* predixerLoginViewController.xib */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		2D39EE79157D1BC3005173B6 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				2D39EE56157D14B9005173B6 /* predixerAppDelegate.h */,
+				2D39EE57157D14B9005173B6 /* predixerAppDelegate.m */,
+				2D39EE59157D14B9005173B6 /* predixerViewController.h */,
+				2D39EE5A157D14B9005173B6 /* predixerViewController.m */,
+				2D39EE5C157D14B9005173B6 /* predixerViewController.xib */,
+			);
+			name = main;
+			sourceTree = "<group>";
+		};
+		2D3B36311590C62B00E40373 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D3B363A1590C62C00E40373 /* libSDWebImage.a */,
+				2D3B363C1590C62C00E40373 /* libSDWebImageARC.a */,
+				2D3B363E1590C62C00E40373 /* libSDWebImageARC+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D45A0D315E9491A00868A08 /* comments */ = {
+			isa = PBXGroup;
+			children = (
+				2D0DF97C15C1732D0089BA59 /* predixerPlayCommentsController.h */,
+				2D0DF97D15C1732D0089BA59 /* predixerPlayCommentsController.m */,
+				2DDE65DF15E7692F0082A36C /* predixerPlayCommentsDetailsController.h */,
+				2DDE65E015E7692F0082A36C /* predixerPlayCommentsDetailsController.m */,
+				2DDE65E115E7692F0082A36C /* predixerPlayCommentsDetailsController.xib */,
+				2D45A0D415E9495F00868A08 /* predixerPlayCommentsAllController.h */,
+				2D45A0D515E9495F00868A08 /* predixerPlayCommentsAllController.m */,
+				2D45A0D615E9495F00868A08 /* predixerPlayCommentsAllController.xib */,
+			);
+			name = comments;
+			sourceTree = "<group>";
+		};
+		2D55900315AD44E600EADB4B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				2D55901115AD4BB700EADB4B /* DataQuestions.h */,
+				2D55901215AD4BB700EADB4B /* DataQuestions.m */,
+				2D55901415AD4BCC00EADB4B /* DataQuestionsController.h */,
+				2D55901515AD4BCC00EADB4B /* DataQuestionsController.m */,
+				2DC1B6F715AD70F5009BA23F /* DataQuestionAnswers.h */,
+				2DC1B6F815AD70F6009BA23F /* DataQuestionAnswers.m */,
+				2DC1B6FA15AD7105009BA23F /* DataQuestionAnswersController.h */,
+				2DC1B6FB15AD7105009BA23F /* DataQuestionAnswersController.m */,
+				2D605C5A15BF049300EC50A3 /* DataFacebookUser.h */,
+				2D605C5B15BF049300EC50A3 /* DataFacebookUser.m */,
+				2D605C5D15BF09AA00EC50A3 /* DataFacebookUserController.h */,
+				2D605C5E15BF09AA00EC50A3 /* DataFacebookUserController.m */,
+				2D3BB2E115BF952C004100B5 /* DataFacebookUserAdd.h */,
+				2D3BB2E215BF952C004100B5 /* DataFacebookUserAdd.m */,
+				2DEE696415C04F2600D713F2 /* DataFacebookUserRecordLogin.h */,
+				2DEE696515C04F2600D713F2 /* DataFacebookUserRecordLogin.m */,
+				2DE9F75D15C0D40700555C12 /* DataUserQuestionAnswer.h */,
+				2DE9F75E15C0D40700555C12 /* DataUserQuestionAnswer.m */,
+				2DE9F76015C0D41500555C12 /* DataUserQuestionAnswerController.h */,
+				2DE9F76115C0D41500555C12 /* DataUserQuestionAnswerController.m */,
+				2DE9F76715C0F03600555C12 /* DataUserQuestionAnswerSubmitController.h */,
+				2DE9F76815C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m */,
+				2D3C949615C124B300228404 /* DataComments.h */,
+				2D3C949715C124B300228404 /* DataComments.m */,
+				2D3C94A415C12E2900228404 /* DataCommentsController.h */,
+				2D3C94A515C12E2900228404 /* DataCommentsController.m */,
+				2D3C94A715C130EF00228404 /* DataCommentAddController.h */,
+				2D3C94A815C130EF00228404 /* DataCommentAddController.m */,
+				2D5B3FF215EA09DC005E3A8F /* DataFriendInviteController.h */,
+				2D5B3FF315EA09DC005E3A8F /* DataFriendInviteController.m */,
+			);
+			name = data;
+			path = /Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict;
+			sourceTree = "<absolute>";
+		};
+		2D55904F15AD5D0100EADB4B /* facebook-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				2D55905015AD5D0100EADB4B /* Facebook.h */,
+				2D55905115AD5D0100EADB4B /* FBConnect.h */,
+				2D55905215AD5D0100EADB4B /* FBDialog.bundle */,
+				2D55905315AD5D0100EADB4B /* FBDialog.h */,
+				2D55905415AD5D0100EADB4B /* FBFrictionlessRequestSettings.h */,
+				2D55905515AD5D0100EADB4B /* FBLoginDialog.h */,
+				2D55905615AD5D0100EADB4B /* FBRequest.h */,
+				2D55905715AD5D0100EADB4B /* JSON.h */,
+				2D55905815AD5D0100EADB4B /* libfacebook_ios_sdk.a */,
+				2D55905915AD5D0100EADB4B /* NSObject+SBJSON.h */,
+				2D55905A15AD5D0100EADB4B /* NSString+SBJSON.h */,
+				2D55905B15AD5D0100EADB4B /* SBJSON.h */,
+				2D55905C15AD5D0100EADB4B /* SBJsonBase.h */,
+				2D55905D15AD5D0100EADB4B /* SBJsonParser.h */,
+				2D55905E15AD5D0100EADB4B /* SBJsonWriter.h */,
+			);
+			name = "facebook-ios-sdk";
+			path = "../../../../../../../Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk";
+			sourceTree = "<group>";
+		};
+		2D7EBEEF157EEC5B00F02CA6 /* game */ = {
+			isa = PBXGroup;
+			children = (
+				2D45A0D315E9491A00868A08 /* comments */,
+				2DDC681A15A42B830016E2AB /* play-news */,
+				2DDC681915A42B780016E2AB /* play-stocks */,
+				2DDC681815A42B6E0016E2AB /* play-sports */,
+				2DDC680815A413000016E2AB /* play-entertainment */,
+				2D2BA428158A395C0052D13C /* leagues */,
+				2D2BA427158A39520052D13C /* prizes */,
+				2D2BA426158A39470052D13C /* findfriends */,
+				2D2BA425158A393D0052D13C /* play */,
+				2D2BA424158A391F0052D13C /* menu */,
+			);
+			name = game;
+			sourceTree = "<group>";
+		};
+		2D9F9D69157DE01E00E2EAE8 /* generic */ = {
+			isa = PBXGroup;
+			children = (
+				2D9F9D6A157DE04900E2EAE8 /* predixerAboutViewController.h */,
+				2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */,
+				2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */,
+				2D9F9D6F157DE05800E2EAE8 /* predixerHowToViewController.h */,
+				2D9F9D70157DE05800E2EAE8 /* predixerHowToViewController.m */,
+				2D9F9D71157DE05800E2EAE8 /* predixerHowToViewController.xib */,
+				2D0DF98815C190BE0089BA59 /* predixerSettingsViewControllerViewController.h */,
+				2D0DF98915C190BE0089BA59 /* predixerSettingsViewControllerViewController.m */,
+				2D0DF98A15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib */,
+				2D45A0DB15E9724D00868A08 /* predixerTermsViewController.h */,
+				2D45A0DC15E9724E00868A08 /* predixerTermsViewController.m */,
+				2D45A0DD15E9724E00868A08 /* predixerTermsViewController.xib */,
+				2D45A0E015E9725D00868A08 /* predixerPrivacyViewController.h */,
+				2D45A0E115E9725D00868A08 /* predixerPrivacyViewController.m */,
+				2D45A0E215E9725D00868A08 /* predixerPrivacyViewController.xib */,
+				2D45A0E515E9727200868A08 /* predixerAccountViewController.h */,
+				2D45A0E615E9727200868A08 /* predixerAccountViewController.m */,
+				2D45A0E715E9727300868A08 /* predixerAccountViewController.xib */,
+				2D45A0EA15E9728400868A08 /* predixerHistoryViewController.h */,
+				2D45A0EB15E9728400868A08 /* predixerHistoryViewController.m */,
+				2D45A0EC15E9728500868A08 /* predixerHistoryViewController.xib */,
+				2D45A0EF15E9729000868A08 /* predixerPointsViewController.h */,
+				2D45A0F015E9729000868A08 /* predixerPointsViewController.m */,
+				2D45A0F115E9729100868A08 /* predixerPointsViewController.xib */,
+			);
+			name = generic;
+			sourceTree = "<group>";
+		};
+		2DDC680815A413000016E2AB /* play-entertainment */ = {
+			isa = PBXGroup;
+			children = (
+				2DDC680E15A414F90016E2AB /* predixerPlayEntertainmentViewController.h */,
+				2DDC680F15A414F90016E2AB /* predixerPlayEntertainmentViewController.m */,
+				2DDC681015A414F90016E2AB /* predixerPlayEntertainmentViewController.xib */,
+				2DDC681315A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.h */,
+				2DDC681415A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.m */,
+				2DDC681515A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.xib */,
+			);
+			name = "play-entertainment";
+			sourceTree = "<group>";
+		};
+		2DDC681815A42B6E0016E2AB /* play-sports */ = {
+			isa = PBXGroup;
+			children = (
+				2DDC681B15A42B9C0016E2AB /* predixerPlaySportsViewController.h */,
+				2DDC681C15A42B9C0016E2AB /* predixerPlaySportsViewController.m */,
+				2DDC681D15A42B9C0016E2AB /* predixerPlaySportsViewController.xib */,
+				2DDC682015A42BB00016E2AB /* predixerPlaySportsDetailsViewController.h */,
+				2DDC682115A42BB00016E2AB /* predixerPlaySportsDetailsViewController.m */,
+				2DDC682215A42BB00016E2AB /* predixerPlaySportsDetailsViewController.xib */,
+			);
+			name = "play-sports";
+			sourceTree = "<group>";
+		};
+		2DDC681915A42B780016E2AB /* play-stocks */ = {
+			isa = PBXGroup;
+			children = (
+				2DDC682515A42BC60016E2AB /* predixerPlayStocksViewController.h */,
+				2DDC682615A42BC60016E2AB /* predixerPlayStocksViewController.m */,
+				2DDC682715A42BC60016E2AB /* predixerPlayStocksViewController.xib */,
+				2DDC682A15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.h */,
+				2DDC682B15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.m */,
+				2DDC682C15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.xib */,
+			);
+			name = "play-stocks";
+			sourceTree = "<group>";
+		};
+		2DDC681A15A42B830016E2AB /* play-news */ = {
+			isa = PBXGroup;
+			children = (
+				2DDC682F15A42BE60016E2AB /* predixerPlayNewsViewController.h */,
+				2DDC683015A42BE60016E2AB /* predixerPlayNewsViewController.m */,
+				2DDC683115A42BE60016E2AB /* predixerPlayNewsViewController.xib */,
+				2DDC683415A42C050016E2AB /* predixerPlayNewsDetailsViewController.h */,
+				2DDC683515A42C050016E2AB /* predixerPlayNewsDetailsViewController.m */,
+				2DDC683615A42C050016E2AB /* predixerPlayNewsDetailsViewController.xib */,
+			);
+			name = "play-news";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D39EE42157D14B9005173B6 /* predict */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D39EE61157D14B9005173B6 /* Build configuration list for PBXNativeTarget "predict" */;
+			buildPhases = (
+				2D39EE3F157D14B9005173B6 /* Sources */,
+				2D39EE40157D14B9005173B6 /* Frameworks */,
+				2D39EE41157D14B9005173B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D3B36401590C64600E40373 /* PBXTargetDependency */,
+			);
+			name = predict;
+			productName = predict;
+			productReference = 2D39EE43157D14B9005173B6 /* predict.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D39EE3A157D14B9005173B6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = predixer;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 2D39EE3D157D14B9005173B6 /* Build configuration list for PBXProject "predict" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2D39EE38157D14B9005173B6;
+			productRefGroup = 2D39EE44157D14B9005173B6 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2D3B36311590C62B00E40373 /* Products */;
+					ProjectRef = 2D3B36301590C62B00E40373 /* SDWebImage.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2D39EE42157D14B9005173B6 /* predict */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2D3B363A1590C62C00E40373 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = 2D3B36391590C62C00E40373 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2D3B363C1590C62C00E40373 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = 2D3B363B1590C62C00E40373 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2D3B363E1590C62C00E40373 /* libSDWebImageARC+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImageARC+MKAnnotation.a";
+			remoteRef = 2D3B363D1590C62C00E40373 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D39EE41157D14B9005173B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D39EE52157D14B9005173B6 /* InfoPlist.strings in Resources */,
+				2D39EE5E157D14B9005173B6 /* predixerViewController.xib in Resources */,
+				2D39EE67157D14F6005173B6 /* Default.png in Resources */,
+				2D39EE68157D14F6005173B6 /* Default@2x.png in Resources */,
+				2D39EE6B157D159D005173B6 /* Icon.png in Resources */,
+				2D39EE6C157D159D005173B6 /* Icon@2x.png in Resources */,
+				2D39EE70157D179B005173B6 /* Icon-72.png in Resources */,
+				2D39EE71157D179B005173B6 /* Icon-Small.png in Resources */,
+				2D39EE72157D179B005173B6 /* Icon-Small@2x.png in Resources */,
+				2D39EE77157D1BAA005173B6 /* predixerLoginViewController.xib in Resources */,
+				2D39EE83157D1C23005173B6 /* btn_About_up.png in Resources */,
+				2D39EE84157D1C23005173B6 /* btn_About.png in Resources */,
+				2D39EE85157D1C23005173B6 /* btn_Facebook_up.png in Resources */,
+				2D39EE86157D1C23005173B6 /* btn_Facebook.png in Resources */,
+				2D39EE87157D1C23005173B6 /* btn_HowTo_up.png in Resources */,
+				2D39EE88157D1C23005173B6 /* btn_HowTo.png in Resources */,
+				2D39EE89157D1C23005173B6 /* btn_Submit_up.png in Resources */,
+				2D39EE8A157D1C23005173B6 /* btn_Submit.png in Resources */,
+				2D39EE8B157D1C23005173B6 /* Login_bkd.png in Resources */,
+				2D9F9D6E157DE04900E2EAE8 /* predixerAboutViewController.xib in Resources */,
+				2D9F9D73157DE05800E2EAE8 /* predixerHowToViewController.xib in Resources */,
+				2D9F9D75157DE09900E2EAE8 /* Screens.png in Resources */,
+				2D9F9D7D157DE32F00E2EAE8 /* bkd_Logo.png in Resources */,
+				2D9F9D7E157DE32F00E2EAE8 /* bkd_navBar_Logo.png in Resources */,
+				2D9F9D7F157DE32F00E2EAE8 /* bkd_navBar.png in Resources */,
+				2D9F9D80157DE32F00E2EAE8 /* btn_Back_up.png in Resources */,
+				2D9F9D81157DE32F00E2EAE8 /* btn_Back.png in Resources */,
+				2D9F9D82157DE32F00E2EAE8 /* btn_Settings_up.png in Resources */,
+				2D9F9D83157DE32F00E2EAE8 /* btn_Settings.png in Resources */,
+				2D7EBEF5157EEC7200F02CA6 /* predixerGameMenuViewController.xib in Resources */,
+				2D7EBEFE157EF18600F02CA6 /* btn_menu_findfriends_up.png in Resources */,
+				2D7EBEFF157EF18600F02CA6 /* btn_menu_findfriends.png in Resources */,
+				2D7EBF00157EF18600F02CA6 /* btn_menu_leagues_up.png in Resources */,
+				2D7EBF01157EF18600F02CA6 /* btn_menu_leagues.png in Resources */,
+				2D7EBF02157EF18600F02CA6 /* btn_menu_play_up.png in Resources */,
+				2D7EBF03157EF18600F02CA6 /* btn_menu_play.png in Resources */,
+				2D7EBF04157EF18600F02CA6 /* btn_menu_pointforprizes_up.png in Resources */,
+				2D7EBF05157EF18600F02CA6 /* btn_menu_pointforprizes.png in Resources */,
+				2D7EBF0A157F020500F02CA6 /* predixerGamePlayViewController.xib in Resources */,
+				2D7EBF0F157F021A00F02CA6 /* predixerGameFindFriendsViewController.xib in Resources */,
+				2D7EBF14157F022E00F02CA6 /* predixerGamePrizesViewController.xib in Resources */,
+				2D7EBF19157F023E00F02CA6 /* predixerGameLeaguesViewController.xib in Resources */,
+				2D7EBF23157F080F00F02CA6 /* btn_Play_Entertainment_up.png in Resources */,
+				2D7EBF24157F080F00F02CA6 /* btn_Play_Entertainment.png in Resources */,
+				2D7EBF25157F080F00F02CA6 /* btn_Play_News_up.png in Resources */,
+				2D7EBF26157F080F00F02CA6 /* btn_Play_News.png in Resources */,
+				2D7EBF27157F080F00F02CA6 /* btn_Play_Sports_up.png in Resources */,
+				2D7EBF28157F080F00F02CA6 /* btn_Play_Sports.png in Resources */,
+				2D7EBF29157F080F00F02CA6 /* btn_Play_Stocks_up.png in Resources */,
+				2D7EBF2A157F080F00F02CA6 /* btn_Play_Stocks.png in Resources */,
+				2D7EBF2B157F080F00F02CA6 /* txt_ChooseCategory.png in Resources */,
+				2D2BA43D158A3D2C0052D13C /* predixerGameFindFriendsInviteController.xib in Resources */,
+				2D2BA43F158A3F380052D13C /* tabBar_Bkd.png in Resources */,
+				2D53E7C3158AF466003E5183 /* predixerGameFindFriendsPlayController.xib in Resources */,
+				2D53E7CB158AF4B8003E5183 /* facebookAPIViewController.xib in Resources */,
+				2DBB0344158BAC5900D6AC97 /* btn_fb_play.png in Resources */,
+				2DBB0348158BAEB900D6AC97 /* btn_fb_invite.png in Resources */,
+				2DBB0349158BAEB900D6AC97 /* btn_fb_share.png in Resources */,
+				2D812DCB1590721D00559741 /* Placeholder.png in Resources */,
+				2D3B36431590D5EF00E40373 /* bkd_section.png in Resources */,
+				2DDC681215A414F90016E2AB /* predixerPlayEntertainmentViewController.xib in Resources */,
+				2DDC681715A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.xib in Resources */,
+				2DDC681F15A42B9C0016E2AB /* predixerPlaySportsViewController.xib in Resources */,
+				2DDC682415A42BB00016E2AB /* predixerPlaySportsDetailsViewController.xib in Resources */,
+				2DDC682915A42BC60016E2AB /* predixerPlayStocksViewController.xib in Resources */,
+				2DDC682E15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.xib in Resources */,
+				2DDC683315A42BE60016E2AB /* predixerPlayNewsViewController.xib in Resources */,
+				2DDC683815A42C050016E2AB /* predixerPlayNewsDetailsViewController.xib in Resources */,
+				2DDC684415A438E10016E2AB /* btn_Logo.png in Resources */,
+				2D8E17C015A458E80070D6F3 /* q_answerBox_checked.png in Resources */,
+				2D8E17C115A458E80070D6F3 /* q_answerBox.png in Resources */,
+				2D8E17C215A458E80070D6F3 /* q_Box.png in Resources */,
+				2D8E17C415A45A1A0070D6F3 /* btn_qSubmit.png in Resources */,
+				2D8E17C615A45AB90070D6F3 /* bkd_Comments.png in Resources */,
+				2D8E17C815A45C2A0070D6F3 /* btn_MoreComments.png in Resources */,
+				2D55905F15AD5D0100EADB4B /* FBDialog.bundle in Resources */,
+				2D10402D15AFCA53004492CC /* CheckBox_Deselected.png in Resources */,
+				2D10402E15AFCA53004492CC /* CheckBox_Selected.png in Resources */,
+				2DAA779415B434F000DAE815 /* n0.png in Resources */,
+				2DAA779515B434F000DAE815 /* n1.png in Resources */,
+				2DAA779615B434F000DAE815 /* n2.png in Resources */,
+				2DAA779715B434F000DAE815 /* n3.png in Resources */,
+				2DAA779815B434F000DAE815 /* n4.png in Resources */,
+				2DAA779A15B4397F00DAE815 /* bkd_HowTo.png in Resources */,
+				2D0DF98C15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib in Resources */,
+				2D4F340515DD758600D988C5 /* bkd_Bottom.png in Resources */,
+				2D4F340615DD758600D988C5 /* btn_InviteFriends_up.png in Resources */,
+				2D4F340715DD758600D988C5 /* btn_InviteFriends.png in Resources */,
+				2DDE65E315E7692F0082A36C /* predixerPlayCommentsDetailsController.xib in Resources */,
+				2DDE65E515E76B960082A36C /* bkd_CommentsDetails.png in Resources */,
+				2DDE65E815E774100082A36C /* btn_Like_Dwn.png in Resources */,
+				2DDE65E915E774100082A36C /* btn_Like_Up.png in Resources */,
+				2D45A0D815E9495F00868A08 /* predixerPlayCommentsAllController.xib in Resources */,
+				2D45A0DA15E94CB700868A08 /* bkd_CommentsAll.png in Resources */,
+				2D45A0DF15E9724E00868A08 /* predixerTermsViewController.xib in Resources */,
+				2D45A0E415E9725E00868A08 /* predixerPrivacyViewController.xib in Resources */,
+				2D45A0E915E9727300868A08 /* predixerAccountViewController.xib in Resources */,
+				2D45A0EE15E9728500868A08 /* predixerHistoryViewController.xib in Resources */,
+				2D45A0F315E9729100868A08 /* predixerPointsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D39EE3F157D14B9005173B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D39EE54157D14B9005173B6 /* main.m in Sources */,
+				2D39EE58157D14B9005173B6 /* predixerAppDelegate.m in Sources */,
+				2D39EE5B157D14B9005173B6 /* predixerViewController.m in Sources */,
+				2D39EE76157D1BAA005173B6 /* predixerLoginViewController.m in Sources */,
+				2D9F9D6D157DE04900E2EAE8 /* predixerAboutViewController.m in Sources */,
+				2D9F9D72157DE05800E2EAE8 /* predixerHowToViewController.m in Sources */,
+				2D7EBEF4157EEC7200F02CA6 /* predixerGameMenuViewController.m in Sources */,
+				2D7EBF09157F020500F02CA6 /* predixerGamePlayViewController.m in Sources */,
+				2D7EBF0E157F021A00F02CA6 /* predixerGameFindFriendsViewController.m in Sources */,
+				2D7EBF13157F022E00F02CA6 /* predixerGamePrizesViewController.m in Sources */,
+				2D7EBF18157F023E00F02CA6 /* predixerGameLeaguesViewController.m in Sources */,
+				2D2BA423158A38BE0052D13C /* CustomTabBarItem.m in Sources */,
+				2D2BA43C158A3D2C0052D13C /* predixerGameFindFriendsInviteController.m in Sources */,
+				2D53E7C2158AF466003E5183 /* predixerGameFindFriendsPlayController.m in Sources */,
+				2D53E7CA158AF4B8003E5183 /* facebookAPIViewController.m in Sources */,
+				2DDC681115A414F90016E2AB /* predixerPlayEntertainmentViewController.m in Sources */,
+				2DDC681615A42B670016E2AB /* predixerPlayEntertainmentDetailsViewController.m in Sources */,
+				2DDC681E15A42B9C0016E2AB /* predixerPlaySportsViewController.m in Sources */,
+				2DDC682315A42BB00016E2AB /* predixerPlaySportsDetailsViewController.m in Sources */,
+				2DDC682815A42BC60016E2AB /* predixerPlayStocksViewController.m in Sources */,
+				2DDC682D15A42BD50016E2AB /* predixerPlayStocksDetailsViewController.m in Sources */,
+				2DDC683215A42BE60016E2AB /* predixerPlayNewsViewController.m in Sources */,
+				2DDC683715A42C050016E2AB /* predixerPlayNewsDetailsViewController.m in Sources */,
+				2D55901315AD4BB700EADB4B /* DataQuestions.m in Sources */,
+				2D55901615AD4BCC00EADB4B /* DataQuestionsController.m in Sources */,
+				2DC1B6F915AD70F6009BA23F /* DataQuestionAnswers.m in Sources */,
+				2DC1B6FC15AD7105009BA23F /* DataQuestionAnswersController.m in Sources */,
+				2D10402A15AFC9B0004492CC /* RadioButton.m in Sources */,
+				2D605C5C15BF049300EC50A3 /* DataFacebookUser.m in Sources */,
+				2D605C5F15BF09AA00EC50A3 /* DataFacebookUserController.m in Sources */,
+				2D3BB2E315BF952C004100B5 /* DataFacebookUserAdd.m in Sources */,
+				2D1A120615BFEA130079E1DD /* GTMNSString+HTML.m in Sources */,
+				2D1A120715BFEA130079E1DD /* NSDate+InternetDateTime.m in Sources */,
+				2D1A120815BFEA130079E1DD /* NSString+HTML.m in Sources */,
+				2DEE696615C04F2600D713F2 /* DataFacebookUserRecordLogin.m in Sources */,
+				2DE9F75F15C0D40700555C12 /* DataUserQuestionAnswer.m in Sources */,
+				2DE9F76215C0D41500555C12 /* DataUserQuestionAnswerController.m in Sources */,
+				2DE9F76915C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m in Sources */,
+				2D3C949815C124B300228404 /* DataComments.m in Sources */,
+				2D3C94A615C12E2900228404 /* DataCommentsController.m in Sources */,
+				2D3C94A915C130EF00228404 /* DataCommentAddController.m in Sources */,
+				2D0DF97E15C1732D0089BA59 /* predixerPlayCommentsController.m in Sources */,
+				2D0DF98B15C190BE0089BA59 /* predixerSettingsViewControllerViewController.m in Sources */,
+				2DDE65E215E7692F0082A36C /* predixerPlayCommentsDetailsController.m in Sources */,
+				2D45A0D715E9495F00868A08 /* predixerPlayCommentsAllController.m in Sources */,
+				2D45A0DE15E9724E00868A08 /* predixerTermsViewController.m in Sources */,
+				2D45A0E315E9725E00868A08 /* predixerPrivacyViewController.m in Sources */,
+				2D45A0E815E9727300868A08 /* predixerAccountViewController.m in Sources */,
+				2D45A0ED15E9728500868A08 /* predixerHistoryViewController.m in Sources */,
+				2D45A0F215E9729100868A08 /* predixerPointsViewController.m in Sources */,
+				2D5B3FF415EA09DC005E3A8F /* DataFriendInviteController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D3B36401590C64600E40373 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SDWebImage ARC";
+			targetProxy = 2D3B363F1590C64600E40373 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2D39EE50157D14B9005173B6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D39EE51157D14B9005173B6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2D39EE5C157D14B9005173B6 /* predixerViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D39EE5D157D14B9005173B6 /* en */,
+			);
+			name = predixerViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2D39EE5F157D14B9005173B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2D39EE60157D14B9005173B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Joel Ballesteros";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Joel Ballesteros";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "1156F0DA-9F5C-4DEA-A966-A21D30371684";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1156F0DA-9F5C-4DEA-A966-A21D30371684";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D39EE62157D14B9005173B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "predict/predict-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(OBJROOT)/UninstalledProducts/include\"";
+				INFOPLIST_FILE = "predict/predict-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/joelrballesteros/Github/Facebook-iOS/lib/facebook-ios-sdk\"",
+					"\"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) \"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2D39EE63157D14B9005173B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "predict/predict-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+				);
+				INFOPLIST_FILE = "predict/predict-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"/Users/joelrballesteros/Github/Facebook-iOS/lib/facebook-ios-sdk\"",
+					"\"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) \"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D39EE3D157D14B9005173B6 /* Build configuration list for PBXProject "predict" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D39EE5F157D14B9005173B6 /* Debug */,
+				2D39EE60157D14B9005173B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D39EE61157D14B9005173B6 /* Build configuration list for PBXNativeTarget "predict" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D39EE62157D14B9005173B6 /* Debug */,
+				2D39EE63157D14B9005173B6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D39EE3A157D14B9005173B6 /* Project object */;
+}

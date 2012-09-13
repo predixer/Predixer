@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface predixerAboutViewController : UIViewController
+@interface predixerAboutViewController : UIViewController <UIWebViewDelegate> {
+    
+    IBOutlet UIWebView *webView;
+}
 
 - (void)pressBack:(id)sender;
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D098BF215F121FC00AFB9EF /* DataLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D098BF115F121FC00AFB9EF /* DataLoad.m */; };
+		2D098BF415F1223300AFB9EF /* Predixer.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 2D098BF315F1223300AFB9EF /* Predixer.sqlite */; };
 		2D0DF97E15C1732D0089BA59 /* predixerPlayCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DF97D15C1732D0089BA59 /* predixerPlayCommentsController.m */; };
 		2D0DF98B15C190BE0089BA59 /* predixerSettingsViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0DF98915C190BE0089BA59 /* predixerSettingsViewControllerViewController.m */; };
 		2D0DF98C15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0DF98A15C190BE0089BA59 /* predixerSettingsViewControllerViewController.xib */; };
@@ -52,6 +54,8 @@
 		2D3C949815C124B300228404 /* DataComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C949715C124B300228404 /* DataComments.m */; };
 		2D3C94A615C12E2900228404 /* DataCommentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C94A515C12E2900228404 /* DataCommentsController.m */; };
 		2D3C94A915C130EF00228404 /* DataCommentAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3C94A815C130EF00228404 /* DataCommentAddController.m */; };
+		2D3EF31115F632DC00776692 /* predixerPlayQuestionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3EF30F15F632DC00776692 /* predixerPlayQuestionDetailsViewController.m */; };
+		2D3EF31215F632DC00776692 /* predixerPlayQuestionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EF31015F632DC00776692 /* predixerPlayQuestionDetailsViewController.xib */; };
 		2D45A0D715E9495F00868A08 /* predixerPlayCommentsAllController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D45A0D515E9495F00868A08 /* predixerPlayCommentsAllController.m */; };
 		2D45A0D815E9495F00868A08 /* predixerPlayCommentsAllController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0D615E9495F00868A08 /* predixerPlayCommentsAllController.xib */; };
 		2D45A0DA15E94CB700868A08 /* bkd_CommentsAll.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D45A0D915E94CB700868A08 /* bkd_CommentsAll.png */; };
@@ -68,6 +72,14 @@
 		2D4F340515DD758600D988C5 /* bkd_Bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340215DD758600D988C5 /* bkd_Bottom.png */; };
 		2D4F340615DD758600D988C5 /* btn_InviteFriends_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340315DD758600D988C5 /* btn_InviteFriends_up.png */; };
 		2D4F340715DD758600D988C5 /* btn_InviteFriends.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4F340415DD758600D988C5 /* btn_InviteFriends.png */; };
+		2D53D8F215F5C0DE00CDA18B /* DataUserPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53D8F115F5C0DE00CDA18B /* DataUserPoints.m */; };
+		2D53D8F515F5C30C00CDA18B /* DataUserPointsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53D8F415F5C30C00CDA18B /* DataUserPointsController.m */; };
+		2D53D8FD15F5E5AC00CDA18B /* btn_Logout_dwn.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D53D8FB15F5E5AC00CDA18B /* btn_Logout_dwn.png */; };
+		2D53D8FE15F5E5AC00CDA18B /* btn_Logout_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D53D8FC15F5E5AC00CDA18B /* btn_Logout_up.png */; };
+		2D53D90115F5F95400CDA18B /* DataUserAnswers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53D90015F5F95400CDA18B /* DataUserAnswers.m */; };
+		2D53D90415F5FD5C00CDA18B /* DataUserAnswersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53D90315F5FD5C00CDA18B /* DataUserAnswersController.m */; };
+		2D53D90815F6034000CDA18B /* predixerPointsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53D90615F6034000CDA18B /* predixerPointsDetailsViewController.m */; };
+		2D53D90915F6034000CDA18B /* predixerPointsDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53D90715F6034000CDA18B /* predixerPointsDetailsViewController.xib */; };
 		2D53E7C2158AF466003E5183 /* predixerGameFindFriendsPlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53E7C0158AF466003E5183 /* predixerGameFindFriendsPlayController.m */; };
 		2D53E7C3158AF466003E5183 /* predixerGameFindFriendsPlayController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D53E7C1158AF466003E5183 /* predixerGameFindFriendsPlayController.xib */; };
 		2D53E7CA158AF4B8003E5183 /* facebookAPIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D53E7C8158AF4B8003E5183 /* facebookAPIViewController.m */; };
@@ -114,6 +126,7 @@
 		2D8E17C415A45A1A0070D6F3 /* btn_qSubmit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C315A45A1A0070D6F3 /* btn_qSubmit.png */; };
 		2D8E17C615A45AB90070D6F3 /* bkd_Comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C515A45AB90070D6F3 /* bkd_Comments.png */; };
 		2D8E17C815A45C2A0070D6F3 /* btn_MoreComments.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D8E17C715A45C2A0070D6F3 /* btn_MoreComments.png */; };
+		2D9EEB7E15F48D6B00919437 /* line_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D9EEB7D15F48D6B00919437 /* line_arrow.png */; };
 		2D9F9D6D157DE04900E2EAE8 /* predixerAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */; };
 		2D9F9D6E157DE04900E2EAE8 /* predixerAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */; };
 		2D9F9D72157DE05800E2EAE8 /* predixerHowToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9D70157DE05800E2EAE8 /* predixerHowToViewController.m */; };
@@ -132,6 +145,8 @@
 		2DAA779715B434F000DAE815 /* n3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779215B434F000DAE815 /* n3.png */; };
 		2DAA779815B434F000DAE815 /* n4.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779315B434F000DAE815 /* n4.png */; };
 		2DAA779A15B4397F00DAE815 /* bkd_HowTo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA779915B4397F00DAE815 /* bkd_HowTo.png */; };
+		2DB70D8915F71E8500116F14 /* img_XGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DB70D8715F71E8500116F14 /* img_XGreen.png */; };
+		2DB70D8A15F71E8500116F14 /* img_XRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DB70D8815F71E8500116F14 /* img_XRed.png */; };
 		2DBB0344158BAC5900D6AC97 /* btn_fb_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0343158BAC5900D6AC97 /* btn_fb_play.png */; };
 		2DBB0348158BAEB900D6AC97 /* btn_fb_invite.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0346158BAEB900D6AC97 /* btn_fb_invite.png */; };
 		2DBB0349158BAEB900D6AC97 /* btn_fb_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DBB0347158BAEB900D6AC97 /* btn_fb_share.png */; };
@@ -163,6 +178,7 @@
 		2DE9F76215C0D41500555C12 /* DataUserQuestionAnswerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9F76115C0D41500555C12 /* DataUserQuestionAnswerController.m */; };
 		2DE9F76915C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE9F76815C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m */; };
 		2DEE696615C04F2600D713F2 /* DataFacebookUserRecordLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DEE696515C04F2600D713F2 /* DataFacebookUserRecordLogin.m */; };
+		2DF1269C15F3CB4D00FEBAAE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DF1269B15F3CB4D00FEBAAE /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +213,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D098BF015F121FC00AFB9EF /* DataLoad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataLoad.h; path = data/DataLoad.h; sourceTree = "<group>"; };
+		2D098BF115F121FC00AFB9EF /* DataLoad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataLoad.m; path = data/DataLoad.m; sourceTree = "<group>"; };
+		2D098BF315F1223300AFB9EF /* Predixer.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Predixer.sqlite; sourceTree = "<group>"; };
 		2D0DF97C15C1732D0089BA59 /* predixerPlayCommentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayCommentsController.h; sourceTree = "<group>"; };
 		2D0DF97D15C1732D0089BA59 /* predixerPlayCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayCommentsController.m; sourceTree = "<group>"; };
 		2D0DF98815C190BE0089BA59 /* predixerSettingsViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerSettingsViewControllerViewController.h; sourceTree = "<group>"; };
@@ -260,6 +279,9 @@
 		2D3C94A515C12E2900228404 /* DataCommentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataCommentsController.m; path = data/DataCommentsController.m; sourceTree = "<group>"; };
 		2D3C94A715C130EF00228404 /* DataCommentAddController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataCommentAddController.h; path = data/DataCommentAddController.h; sourceTree = "<group>"; };
 		2D3C94A815C130EF00228404 /* DataCommentAddController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataCommentAddController.m; path = data/DataCommentAddController.m; sourceTree = "<group>"; };
+		2D3EF30E15F632DC00776692 /* predixerPlayQuestionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayQuestionDetailsViewController.h; sourceTree = "<group>"; };
+		2D3EF30F15F632DC00776692 /* predixerPlayQuestionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayQuestionDetailsViewController.m; sourceTree = "<group>"; };
+		2D3EF31015F632DC00776692 /* predixerPlayQuestionDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayQuestionDetailsViewController.xib; sourceTree = "<group>"; };
 		2D45A0D415E9495F00868A08 /* predixerPlayCommentsAllController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPlayCommentsAllController.h; sourceTree = "<group>"; };
 		2D45A0D515E9495F00868A08 /* predixerPlayCommentsAllController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPlayCommentsAllController.m; sourceTree = "<group>"; };
 		2D45A0D615E9495F00868A08 /* predixerPlayCommentsAllController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPlayCommentsAllController.xib; sourceTree = "<group>"; };
@@ -282,6 +304,19 @@
 		2D4F340215DD758600D988C5 /* bkd_Bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_Bottom.png; path = predict/images/bkd_Bottom.png; sourceTree = "<group>"; };
 		2D4F340315DD758600D988C5 /* btn_InviteFriends_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_InviteFriends_up.png; path = predict/images/btn_InviteFriends_up.png; sourceTree = "<group>"; };
 		2D4F340415DD758600D988C5 /* btn_InviteFriends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_InviteFriends.png; path = predict/images/btn_InviteFriends.png; sourceTree = "<group>"; };
+		2D53D8F015F5C0DE00CDA18B /* DataUserPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserPoints.h; path = data/DataUserPoints.h; sourceTree = "<group>"; };
+		2D53D8F115F5C0DE00CDA18B /* DataUserPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserPoints.m; path = data/DataUserPoints.m; sourceTree = "<group>"; };
+		2D53D8F315F5C30C00CDA18B /* DataUserPointsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserPointsController.h; path = data/DataUserPointsController.h; sourceTree = "<group>"; };
+		2D53D8F415F5C30C00CDA18B /* DataUserPointsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserPointsController.m; path = data/DataUserPointsController.m; sourceTree = "<group>"; };
+		2D53D8FB15F5E5AC00CDA18B /* btn_Logout_dwn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Logout_dwn.png; path = predict/images/btn_Logout_dwn.png; sourceTree = "<group>"; };
+		2D53D8FC15F5E5AC00CDA18B /* btn_Logout_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_Logout_up.png; path = predict/images/btn_Logout_up.png; sourceTree = "<group>"; };
+		2D53D8FF15F5F95400CDA18B /* DataUserAnswers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserAnswers.h; path = data/DataUserAnswers.h; sourceTree = "<group>"; };
+		2D53D90015F5F95400CDA18B /* DataUserAnswers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserAnswers.m; path = data/DataUserAnswers.m; sourceTree = "<group>"; };
+		2D53D90215F5FD5C00CDA18B /* DataUserAnswersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUserAnswersController.h; path = data/DataUserAnswersController.h; sourceTree = "<group>"; };
+		2D53D90315F5FD5C00CDA18B /* DataUserAnswersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserAnswersController.m; path = data/DataUserAnswersController.m; sourceTree = "<group>"; };
+		2D53D90515F6034000CDA18B /* predixerPointsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerPointsDetailsViewController.h; sourceTree = "<group>"; };
+		2D53D90615F6034000CDA18B /* predixerPointsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerPointsDetailsViewController.m; sourceTree = "<group>"; };
+		2D53D90715F6034000CDA18B /* predixerPointsDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerPointsDetailsViewController.xib; sourceTree = "<group>"; };
 		2D53E7BF158AF466003E5183 /* predixerGameFindFriendsPlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerGameFindFriendsPlayController.h; sourceTree = "<group>"; };
 		2D53E7C0158AF466003E5183 /* predixerGameFindFriendsPlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerGameFindFriendsPlayController.m; sourceTree = "<group>"; };
 		2D53E7C1158AF466003E5183 /* predixerGameFindFriendsPlayController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerGameFindFriendsPlayController.xib; sourceTree = "<group>"; };
@@ -353,6 +388,7 @@
 		2D8E17C315A45A1A0070D6F3 /* btn_qSubmit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_qSubmit.png; path = predict/images/btn_qSubmit.png; sourceTree = "<group>"; };
 		2D8E17C515A45AB90070D6F3 /* bkd_Comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_Comments.png; path = predict/images/bkd_Comments.png; sourceTree = "<group>"; };
 		2D8E17C715A45C2A0070D6F3 /* btn_MoreComments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_MoreComments.png; path = predict/images/btn_MoreComments.png; sourceTree = "<group>"; };
+		2D9EEB7D15F48D6B00919437 /* line_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line_arrow.png; path = predict/images/line_arrow.png; sourceTree = "<group>"; };
 		2D9F9D6A157DE04900E2EAE8 /* predixerAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predixerAboutViewController.h; sourceTree = "<group>"; };
 		2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = predixerAboutViewController.m; sourceTree = "<group>"; };
 		2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = predixerAboutViewController.xib; sourceTree = "<group>"; };
@@ -373,6 +409,8 @@
 		2DAA779215B434F000DAE815 /* n3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n3.png; path = predict/images/n3.png; sourceTree = "<group>"; };
 		2DAA779315B434F000DAE815 /* n4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = n4.png; path = predict/images/n4.png; sourceTree = "<group>"; };
 		2DAA779915B4397F00DAE815 /* bkd_HowTo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkd_HowTo.png; path = predict/images/bkd_HowTo.png; sourceTree = "<group>"; };
+		2DB70D8715F71E8500116F14 /* img_XGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_XGreen.png; path = predict/images/img_XGreen.png; sourceTree = "<group>"; };
+		2DB70D8815F71E8500116F14 /* img_XRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_XRed.png; path = predict/images/img_XRed.png; sourceTree = "<group>"; };
 		2DBB0343158BAC5900D6AC97 /* btn_fb_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_play.png; path = predict/images/btn_fb_play.png; sourceTree = "<group>"; };
 		2DBB0346158BAEB900D6AC97 /* btn_fb_invite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_invite.png; path = predict/images/btn_fb_invite.png; sourceTree = "<group>"; };
 		2DBB0347158BAEB900D6AC97 /* btn_fb_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_fb_share.png; path = predict/images/btn_fb_share.png; sourceTree = "<group>"; };
@@ -419,6 +457,7 @@
 		2DE9F76815C0F03600555C12 /* DataUserQuestionAnswerSubmitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUserQuestionAnswerSubmitController.m; path = data/DataUserQuestionAnswerSubmitController.m; sourceTree = "<group>"; };
 		2DEE696415C04F2600D713F2 /* DataFacebookUserRecordLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFacebookUserRecordLogin.h; path = data/DataFacebookUserRecordLogin.h; sourceTree = "<group>"; };
 		2DEE696515C04F2600D713F2 /* DataFacebookUserRecordLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFacebookUserRecordLogin.m; path = data/DataFacebookUserRecordLogin.m; sourceTree = "<group>"; };
+		2DF1269B15F3CB4D00FEBAAE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +465,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF1269C15F3CB4D00FEBAAE /* libsqlite3.dylib in Frameworks */,
 				2D3B36411590C64C00E40373 /* libSDWebImageARC.a in Frameworks */,
 				2D812DE01590762D00559741 /* ImageIO.framework in Frameworks */,
 				2D39EE48157D14B9005173B6 /* UIKit.framework in Frameworks */,
@@ -546,6 +586,7 @@
 		2D39EE46157D14B9005173B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DF1269B15F3CB4D00FEBAAE /* libsqlite3.dylib */,
 				2D812DDF1590762D00559741 /* ImageIO.framework */,
 				2D39EE47157D14B9005173B6 /* UIKit.framework */,
 				2D39EE49157D14B9005173B6 /* Foundation.framework */,
@@ -581,6 +622,11 @@
 		2D39EE64157D14E5005173B6 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2DB70D8715F71E8500116F14 /* img_XGreen.png */,
+				2DB70D8815F71E8500116F14 /* img_XRed.png */,
+				2D53D8FB15F5E5AC00CDA18B /* btn_Logout_dwn.png */,
+				2D53D8FC15F5E5AC00CDA18B /* btn_Logout_up.png */,
+				2D9EEB7D15F48D6B00919437 /* line_arrow.png */,
 				2D45A0D915E94CB700868A08 /* bkd_CommentsAll.png */,
 				2DDE65E615E774100082A36C /* btn_Like_Dwn.png */,
 				2DDE65E715E774100082A36C /* btn_Like_Up.png */,
@@ -701,9 +747,28 @@
 			name = comments;
 			sourceTree = "<group>";
 		};
+		2D53D8F615F5C65300CDA18B /* points */ = {
+			isa = PBXGroup;
+			children = (
+				2D45A0EF15E9729000868A08 /* predixerPointsViewController.h */,
+				2D45A0F015E9729000868A08 /* predixerPointsViewController.m */,
+				2D45A0F115E9729100868A08 /* predixerPointsViewController.xib */,
+				2D53D90515F6034000CDA18B /* predixerPointsDetailsViewController.h */,
+				2D53D90615F6034000CDA18B /* predixerPointsDetailsViewController.m */,
+				2D53D90715F6034000CDA18B /* predixerPointsDetailsViewController.xib */,
+				2D3EF30E15F632DC00776692 /* predixerPlayQuestionDetailsViewController.h */,
+				2D3EF30F15F632DC00776692 /* predixerPlayQuestionDetailsViewController.m */,
+				2D3EF31015F632DC00776692 /* predixerPlayQuestionDetailsViewController.xib */,
+			);
+			name = points;
+			sourceTree = "<group>";
+		};
 		2D55900315AD44E600EADB4B /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2D098BF315F1223300AFB9EF /* Predixer.sqlite */,
+				2D098BF015F121FC00AFB9EF /* DataLoad.h */,
+				2D098BF115F121FC00AFB9EF /* DataLoad.m */,
 				2D55901115AD4BB700EADB4B /* DataQuestions.h */,
 				2D55901215AD4BB700EADB4B /* DataQuestions.m */,
 				2D55901415AD4BCC00EADB4B /* DataQuestionsController.h */,
@@ -734,6 +799,14 @@
 				2D3C94A815C130EF00228404 /* DataCommentAddController.m */,
 				2D5B3FF215EA09DC005E3A8F /* DataFriendInviteController.h */,
 				2D5B3FF315EA09DC005E3A8F /* DataFriendInviteController.m */,
+				2D53D8F015F5C0DE00CDA18B /* DataUserPoints.h */,
+				2D53D8F115F5C0DE00CDA18B /* DataUserPoints.m */,
+				2D53D8F315F5C30C00CDA18B /* DataUserPointsController.h */,
+				2D53D8F415F5C30C00CDA18B /* DataUserPointsController.m */,
+				2D53D8FF15F5F95400CDA18B /* DataUserAnswers.h */,
+				2D53D90015F5F95400CDA18B /* DataUserAnswers.m */,
+				2D53D90215F5FD5C00CDA18B /* DataUserAnswersController.h */,
+				2D53D90315F5FD5C00CDA18B /* DataUserAnswersController.m */,
 			);
 			name = data;
 			path = /Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict;
@@ -782,6 +855,7 @@
 		2D9F9D69157DE01E00E2EAE8 /* generic */ = {
 			isa = PBXGroup;
 			children = (
+				2D53D8F615F5C65300CDA18B /* points */,
 				2D9F9D6A157DE04900E2EAE8 /* predixerAboutViewController.h */,
 				2D9F9D6B157DE04900E2EAE8 /* predixerAboutViewController.m */,
 				2D9F9D6C157DE04900E2EAE8 /* predixerAboutViewController.xib */,
@@ -803,9 +877,6 @@
 				2D45A0EA15E9728400868A08 /* predixerHistoryViewController.h */,
 				2D45A0EB15E9728400868A08 /* predixerHistoryViewController.m */,
 				2D45A0EC15E9728500868A08 /* predixerHistoryViewController.xib */,
-				2D45A0EF15E9729000868A08 /* predixerPointsViewController.h */,
-				2D45A0F015E9729000868A08 /* predixerPointsViewController.m */,
-				2D45A0F115E9729100868A08 /* predixerPointsViewController.xib */,
 			);
 			name = generic;
 			sourceTree = "<group>";
@@ -1043,6 +1114,14 @@
 				2D45A0E915E9727300868A08 /* predixerAccountViewController.xib in Resources */,
 				2D45A0EE15E9728500868A08 /* predixerHistoryViewController.xib in Resources */,
 				2D45A0F315E9729100868A08 /* predixerPointsViewController.xib in Resources */,
+				2D098BF415F1223300AFB9EF /* Predixer.sqlite in Resources */,
+				2D9EEB7E15F48D6B00919437 /* line_arrow.png in Resources */,
+				2D53D8FD15F5E5AC00CDA18B /* btn_Logout_dwn.png in Resources */,
+				2D53D8FE15F5E5AC00CDA18B /* btn_Logout_up.png in Resources */,
+				2D53D90915F6034000CDA18B /* predixerPointsDetailsViewController.xib in Resources */,
+				2D3EF31215F632DC00776692 /* predixerPlayQuestionDetailsViewController.xib in Resources */,
+				2DB70D8915F71E8500116F14 /* img_XGreen.png in Resources */,
+				2DB70D8A15F71E8500116F14 /* img_XRed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1104,6 +1183,13 @@
 				2D45A0ED15E9728500868A08 /* predixerHistoryViewController.m in Sources */,
 				2D45A0F215E9729100868A08 /* predixerPointsViewController.m in Sources */,
 				2D5B3FF415EA09DC005E3A8F /* DataFriendInviteController.m in Sources */,
+				2D098BF215F121FC00AFB9EF /* DataLoad.m in Sources */,
+				2D53D8F215F5C0DE00CDA18B /* DataUserPoints.m in Sources */,
+				2D53D8F515F5C30C00CDA18B /* DataUserPointsController.m in Sources */,
+				2D53D90115F5F95400CDA18B /* DataUserAnswers.m in Sources */,
+				2D53D90415F5FD5C00CDA18B /* DataUserAnswersController.m in Sources */,
+				2D53D90815F6034000CDA18B /* predixerPointsDetailsViewController.m in Sources */,
+				2D3EF31115F632DC00776692 /* predixerPlayQuestionDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,7 +1281,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"/Users/joelrballesteros/Github/Facebook-iOS/lib/facebook-ios-sdk\"",
 					"\"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
@@ -1218,7 +1303,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"/Users/joelrballesteros/Github/Facebook-iOS/lib/facebook-ios-sdk\"",
 					"\"/Users/joelrballesteros/Github/FacebookIOSSDK/lib/facebook-ios-sdk\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";

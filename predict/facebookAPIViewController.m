@@ -142,6 +142,7 @@
     
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
@@ -328,6 +329,8 @@
     [self hideMessage];
     myData = nil;
     sections = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingFacebookFriendsWithApp" object:nil];
 }
 
 /**

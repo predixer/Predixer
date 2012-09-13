@@ -26,7 +26,7 @@
 - (id)initWithQuestion:(int)questionID comment:(DataComments *)comment count:(int)count
 {
     
-    if (self) {
+    if ((self = [super init])) {
                 
         if (nil != comment) {
             dataComment = [[DataComments alloc]init];
@@ -54,6 +54,13 @@
 
     }
     return self;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLikeComment" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishGettingUserLikeComment" object:nil];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

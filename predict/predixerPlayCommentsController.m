@@ -50,6 +50,13 @@
     dataComments = [[DataComments alloc] init];
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingTopComments" object:nil];
+}
+
+
 - (void)didFinishLoadingTopComments
 {
     commentsCount = [commentsDataController countOfList];
@@ -79,11 +86,6 @@
 	return [commentsDataController countOfList];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIColor *color = ((indexPath.row % 2) == 0) ? [UIColor colorWithRed:0.92f green:0.97f blue:0.98f alpha:1] : [UIColor whiteColor];
-    cell.backgroundColor = [UIColor clearColor];;
-}
-
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40.0f;
 }
@@ -109,8 +111,6 @@
         NSLog(@"dataComments.comment %@", dataComments.comment);
         NSLog(@"commentID %@", dataComments.commentID);
         cell.textLabel.text = dataComments.comment;
-        cell.textLabel.numberOfLines = 2;
-        cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"By %@ on %@", dataComments.fbName, dataComments.commentDate];

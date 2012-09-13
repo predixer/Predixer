@@ -28,7 +28,7 @@
         // Custom initialization
         
         if (items == nil) {
-            items = [NSMutableArray arrayWithObjects:@"Your Points", @"History", @"Account", @"Terms", @"Privacy", @"About", @"Logout",nil];
+            items = [NSMutableArray arrayWithObjects:@"Your Points", @"Predictions", @"Account", @"Terms", @"Privacy", @"About", @"Logout",nil];
         }
     }
     return self;
@@ -89,6 +89,16 @@
 {
 	return [items count];
 }
+
+- (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50.0f;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIColor *color = ((indexPath.row % 2) == 0) ? [UIColor colorWithRed:0.92f green:0.97f blue:0.98f alpha:1] : [UIColor whiteColor];
+    cell.backgroundColor = color;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
@@ -100,7 +110,7 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont systemFontOfSize:24];
+    cell.textLabel.font = [UIFont systemFontOfSize:20];
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;
 }
@@ -121,22 +131,29 @@
         //Account
         predixerAccountViewController *account = [[predixerAccountViewController alloc] init];
         [self.navigationController pushViewController:account animated:YES];
+        
     }
     else if (indexPath.row == 3) {
         //Terms
-        predixerTermsViewController *terms = [[predixerTermsViewController alloc] init];
-        [self.navigationController pushViewController:terms animated:YES];
+        //predixerTermsViewController *terms = [[predixerTermsViewController alloc] init];
+        //[self.navigationController pushViewController:terms animated:YES];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/Terms.aspx"]];
         
     }
     else if (indexPath.row == 4) {
         //Privacy
-        predixerPrivacyViewController *privacy = [[predixerPrivacyViewController alloc] init];
-        [self.navigationController pushViewController:privacy animated:YES];
+        //predixerPrivacyViewController *privacy = [[predixerPrivacyViewController alloc] init];
+        //[self.navigationController pushViewController:privacy animated:YES];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/Privacy.aspx"]];
     }
     else if (indexPath.row == 5) {
        //About
-        predixerAboutViewController *about = [[predixerAboutViewController alloc] init];
-        [self.navigationController pushViewController:about animated:YES];
+        //predixerAboutViewController *about = [[predixerAboutViewController alloc] init];
+        //[self.navigationController pushViewController:about animated:YES];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/About.aspx"]];
     }
     else if (indexPath.row == 6) {
         //Logout

@@ -40,7 +40,7 @@
 - (id)initWithQuestion:(DataQuestions *)question
 {
     
-    if (self) {
+if ((self = [super init])) {
         
         if (nil != question) {
             dataQuestions = [[DataQuestions alloc]init];
@@ -91,6 +91,17 @@
     }
     return self;
 }
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingQuestionAnswers" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserQuestionAnswer" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishSubmittingUserAnswer" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishAddingUserComment" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingCommentsToTable" object:nil];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -171,8 +182,12 @@
     
     questionPoints.text = [NSString stringWithFormat:@"Points: %d", dataQuestions.questionPoints];
     
+    NSString *dateString = [NSString stringWithFormat:@"%@", dataQuestions.questionDate];
+    questionDate.text = [[dateString substringFromIndex:0] substringToIndex:10];
+    
     answersDataController.questionID = dataQuestions.questionID;
-    [answersDataController getAnswers];
+    //[answersDataController getAnswers];
+    [answersDataController getAnswersFromLocal];
 	
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
@@ -215,6 +230,10 @@
     
     userAnswerController.questionID = dataQuestions.questionID;
     [userAnswerController getAnswer];
+    
+    if ([answersDataController countOfList] > 2) {
+        lineArrow.hidden = NO;
+    }
 }
 
 
@@ -317,11 +336,6 @@
     return [answersDataController countOfList];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIColor *color = ((indexPath.row % 2) == 0) ? [UIColor colorWithRed:0.92f green:0.97f blue:0.98f alpha:1] : [UIColor whiteColor];
-    cell.backgroundColor = [UIColor clearColor];;
-}
-
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 40.0f;
 }
@@ -339,6 +353,12 @@
         
     }
     
+    //REMOVE ALL CELL SUB-VIEWS FIRST
+    for(UIView *view in cell.contentView.subviews){
+        if ([view isKindOfClass:[UIView class]]) {
+            [view removeFromSuperview];
+        }
+    }
     
     // Configure the cell...
     if ([answersDataController countOfList] != 0)

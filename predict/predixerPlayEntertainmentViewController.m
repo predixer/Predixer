@@ -47,6 +47,12 @@
     return self;
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingQuestions" object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -101,7 +107,8 @@
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
     
     dataController.categoryID = @"1";
-    [dataController getQuestions];
+    //[dataController getQuestions];
+	[dataController getQuestionsFromLocal];
 	
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""

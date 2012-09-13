@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface predixerPrivacyViewController : UIViewController
+@interface predixerPrivacyViewController : UIViewController <UIWebViewDelegate> {
+    
+    IBOutlet UIWebView *webView;
+}
 
 - (void)pressBack:(id)sender;
 

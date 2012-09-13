@@ -8,6 +8,8 @@
 
 #import "predixerAppDelegate.h"
 #import "predixerViewController.h"
+#import "DataLoad.h"
+#import "DataQuestionsController.h"
 
 // Your Facebook APP Id
 static NSString* kAppId = @"179699488824039";
@@ -22,6 +24,9 @@ static NSString* kAppId = @"179699488824039";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [DataLoad copyDatabaseIfNeeded];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[predixerViewController alloc] initWithNibName:@"predixerViewController" bundle:nil];
@@ -47,6 +52,8 @@ static NSString* kAppId = @"179699488824039";
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
+    DataQuestionsController *question = [[DataQuestionsController alloc] init];
+    [question getQuestionsToday];
     
     
     return YES;
@@ -69,12 +76,16 @@ static NSString* kAppId = @"179699488824039";
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    DataQuestionsController *question = [[DataQuestionsController alloc] init];
+    [question getQuestionsToday];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[self facebook] extendAccessTokenIfNeeded];
+    
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

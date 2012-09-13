@@ -1,36 +1,33 @@
 //
-//  predixerPointsViewController.m
+//  predixerPointsDetailsViewController.m
 //  predict
 //
-//  Created by Joel R Ballesteros on 8/26/12.
+//  Created by Joel R Ballesteros on 9/4/12.
 //
 //
 
-#import "predixerPointsViewController.h"
-#import "DataUserPoints.h"
-#import "DataUserPointsController.h"
 #import "predixerPointsDetailsViewController.h"
+#import "DataUserAnswers.h"
+#import "DataUserAnswersController.h"
+#import "predixerPlayQuestionDetailsViewController.h"
 
-@interface predixerPointsViewController ()
+@interface predixerPointsDetailsViewController ()
 
 @end
 
-@implementation predixerPointsViewController
+@implementation predixerPointsDetailsViewController
 
 @synthesize dataController;
-@synthesize dataUserPoints;
+@synthesize userAnswers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        if (items == nil) {
-            items = [NSMutableArray arrayWithObjects:@"Correct Predictions", @"Friend invite & sign up", @"Most liked Comment", @"TOTAL POINTS:", @"Draw entries earned:",nil];
-        }
         
         if (dataController == nil) {
-			dataController = [[DataUserPointsController alloc] init];
+			dataController = [[DataUserAnswersController alloc] init];
 			
 			NSLog(@"Count at init: %d", [dataController countOfList]);
 		}
@@ -41,7 +38,7 @@
 		//observer
 		[nc addObserver:self
 			   selector:@selector(didFinishLoadingData)
-				   name:@"didFinishLoadingUserPoints"
+				   name:@"didFinishLoadingUserAnswersCorrect"
 				 object:nil];
     }
     return self;
@@ -50,14 +47,16 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserPoints" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserAnswersCorrect" object:nil];
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    tblPoints.backgroundColor = [UIColor clearColor];
+    
+    tblPredictions.backgroundColor = [UIColor clearColor];
     
     //LEFT NAV BUTTON
     // Set the custom back button
@@ -79,8 +78,10 @@
 	UIBarButtonItem *customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 	self.navigationItem.leftBarButtonItem = customBackBarItem;
     
-    [dataController getPoints];
+    dataController.isGetCorrectAnswers = YES;
+    [dataController getUserAnswers];
 	
+    
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -98,7 +99,7 @@
 
 - (void)didFinishLoadingData
 {
-	[tblPoints reloadData];
+	[tblPredictions reloadData];
 	[self performSelector:@selector(performDismiss) withObject:nil afterDelay:0.0f];
 }
 
@@ -136,11 +137,11 @@
 
 -(NSInteger) tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section
 {
-	return [items count];
+	return [dataController countOfList];
 }
 
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
+    return 60.0f;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,43 +153,26 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MyIdentifier"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
     
-    dataUserPoints = [dataController objectInListAtIndex:0];
-    
-    //Correct Prediction
-    if (indexPath.row == 0) {
+    if ([dataController countOfList] != 0) {
+        userAnswers = [dataController objectInListAtIndex:indexPath.row];
+
+        cell.textLabel.text = userAnswers.question;
         
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.totalPredictPoints;
-    }
-    else if (indexPath.row == 1) {
-        //friend invite
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.invitePoints;
-    }
-    else if (indexPath.row == 2) {
-        //top comments
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.topCommentPoints;
-    }
-    else if (indexPath.row == 3) {
-        //grand total
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.grandTotalPoints;
-    }
-    else if (indexPath.row == 4) {
-        //draw points
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.drawPoints;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM/dd/yyyy"];
+        NSString *dateStr = [formatter stringFromDate:userAnswers.answerDate];
+        
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Date: %@, Answer: %@", dateStr, userAnswers.answerOption];
     }
     
-    
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
+     
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
     
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;
@@ -196,12 +180,14 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if (indexPath.row == 0) {
-        
-        predixerPointsDetailsViewController *pointsDetails = [[predixerPointsDetailsViewController alloc] init];
-        [self.navigationController pushViewController:pointsDetails animated:YES];
-    }
+    userAnswers = [dataController objectInListAtIndex:indexPath.row];
+    
+    NSString *questionID = [NSString stringWithFormat:@"%d", userAnswers.questionID];
+    
+    predixerPlayQuestionDetailsViewController *questionDetails = [[predixerPlayQuestionDetailsViewController alloc] initWithQuestion:questionID];
+    
+    
+    [self.navigationController pushViewController:questionDetails animated:YES];
     
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	

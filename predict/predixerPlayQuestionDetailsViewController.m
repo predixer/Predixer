@@ -1,13 +1,14 @@
 //
-//  predixerPlayNewsDetailsViewController.m
+//  predixerPlayQuestionDetailsViewController.m
 //  predict
 //
-//  Created by Joel R Ballesteros on 7/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Joel R Ballesteros on 9/4/12.
+//
 //
 
-#import "predixerPlayNewsDetailsViewController.h"
+#import "predixerPlayQuestionDetailsViewController.h"
 #import "DataQuestions.h"
+#import "DataQuestionsController.h"
 #import "DataQuestionAnswers.h"
 #import "DataQuestionAnswersController.h"
 #import "DataUserQuestionAnswerController.h"
@@ -16,16 +17,27 @@
 #import "DataCommentAddController.h"
 #import "predixerPlayCommentsController.h"
 #import "predixerPlayCommentsAllController.h"
-#import "predixerSettingsViewControllerViewController.h"
 
 
-@interface predixerPlayNewsDetailsViewController ()
-
+@interface predixerPlayQuestionDetailsViewController ()
+- (void)didFinishLoadingQuestion;
+- (void)didFinishLoadingQuestionAnswers;
+- (void)didFinishLoadingData;
+- (void)didFinishSubmittingUserAnswer;
+- (void)didFinishLoadingUserAnswer;
+- (void)didFinishAddingUserComment;
+- (void)didFinishLoadingCommentsToTable;
+- (void)performDismiss;
+- (void)pressBack:(id)sender;
+- (IBAction)submitAnswer:(id)sender;
+- (IBAction)submitComment:(id)sender;
+- (IBAction)showMoreComment:(id)sender;
 @end
 
-@implementation predixerPlayNewsDetailsViewController
+@implementation predixerPlayQuestionDetailsViewController
 
 @synthesize dataQuestions;
+@synthesize questionDataController;
 @synthesize answersDataController;
 @synthesize questionAnswers;
 @synthesize selectedAnswerID;
@@ -37,15 +49,53 @@
 @synthesize addCommentsController;
 @synthesize userCommentsDataController;
 
-- (id)initWithQuestion:(DataQuestions *)question
+- (id)initWithQuestion:(NSString *)questionID
 {
     
     if ((self = [super init])) {
         
-        if (nil != question) {
+        
+		nc = [NSNotificationCenter defaultCenter];
+		
+		//observer
+		[nc addObserver:self
+			   selector:@selector(didFinishLoadingQuestion)
+				   name:@"didFinishLoadingQuestion"
+				 object:nil];
+        
+		[nc addObserver:self
+			   selector:@selector(didFinishLoadingQuestionAnswers)
+				   name:@"didFinishLoadingQuestionAnswers"
+				 object:nil];
+        
+        
+		[nc addObserver:self
+			   selector:@selector(didFinishLoadingUserAnswer)
+				   name:@"didFinishLoadingUserQuestionAnswer"
+				 object:nil];
+        
+        [nc addObserver:self
+			   selector:@selector(didFinishSubmittingUserAnswer)
+				   name:@"didFinishSubmittingUserAnswer"
+				 object:nil];
+        
+        
+        [nc addObserver:self
+			   selector:@selector(didFinishAddingUserComment)
+				   name:@"didFinishAddingUserComment"
+				 object:nil];
+        
+        [nc addObserver:self
+			   selector:@selector(didFinishLoadingCommentsToTable)
+				   name:@"didFinishLoadingCommentsToTable"
+				 object:nil];
+        
+        
+        if (nil != questionID) {
             dataQuestions = [[DataQuestions alloc]init];
             
-            dataQuestions = question;
+            questionDataController = [[DataQuestionsController alloc] init];
+            [questionDataController getQuestion:[questionID copy]];
             
         }
         
@@ -55,39 +105,6 @@
 			NSLog(@"Count at init: %d", [answersDataController countOfList]);
 		}
         
-
-        
-		nc = [NSNotificationCenter defaultCenter];
-		
-		//observer 
-		[nc addObserver:self 
-			   selector:@selector(didFinishLoadingQuestionAnswers) 
-				   name:@"didFinishLoadingQuestionAnswers" 
-				 object:nil];
-        
-        
-		[nc addObserver:self 
-			   selector:@selector(didFinishLoadingUserAnswer)
-				   name:@"didFinishLoadingUserQuestionAnswer" 
-				 object:nil];
-        
-        [nc addObserver:self 
-			   selector:@selector(didFinishSubmittingUserAnswer) 
-				   name:@"didFinishSubmittingUserAnswer" 
-				 object:nil];
-        
-        
-        [nc addObserver:self 
-			   selector:@selector(didFinishAddingUserComment) 
-				   name:@"didFinishAddingUserComment" 
-				 object:nil];
-        
-        [nc addObserver:self
-			   selector:@selector(didFinishLoadingCommentsToTable)
-				   name:@"didFinishLoadingCommentsToTable"
-				 object:nil];
-        
-
     }
     return self;
 }
@@ -101,6 +118,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishAddingUserComment" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingCommentsToTable" object:nil];
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -117,7 +135,7 @@
     // Do any additional setup after loading the view from its nib.
     
     //self.title = @"News";
-        
+    
     tblListAnswer.backgroundColor = [UIColor clearColor];
     tblListComments.backgroundColor = [UIColor clearColor];
     
@@ -135,7 +153,7 @@
     userCommentsDataController.questionID = dataQuestions.questionID;
     
     
-    //LEFT NAV BUTTON    
+    //LEFT NAV BUTTON
     // Set the custom back button
 	UIImage *backButtonNormalImage = [UIImage imageNamed:@"btn_Back.png"];
 	UIImage *backButtonHighlightImage = [UIImage imageNamed:@"btn_Back_up.png"];
@@ -155,7 +173,7 @@
 	UIBarButtonItem *customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 	self.navigationItem.leftBarButtonItem = customBackBarItem;
     
-    //RIGHT NAV BUTTON    
+    //RIGHT NAV BUTTON
     // Set the custom back button
 	UIImage *settingsButtonNormalImage = [UIImage imageNamed:@"btn_Settings.png"];
 	UIImage *settingsButtonHighlightImage = [UIImage imageNamed:@"btn_Settings_up.png"];
@@ -174,23 +192,10 @@
 	//create a UIBarButtonItem with the button as a custom view
 	UIBarButtonItem *customSettingsBarItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
-    
-    lblQuestion.text = dataQuestions.questionText;
-    lblQuestion.lineBreakMode = UILineBreakModeWordWrap;
-    lblQuestion.numberOfLines = 2;
-    
-    questionPoints.text = [NSString stringWithFormat:@"Points: %d", dataQuestions.questionPoints];
-    
-    NSString *dateString = [NSString stringWithFormat:@"%@", dataQuestions.questionDate];
-    questionDate.text = [[dateString substringFromIndex:0] substringToIndex:10];
-    
-    answersDataController.questionID = dataQuestions.questionID;
-    //[answersDataController getAnswers];
-    [answersDataController getAnswersFromLocal];
 	
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
-                                          delegate:self 
+                                          delegate:self
                                  cancelButtonTitle:nil
                                  otherButtonTitles:nil];
     [baseAlert show];
@@ -205,10 +210,31 @@
     checkedAnswer = NO;
 }
 
+- (void)didFinishLoadingQuestion
+{
+    dataQuestions = [questionDataController objectInListAtIndex:0];
+    
+    lblQuestion.text = dataQuestions.questionText;
+    lblQuestion.lineBreakMode = UILineBreakModeWordWrap;
+    lblQuestion.numberOfLines = 2;
+    
+    questionPoints.text = [NSString stringWithFormat:@"Points: %d", dataQuestions.questionPoints];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
+    NSString *dateStr = [formatter stringFromDate:dataQuestions.questionDate];
+    
+    questionDate.text = dateStr;
+    
+    answersDataController.questionID = dataQuestions.questionID;
+    answersDataController.isGetHistory = YES;
+    [answersDataController getAnswers];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO];
-
+    
 }
 
 - (IBAction)showMoreComment:(id)sender
@@ -221,7 +247,7 @@
 
 - (void)didFinishLoadingQuestionAnswers
 {
- 
+    
     if (userAnswerController == nil) {
         userAnswerController = [[DataUserQuestionAnswerController alloc]init];
     }
@@ -245,9 +271,9 @@
         
         if (userAnswer.questionID == [dataQuestions.questionID intValue]) {
             
-            btnSubmitAnswer.enabled = NO;       
-
-            NSString *answerTime  = [userAnswer.answerDate substringFromIndex:10];
+            btnSubmitAnswer.enabled = NO;
+            
+            NSString *answerTime  = [userAnswer.answerDate substringFromIndex:8];
             
             //lblAnswerResult.text = [NSString stringWithFormat:@"Answered at %@.", userAnswer.answerDate];
             lblAnswerResult.text = [NSString stringWithFormat:@"Answered at %@.", answerTime];
@@ -259,7 +285,9 @@
         }
     }
     
-	[tblListAnswer reloadData];    
+	[tblListAnswer reloadData];
+    userCommentsDataController.questionID = dataQuestions.questionID;
+    userCommentsDataController.dataQuestion = dataQuestions;
     [userCommentsDataController getComments];
     
 }
@@ -299,16 +327,7 @@
 
 - (void)pressBack:(id)sender
 {
-    [userCommentsDataController removeFromParentViewController];
-    userCommentsDataController = nil;
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)pressSettings:(id)sender
-{
-    predixerSettingsViewControllerViewController *settings = [[predixerSettingsViewControllerViewController alloc] init];
-    
-    [self.navigationController pushViewController:settings animated:YES];
 }
 
 - (void)viewDidUnload
@@ -333,8 +352,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-  return [answersDataController countOfList];
+    return [answersDataController countOfList];
 }
 
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -364,8 +382,11 @@
     // Configure the cell...
     if ([answersDataController countOfList] != 0)
     {
+        NSLog(@"[answersDataController countOfList] %d", [answersDataController countOfList]);
+        
         
         questionAnswers = [answersDataController objectInListAtIndex:indexPath.row];
+        NSLog(@"indexPath.row %d", indexPath.row);
         
         //cell.textLabel.text = questionAnswers.answerText;
         //cell.textLabel.numberOfLines = 2;
@@ -377,7 +398,7 @@
         [rb setGroupID:0 AndID:questionAnswers.answerID AndTitle:[NSString stringWithFormat:@"%@", questionAnswers.answerText]];
         rb.delegate = self;
         rb.tag = indexPath.row;
-        [cell.contentView addSubview:rb];        
+        [cell.contentView addSubview:rb];
         
         if (checkedAnswer == YES) {
             
@@ -395,6 +416,7 @@
     return cell;
 }
 
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -411,10 +433,10 @@
  if (editingStyle == UITableViewCellEditingStyleDelete) {
  // Delete the row from the data source
  [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
+ }
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
+ }
  }
  */
 
@@ -451,8 +473,8 @@
 	 deselect the row after it has been selected.
 	 */
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
-
 
 - (IBAction)submitAnswer:(id)sender
 {
@@ -461,7 +483,7 @@
         
         baseAlert = [[UIAlertView alloc] initWithTitle:@"Submitting your answer..."
                                                message:@""
-                                              delegate:self 
+                                              delegate:self
                                      cancelButtonTitle:nil
                                      otherButtonTitles:nil];
         [baseAlert show];
@@ -479,27 +501,27 @@
         submitAnswer.answerId = [NSString stringWithFormat:@"%d",selectedAnswerID];
         [submitAnswer submitQuestionAnswer];
         
-         /*
-        for (int i=0; i < [dataController countOfList]; i++) {
-            questionAnswers = [dataController objectInListAtIndex:i];
-            
-            
-           
-            if (questionAnswers.answerID == selectedAnswerID) {
-                
-                if (questionAnswers.isCorrect == YES) {
-                    lblAnswerResult.text = @"Correct";
-                    lblAnswerResult.textColor = [UIColor greenColor];
-                    NSLog(@"answerID %d - selectedAnswerID %d", questionAnswers.answerID, selectedAnswerID);
-                }
-                else {
-                    lblAnswerResult.text = @"Wrong";
-                    lblAnswerResult.textColor = [UIColor redColor];
-                    NSLog(@"answerID %d - selectedAnswerID %d", questionAnswers.answerID, selectedAnswerID);
-                }
-            }
-          }
-          */
+        /*
+         for (int i=0; i < [dataController countOfList]; i++) {
+         questionAnswers = [dataController objectInListAtIndex:i];
+         
+         
+         
+         if (questionAnswers.answerID == selectedAnswerID) {
+         
+         if (questionAnswers.isCorrect == YES) {
+         lblAnswerResult.text = @"Correct";
+         lblAnswerResult.textColor = [UIColor greenColor];
+         NSLog(@"answerID %d - selectedAnswerID %d", questionAnswers.answerID, selectedAnswerID);
+         }
+         else {
+         lblAnswerResult.text = @"Wrong";
+         lblAnswerResult.textColor = [UIColor redColor];
+         NSLog(@"answerID %d - selectedAnswerID %d", questionAnswers.answerID, selectedAnswerID);
+         }
+         }
+         }
+         */
         
         btnSubmitAnswer.enabled = NO;
         
@@ -514,14 +536,14 @@
     }
     else {
         UIAlertView *bAlert = [[UIAlertView alloc] initWithTitle:@"No Answer!"
-                                               message:@"Please select your answer first by pressing a checkbox."
-                                              delegate:self 
-                                     cancelButtonTitle:nil
-                                     otherButtonTitles:@"OK", nil];
+                                                         message:@"Please select your answer first by pressing a checkbox."
+                                                        delegate:self
+                                               cancelButtonTitle:nil
+                                               otherButtonTitles:@"OK", nil];
         [bAlert show];
     }
     
-
+    
 }
 
 - (void)didFinishSubmittingUserAnswer
@@ -530,7 +552,7 @@
     
     UIAlertView *bAlert = [[UIAlertView alloc] initWithTitle:@"Submitted!"
                                                      message:@"Your Answer has been submitted. Kindly post your comments below."
-                                                    delegate:self 
+                                                    delegate:self
                                            cancelButtonTitle:nil
                                            otherButtonTitles:@"OK", nil];
     [bAlert show];
@@ -541,7 +563,7 @@
 - (void)stateChangedForGroupID:(NSUInteger)indexGroup WithSelectedButton:(NSUInteger)indexID
 {
     NSLog(@"Group %d - Button %d", indexGroup, indexID);
- 
+    
     selectedAnswerID = indexID;
 }
 
@@ -553,7 +575,7 @@
         
         baseAlert = [[UIAlertView alloc] initWithTitle:@""
                                                message:@"Submitting your comment..."
-                                              delegate:self 
+                                              delegate:self
                                      cancelButtonTitle:nil
                                      otherButtonTitles:nil];
         [baseAlert show];
@@ -576,7 +598,7 @@
     else {
         UIAlertView *bAlert = [[UIAlertView alloc] initWithTitle:@"No Comment!"
                                                          message:@"Please enter your comment first before submitting."
-                                                        delegate:self 
+                                                        delegate:self
                                                cancelButtonTitle:nil
                                                otherButtonTitles:@"OK", nil];
         [bAlert show];
@@ -640,7 +662,7 @@
     
     if ([text isEqual:@"\n"]) {
         [textView resignFirstResponder];
-    
+        
         
         return isReturn;
     }
@@ -652,5 +674,6 @@
     
     return isReturn;
 }
+
 
 @end

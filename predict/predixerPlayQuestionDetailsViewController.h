@@ -1,15 +1,16 @@
 //
-//  predixerPlayEntertainmentDetailsViewController.h
+//  predixerPlayQuestionDetailsViewController.h
 //  predict
 //
-//  Created by Joel R Ballesteros on 7/4/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Joel R Ballesteros on 9/4/12.
+//
 //
 
 #import <UIKit/UIKit.h>
 #import "RadioButton.h"
 
 @class DataQuestions;
+@class DataQuestionsController;
 @class DataQuestionAnswers;
 @class DataQuestionAnswersController;
 @class DataUserQuestionAnswerController;
@@ -18,9 +19,11 @@
 @class DataCommentAddController;
 @class predixerPlayCommentsController;
 
-@interface predixerPlayEntertainmentDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RadioButtonDelegate, UITextViewDelegate> {
+@interface predixerPlayQuestionDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, RadioButtonDelegate, UITextViewDelegate> {
     
     DataQuestions *dataQuestions;
+    DataQuestionsController *questionDataController;
+    
     DataQuestionAnswers *questionAnswers;
     DataQuestionAnswersController *answersDataController;
     
@@ -62,22 +65,13 @@
 @property (nonatomic, strong)DataUserQuestionAnswerSubmitController *submitAnswer;
 @property (nonatomic, strong)predixerPlayCommentsController *userCommentsDataController;
 @property (nonatomic, strong)DataCommentAddController *addCommentsController;
+@property (nonatomic, strong)DataQuestionsController *questionDataController;
 @property (readwrite)int selectedAnswerID;
 @property (nonatomic, strong)IBOutlet UITableView *tblListAnswer;
 @property (nonatomic, strong)IBOutlet UITableView *tblListComments;
 
-- (id)initWithQuestion:(DataQuestions *)question;
-- (void)didFinishLoadingQuestionAnswers;
-- (void)didFinishLoadingData;
-- (void)didFinishSubmittingUserAnswer;
-- (void)didFinishLoadingUserAnswer;
-- (void)didFinishAddingUserComment;
-- (void)didFinishLoadingCommentsToTable;
-- (void)performDismiss;
-- (void)pressBack:(id)sender;
-- (void)pressSettings:(id)sender;
-- (IBAction)submitAnswer:(id)sender;
-- (IBAction)submitComment:(id)sender;
-- (IBAction)showMoreComment:(id)sender;
+- (id)initWithQuestion:(NSString *)questionID;
+
+
 
 @end

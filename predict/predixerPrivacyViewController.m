@@ -47,6 +47,10 @@
 	//create a UIBarButtonItem with the button as a custom view
 	UIBarButtonItem *customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 	self.navigationItem.leftBarButtonItem = customBackBarItem;
+    
+    webView.delegate = self;
+    webView.scalesPageToFit = YES;
+    [webView  loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.predixer.com/privacy.aspx"]]];
 }
 
 - (void)pressBack:(id)sender
@@ -64,6 +68,27 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+	
+     UIActivityIndicatorView *av = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle
+     :UIActivityIndicatorViewStyleGray];
+     av.frame=CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, 50.0f, 50.0f);
+     av.tag  = 1;
+     [self.view addSubview:av];
+     [av startAnimating];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+     UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
+     [tmpimg removeFromSuperview];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
 }
 
 @end

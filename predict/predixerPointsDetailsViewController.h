@@ -1,8 +1,8 @@
 //
-//  predixerHistoryViewController.h
+//  predixerPointsDetailsViewController.h
 //  predict
 //
-//  Created by Joel R Ballesteros on 8/26/12.
+//  Created by Joel R Ballesteros on 9/4/12.
 //
 //
 
@@ -11,7 +11,7 @@
 @class DataUserAnswers;
 @class DataUserAnswersController;
 
-@interface predixerHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface predixerPointsDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
     DataUserAnswers *userAnswers;
     DataUserAnswersController *dataController;

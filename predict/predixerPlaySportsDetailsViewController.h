@@ -37,10 +37,12 @@
     IBOutlet UILabel *lblCharCount;
     IBOutlet UILabel *lblCommentsCount;
     IBOutlet UILabel *questionPoints;
+    IBOutlet UILabel *questionDate;
     IBOutlet UITextView *txtComment;
     IBOutlet UIButton *btnSubmitAnswer;
     IBOutlet UIButton *btnSubmitComment;
     IBOutlet UIButton *btnViewComments;
+    IBOutlet UIImageView *lineArrow;
     
     UIAlertView *baseAlert;
 	UIActivityIndicatorView *aiv;

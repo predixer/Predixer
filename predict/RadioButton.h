@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSLabel.h"
 
 @protocol RadioButtonDelegate <NSObject>
 - (void)stateChangedForGroupID:(NSUInteger)indexGroup WithSelectedButton:(NSUInteger)indexID;
@@ -17,7 +18,7 @@
     NSUInteger  nID;
     NSUInteger  nGroupID;
     UIButton    *btn_RadioButton;
-    UILabel     *lbl_RadioButton;
+    MSLabel     *lbl_RadioButton;
     
     id <RadioButtonDelegate> delegate;
 }

@@ -9,7 +9,6 @@
 #import "predixerGameFindFriendsViewController.h"
 #import "predixerGameFindFriendsInviteController.h"
 #import "predixerGameFindFriendsPlayController.h"
-#import "facebookAPIViewController.h"
 #import "predixerSettingsViewControllerViewController.h"
 
 @interface predixerGameFindFriendsViewController ()
@@ -21,7 +20,6 @@
 @synthesize friendsPlay;
 @synthesize friendsInvite;
 @synthesize friendsData;
-@synthesize fbApi;
 @synthesize friendsWithAppData;
 @synthesize friendsWithNoAppData;
 
@@ -118,7 +116,6 @@
     friendsInvite.view.frame = CGRectMake(0.0f, 0.0f, 320.0f, 412.0f);
     [self.view addSubview:friendsInvite.view];
     
-    fbApi = [[facebookAPIViewController alloc] init];
 }
 
 - (void)pressBack:(id)sender
@@ -147,7 +144,6 @@
 
 - (IBAction)pressShare:(id)sender
 {
-    [fbApi apiDialogFeedUser];
 }
 
 - (void)viewDidUnload

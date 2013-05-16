@@ -10,13 +10,11 @@
 
 @class predixerGameFindFriendsPlayController;
 @class predixerGameFindFriendsInviteController;
-@class facebookAPIViewController;
 
 @interface predixerGameFindFriendsViewController : UIViewController
 {
     predixerGameFindFriendsPlayController *friendsPlay;
     predixerGameFindFriendsInviteController *friendsInvite;
-    facebookAPIViewController *fbApi;
     
     NSMutableArray *friendsData;
     NSMutableArray *friendsWithAppData;
@@ -29,7 +27,6 @@
 
 @property (strong, nonatomic) predixerGameFindFriendsPlayController *friendsPlay;
 @property (strong, nonatomic) predixerGameFindFriendsInviteController *friendsInvite;
-@property (strong, nonatomic) facebookAPIViewController *fbApi;
 @property (strong, nonatomic) NSMutableArray *friendsData;
 @property (strong, nonatomic) NSMutableArray *friendsWithAppData;
 @property (strong, nonatomic) NSMutableArray *friendsWithNoAppData;

@@ -16,6 +16,7 @@
     NSMutableArray *arrComments;
     NSMutableData *receivedData;
     NSString *questionID;
+    NSString *pageNumber;
     NSString *commentID;
     
     BOOL dataReady;
@@ -23,15 +24,19 @@
     BOOL isTopComments;
     BOOL isUserCommentLike;
     BOOL userDidLike;
+    BOOL isAddNewComment;
     
     NSNotificationCenter *nc;
     
 }
 
 @property (nonatomic, strong)DataComments *commentsData;
+@property (nonatomic, strong)NSMutableArray *arrComments;
 @property (nonatomic, strong)NSString *questionID;
+@property (nonatomic, strong)NSString *pageNumber;
 @property (nonatomic, strong)NSString *commentID;
 @property (readwrite)BOOL userDidLike;
+@property (readwrite)BOOL isAddNewComment;
 
 - (void)likeComment;
 - (void)getTopComments;

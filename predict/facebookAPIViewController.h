@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FBConnect.h"
+//#import "FBConnect.h"
 #import <CoreLocation/CoreLocation.h>
 
 typedef enum apiCall {
@@ -35,9 +35,14 @@ typedef enum apiCall {
     kAPIGraphUserCheckins,
     kAPIGraphUserPhotosPost,
     kAPIGraphUserVideosPost,
+    kAPIGraphUserPost,
 } apiCall;
 
-@interface facebookAPIViewController : UIViewController <FBRequestDelegate, FBDialogDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
+@class LoadingController;
+
+@interface facebookAPIViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
+    
+    LoadingController *loadingController;
     
     int currentAPICall;
     
@@ -72,6 +77,7 @@ typedef enum apiCall {
 @property (strong, nonatomic) UIView *messageView;
 @property (nonatomic, assign) bool isFiltered;
 @property (strong, nonatomic) NSString *selectedFriendID;
+@property (strong, nonatomic) LoadingController *loadingController;
 
 - (void)userDidGrantPermission;
 
@@ -84,6 +90,7 @@ typedef enum apiCall {
 - (void)apiLogout;
 - (void)apiDialogRequestsSendTarget:(NSString *)friendID;
 - (void)apiDialogFeedUser;
+- (void)apiDialogPostToWall:(NSMutableDictionary *)params;
 
 - (void)pressBack:(id)sender;
 - (void)pressSettings:(id)sender;

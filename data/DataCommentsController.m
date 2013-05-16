@@ -18,6 +18,9 @@
 @synthesize questionID;
 @synthesize commentID;
 @synthesize userDidLike;
+@synthesize pageNumber;
+@synthesize arrComments;
+@synthesize isAddNewComment;
 
 - (id)init {
 	if ((self = [super init])) {
@@ -28,7 +31,9 @@
 			receivedData = [[NSMutableData alloc] init];            
 		}
         
-        
+        nc = [NSNotificationCenter defaultCenter];
+
+        isAddNewComment = NO;
 	}
 	
 	return self;
@@ -76,10 +81,10 @@
     
     NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/AddCommentsLike?id=%@&f=%@", commentID, facebookUserID];
     
-    NSLog(@"urlString %@", urlString);
+    // NSLog(@"urlString %@", urlString);
     
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"escapedUrl %@", escapedUrl);
+    //NSLog(@"escapedUrl %@", escapedUrl);
     
     [request setURL:[NSURL URLWithString:escapedUrl]];
 	[request setHTTPMethod:@"GET"];
@@ -93,19 +98,20 @@
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc]
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection."
 								  delegate:self cancelButtonTitle:@"OK"
 								  otherButtonTitles:nil, nil];
-		[baseAlert show];
+		[baseAlert show];*/
 	}
 
 }
@@ -119,83 +125,95 @@
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     
-    NSLog(@"questionID %@", questionID);
+    //NSLog(@"questionID %@", questionID);
     
     
     NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/GetQuestionUserTopComments?qid=%@", questionID];
-    NSLog(@"urlString %@", urlString);
+    
     
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //NSLog(@"getTopComments %@", escapedUrl);
     
     [request setURL:[NSURL URLWithString:escapedUrl]];
 	[request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-    NSLog(@"%@", [request allHTTPHeaderFields]);
+    //NSLog(@"%@", [request allHTTPHeaderFields]);
 	
 	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	
     dataReady = NO;
-	[arrComments removeAllObjects];
+    
+    [arrComments removeAllObjects];
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc]
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection."
 								  delegate:self cancelButtonTitle:@"OK"
 								  otherButtonTitles:nil, nil];
-		[baseAlert show];
+		[baseAlert show];*/
 	}
 }
 
 
 - (void)getComments
 {
+    isUserCommentLike = NO;
+    isLike = NO;
+    isTopComments = NO;
+    userDidLike = NO;
+    
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init]; 
     
-    NSLog(@"questionID %@", questionID);
+    //NSLog(@"questionID %@", questionID);
 
     
-    NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/GetQuestionUserComments?qid=%@", questionID];
+    NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/GetQuestionUserComments?qid=%@&page=%@&rows=10", questionID, pageNumber];
     
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"urlString %@", urlString);
+    //NSLog(@"urlString %@", urlString);
     
     [request setURL:[NSURL URLWithString:escapedUrl]];  
 	[request setHTTPMethod:@"GET"];  
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
-    NSLog(@"%@", [request allHTTPHeaderFields]);
+    //NSLog(@"%@", [request allHTTPHeaderFields]);
 	
 	NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];	
 	
     dataReady = NO;
-	[arrComments removeAllObjects];
+    
+    /*if ([pageNumber intValue] == 1) {
+        [arrComments removeAllObjects];
+    }*/
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc] 
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection." 
 								  delegate:self cancelButtonTitle:@"OK" 
 								  otherButtonTitles:nil, nil]; 
-		[baseAlert show];
+		[baseAlert show];*/
 	} 
 }
 
@@ -214,10 +232,10 @@
     
     NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/GetUserCommentLike?id=%@&f=%@", commentID, facebookUserID];
     
-    NSLog(@"urlString %@", urlString);
+    // NSLog(@"urlString %@", urlString);
     
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"escapedUrl %@", escapedUrl);
+    //NSLog(@"escapedUrl %@", escapedUrl);
     
     [request setURL:[NSURL URLWithString:escapedUrl]];
 	[request setHTTPMethod:@"GET"];
@@ -231,19 +249,33 @@
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc]
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection."
 								  delegate:self cancelButtonTitle:@"OK"
 								  otherButtonTitles:nil, nil];
-		[baseAlert show];
+		[baseAlert show];*/
+        
+        
+        if (isLike == NO) {
+            [nc postNotificationName:@"didFinishLoadingComments" object:nil];
+        }
+        else if (isTopComments == YES)
+        {
+            [nc postNotificationName:@"didFinishLoadingTopComments" object:nil];
+        }
+        else if (isLike == YES)
+        {
+            [nc postNotificationName:@"didFinishLikeComment" object:nil];
+        }
 	}
 }
 
@@ -265,22 +297,21 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", error);
+    //NSLog(@"%@", error);
 	receivedData = nil;
     
+    /*
     // inform the user
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error"
-													message:@"There was an error while connecting to the server."
+													message:@"There was an error while connecting to the server. "
                           "Either the service is down or you don't have an internet connection."
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
-	[alert show];
+	[alert show];*/
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    nc = [NSNotificationCenter defaultCenter]; 
-	
     if (isLike == NO) {
         [nc postNotificationName:@"didFinishLoadingComments" object:nil];
     }
@@ -301,18 +332,21 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];   
     
-    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
+    //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
 	//Transform response to string
 	NSString *response = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
- 	NSLog(@" JSON Response: %@", response);
+ 	//NSLog(@" JSON Response: %@", response);
 	
 	//Parse response for JSON values and save to dictionary
 	NSDictionary *userInfo = [response JSONValue];
     
+    /*
     for (id key in userInfo) {        
         NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-    }
+    }*/
+    
+    //NSLog(@"arrComments %d", [arrComments count]);
     
     if (isLike == NO && isTopComments == NO && isUserCommentLike == NO) {
         NSArray *arrObjects = [[NSArray alloc] init];
@@ -359,7 +393,7 @@
             }
             
             NSString *comment = [NSString stringWithFormat:@"%@", [aComment objectForKey:@"Comment"]];
-            NSLog(@"Comment %@", comment);
+            //NSLog(@"Comment %@", comment);
             
             if ([comment isEqualToString:@"<null>"]) {
                 comment = @"";
@@ -377,11 +411,21 @@
                 totalLike = @"0";
             }
             
-            [arrComments addObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike]];
+            NSString *totalComments = [NSString stringWithFormat:@"%@", [aComment objectForKey:@"TotalComments"]];
+            
+            if ([totalComments isEqualToString:@"<null>"]) {
+                totalComments = @"0";
+            }
+            
+            if ([totalComments isEqualToString:@"(null)"]) {
+                totalComments = @"0";
+            }
+            
+            [arrComments addObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike totalComments:totalComments]];
         }
         
+        //NSLog(@"arrComments %d", [arrComments count]);
         
-        nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"didFinishLoadingComments" object:nil];
         
     }
@@ -430,7 +474,7 @@
             }
             
             NSString *comment = [NSString stringWithFormat:@"%@", [aComment objectForKey:@"Comment"]];
-            NSLog(@"Comment %@", comment);
+            //NSLog(@"Comment %@", comment);
             
             if ([comment isEqualToString:@"<null>"]) {
                 comment = @"";
@@ -448,11 +492,29 @@
                 totalLike = @"0";
             }
             
-            [arrComments addObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike]];
+            NSString *totalComments = [NSString stringWithFormat:@"%@", [aComment objectForKey:@"TotalComments"]];
+            
+            if ([totalComments isEqualToString:@"<null>"]) {
+                totalComments = @"0";
+            }
+            
+            if ([totalComments isEqualToString:@"(null)"]) {
+                totalComments = @"0";
+            }
+            
+             [arrComments insertObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike totalComments:totalComments] atIndex:0];
+            
+            /*
+            if (isAddNewComment == YES) {
+                [arrComments insertObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike totalComments:totalComments] atIndex:0];
+            }
+            else
+            {
+                [arrComments addObject:[DataComments commentWithID:commentId questionID:dataQuestionId userID:userID fbUserID:fbUserID fbName:fbName fbUserEmail:fbEmail comment:comment commentDate:commentDate totalLikes:totalLike totalComments:totalComments]];
+            }
+             */
         }
         
-        
-        nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"didFinishLoadingTopComments" object:nil];
         
     }
@@ -461,7 +523,7 @@
         
         
         NSString *result = (NSString*)[userInfo objectForKey:@"GetUserCommentLikeResult"];
-        NSLog(@"like result %@", result);
+        //NSLog(@"like result %@", result);
         
         if ([result intValue] > 0)
         {   //do nothing
@@ -475,11 +537,9 @@
             //just log
         }
         
-        nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"didFinishGettingUserLikeComment" object:nil];
         
     }
-    
     else if (isLike == YES && isUserCommentLike == NO && isTopComments == NO)
     {   
         
@@ -494,7 +554,6 @@
             //just log
         }  
         
-        nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"didFinishLikeComment" object:nil];
         
     }

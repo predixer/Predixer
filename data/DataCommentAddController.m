@@ -24,6 +24,8 @@
         questionComments = [[DataComments alloc] init];
         receivedData = [[NSMutableData alloc] init];            
         
+        nc = [NSNotificationCenter defaultCenter];
+
 	}
 	
 	return self;
@@ -46,14 +48,25 @@
     
     NSString *facebookUserID = [NSString stringWithFormat:@"%@", [defaults objectForKey:@"fbId"]];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/AddQuestionComments?id=%@&u=%@&f=%@&c=%@", questionID, userID, facebookUserID, commentText];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss a"];
+    [dateFormat setLocale:[NSLocale currentLocale]];
+    NSString *dateString = [dateFormat stringFromDate:date];
+    //NSLog(@"Date: %@", dateString);
     
-    NSLog(@"urlString %@", urlString);
+    NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/AddQuestionComments?id=%@&u=%@&f=%@&c=%@&dt=%@", questionID, userID, facebookUserID, commentText, dateString];
+    
+    // NSLog(@"urlString %@", urlString);
     
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"escapedUrl %@", escapedUrl);
+    //NSLog(@"escapedUrl %@", escapedUrl);
+    [escapedUrl stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
     
-    [request setURL:[NSURL URLWithString:escapedUrl]];  
+    NSString* newUrl = [escapedUrl stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+    //NSLog(@"newUrl %@", newUrl);
+    
+    [request setURL:[NSURL URLWithString:newUrl]];  
 	[request setHTTPMethod:@"GET"];  
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	
@@ -65,19 +78,22 @@
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc] 
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection." 
 								  delegate:self cancelButtonTitle:@"OK" 
 								  otherButtonTitles:nil, nil]; 
-		[baseAlert show];
+		[baseAlert show];*/
+        
+        [nc postNotificationName:@"didFinishAddingUserComment" object:nil];
 	} 
 }
 
@@ -100,20 +116,21 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", error);
+    // NSLog(@"%@", error);
 	receivedData = nil;
     
+    /*
     // inform the user
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error"
-													message:@"There was an error while connecting to the server."
+													message:@"There was an error while connecting to the server. "
                           "Either the service is down or you don't have an internet connection."
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
-	[alert show];
+	[alert show];*/
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    nc = [NSNotificationCenter defaultCenter]; 
 	[nc postNotificationName:@"didFinishAddingUserComment" object:nil];
 }
 
@@ -124,18 +141,19 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];   
     
-    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
+    //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
 	//Transform response to string
 	NSString *response = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
- 	NSLog(@"Login JSON Response: %@", response);
+ 	//NSLog(@"Login JSON Response: %@", response);
 	
 	//Parse response for JSON values and save to dictionary
 	NSDictionary *userInfo = [response JSONValue];
     
+    /*
     for (id key in userInfo) {        
         NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-    }
+    }*/
     
     NSString *result = (NSString*)[userInfo objectForKey:@"AddQuestionCommentsResult"];
     
@@ -150,7 +168,6 @@
     
     dataReady = YES;
 	
-    nc = [NSNotificationCenter defaultCenter]; 
 	[nc postNotificationName:@"didFinishAddingUserComment" object:nil];
     
 	receivedData = nil;

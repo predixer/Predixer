@@ -9,7 +9,9 @@
 #import "predixerHistoryViewController.h"
 #import "DataUserAnswers.h"
 #import "DataUserAnswersController.h"
-#import "predixerPlayQuestionDetailsViewController.h"
+//#import "predixerPlayQuestionDetailsViewController.h"
+#import "LoadingController.h"
+#import "predixerHistoryDetailsViewController.h"
 
 @interface predixerHistoryViewController ()
 
@@ -19,6 +21,7 @@
 
 @synthesize dataController;
 @synthesize userAnswers;
+@synthesize loadingController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +32,7 @@
         if (dataController == nil) {
 			dataController = [[DataUserAnswersController alloc] init];
 			
-			NSLog(@"Count at init: %d", [dataController countOfList]);
+			//NSLog(@"Count at init: %d", [dataController countOfList]);
 		}
 		
         
@@ -80,7 +83,11 @@
     dataController.isGetCorrectAnswers = NO;
     [dataController getUserAnswers];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
     
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -94,6 +101,7 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+     */
 }
 
 - (void)didFinishLoadingData
@@ -104,6 +112,8 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
@@ -169,19 +179,24 @@
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Date: %@, Answer: %@", dateStr, userAnswers.answerOption];
         
-        NSLog(@"userAnswers.isCorrect %d", userAnswers.isCorrect);
+        //NSLog(@"userAnswers.isCorrect %d", userAnswers.isCorrect);
         
-        if (userAnswers.isCorrect == true) {
-            cell.imageView.image = [UIImage imageNamed:@"img_XGreen.png"];
+        if (userAnswers.isAnswerSet == true) {
+            if (userAnswers.isCorrect == true) {
+                cell.imageView.image = [UIImage imageNamed:@"img_XGreen.png"];
+            }
+            else{
+                cell.imageView.image = [UIImage imageNamed:@"img_XRed.png"];
+            }
         }
-        else{
-            cell.imageView.image = [UIImage imageNamed:@"img_XRed.png"];
-            
+        else {
+            cell.imageView.image = [UIImage imageNamed:@"img_XGray.png"];
         }
+        
     }
     
     
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:16];
     
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;
@@ -193,10 +208,10 @@
     
     NSString *questionID = [NSString stringWithFormat:@"%d", userAnswers.questionID];
     
-    predixerPlayQuestionDetailsViewController *questionDetails = [[predixerPlayQuestionDetailsViewController alloc] initWithQuestion:questionID];
+    //predixerPlayQuestionDetailsViewController *questionDetails = [[predixerPlayQuestionDetailsViewController alloc] initWithQuestion:questionID];
+    predixerHistoryDetailsViewController *historyDetails = [[predixerHistoryDetailsViewController alloc] initWithQuestion:questionID];
     
-    
-    [self.navigationController pushViewController:questionDetails animated:YES];
+    [self.navigationController pushViewController:historyDetails animated:YES];
     
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	

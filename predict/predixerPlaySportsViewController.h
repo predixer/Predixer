@@ -10,6 +10,7 @@
 
 @class DataQuestions;
 @class DataQuestionsController;
+@class LoadingController;
 
 @interface predixerPlaySportsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
@@ -18,6 +19,7 @@
     
     DataQuestionsController *dataController;
 	DataQuestions *dataQuestions;
+    LoadingController *loadingController;
     
 	UIAlertView *baseAlert;
 	UIActivityIndicatorView *aiv;
@@ -28,6 +30,7 @@
 
 @property (nonatomic, strong)DataQuestionsController *dataController;
 @property (nonatomic, strong)DataQuestions *dataQuestions;
+@property (strong, nonatomic) LoadingController *loadingController;
 
 - (void)didFinishLoadingData;
 - (void)performDismiss;

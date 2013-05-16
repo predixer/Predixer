@@ -23,5 +23,5 @@
 @property (nonatomic, strong)NSString *answerId;
 
 - (void)submitQuestionAnswer;
-
+- (void)submitUserAnswer;
 @end

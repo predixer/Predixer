@@ -33,7 +33,7 @@ static natural_t get_free_memory(void)
 
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS)
     {
-        NSLog(@"Failed to fetch vm statistics");
+        //NSLog(@"Failed to fetch vm statistics");
         return 0;
     }
 

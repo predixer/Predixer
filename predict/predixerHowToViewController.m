@@ -8,6 +8,10 @@
 
 #import "predixerHowToViewController.h"
 #import "predixerSettingsViewControllerViewController.h"
+#import "DataGrandPrizeController.h"
+#import "DataHowToController.h"
+#import "LoadingController.h"
+#import "DataHowTo.h"
 
 @interface predixerHowToViewController ()
 
@@ -15,13 +19,49 @@
 
 @implementation predixerHowToViewController
 
+@synthesize dataController;
+@synthesize dataHowToController;
+@synthesize loadingController;
+@synthesize howTo;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        if (dataController == nil)
+        {
+            dataController = [[DataGrandPrizeController alloc] init];
+        }
+        
+        if (dataHowToController == nil) {
+            dataHowToController = [[DataHowToController alloc] init];
+        }
+        
+        nc = [NSNotificationCenter defaultCenter];
+		
+		//observer
+		[nc addObserver:self
+			   selector:@selector(didFinishGettingGrandPrize)
+				   name:@"didFinishGettingGrandPrize"
+				 object:nil];
+        
+        [nc addObserver:self
+			   selector:@selector(didFinishGettingHowTo)
+				   name:@"didFinishGettingHowTo"
+				 object:nil];
+        
     }
     return self;
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishGettingGrandPrize" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishGettingHowTo" object:nil];
+
 }
 
 - (void)viewDidLoad
@@ -29,7 +69,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    txtHowTo.font = [UIFont fontWithName: @"Verdana" size:15];
+    txtHowTo.textColor = [UIColor colorWithRed:0.02f green:0.32f blue:0.52f alpha:1.0f];
+    //lblMoney.font = [UIFont fontWithName: @"Verdana" size:11];
     
     //LEFT NAV BUTTON    
     // Set the custom back button
@@ -70,6 +112,71 @@
 	//create a UIBarButtonItem with the button as a custom view
 	UIBarButtonItem *customSettingsBarItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
+    
+     
+      
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
+    
+   /*
+    baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
+                                           message:@""
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:nil];
+    [baseAlert show];
+    
+    
+    //Activity indicator
+    aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
+    [aiv startAnimating];
+    [baseAlert addSubview:aiv];
+    */
+    
+    //[dataController getGrandPrize];
+    
+    [dataHowToController getHowToText];
+    
+    txtHowTo.font = [UIFont fontWithName: @"Verdana" size:16];
+}
+
+- (void)didFinishGettingGrandPrize
+{
+    [dataHowToController getHowToText];
+    
+}
+
+- (void)didFinishGettingHowTo
+{
+    if ([dataHowToController countOfList] != 0) {
+        
+        //NSString *strText = [dataHowToController objectInListAtIndex:0];
+        
+        howTo = [dataHowToController objectInListAtIndex:0];
+        
+        //NSLog(@"%@", howTo.howToText);
+        
+        txtHowTo.text = howTo.howToText;
+    }
+    
+	[self performSelector:@selector(performDismiss) withObject:nil afterDelay:0.0f];
+}
+
+- (void)performDismiss
+{
+    
+    lblMoney.text = dataController.strGrandPrize;
+    
+    [loadingController.view removeFromSuperview];
+    
+    if (baseAlert != nil)
+    {
+        [aiv stopAnimating];
+        [baseAlert dismissWithClickedButtonIndex:0 animated:NO];
+        baseAlert = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -105,5 +212,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end

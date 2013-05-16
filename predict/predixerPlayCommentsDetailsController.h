@@ -23,6 +23,13 @@
     IBOutlet UILabel *lblCommentDate;
     IBOutlet UILabel *lblCommentLikes;
     IBOutlet UILabel *lblCommentNumber;
+    
+    
+    IBOutlet UILabel *lblBy;
+    IBOutlet UILabel *lblDate;
+    IBOutlet UILabel *lblComment;
+    IBOutlet UILabel *lblLikes;
+    
     IBOutlet UITextView *txtComment;
     IBOutlet UIButton *btnLike;
     IBOutlet UIButton *btnMoreComments;

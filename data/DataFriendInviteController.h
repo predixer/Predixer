@@ -15,6 +15,7 @@
     NSNotificationCenter *nc;
 }
 
-- (void)inviteFriend:(NSString *)inviteeFB;
+- (void)inviteFriend:(NSString *)inviteeFB name:(NSString *)inviteeName;
+- (void)inviteFacebookFriend:(NSString *)inviteeFB name:(NSString *)inviteeName;
 
 @end

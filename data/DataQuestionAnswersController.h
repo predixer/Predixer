@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sqlite3.h>
 
 @class DataQuestionAnswers;
 
@@ -20,15 +21,20 @@
     BOOL dataReady;
     
     NSNotificationCenter *nc;
+    BOOL isGetHistory;
     
 }
 
 @property (nonatomic, strong)DataQuestionAnswers *questionAnswers;
+@property (nonatomic, strong)NSMutableArray *arrAnswers;
 @property (nonatomic, strong)NSString *questionID;
+@property (readwrite)BOOL isGetHistory;
 
 
 - (void)getAnswers;
 - (unsigned)countOfList;
 - (DataQuestionAnswers *)objectInListAtIndex:(unsigned)theIndex;
+- (void)loadToLocal:(NSString*)sqlCommand;
+- (void)getAnswersFromLocal;
 
 @end

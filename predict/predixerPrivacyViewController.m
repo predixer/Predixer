@@ -50,7 +50,7 @@
     
     webView.delegate = self;
     webView.scalesPageToFit = YES;
-    [webView  loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.predixer.com/privacy.aspx"]]];
+    [webView  loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.predixer.com/privacypolicy.aspx"]]];
 }
 
 - (void)pressBack:(id)sender

@@ -22,5 +22,6 @@
 @property (nonatomic, strong)DataFacebookUser *facebookUser;
 
 - (void)addFBUser;
+- (void)addUserFacebook;
 
 @end

@@ -10,6 +10,7 @@
 #import "DataUserAnswers.h"
 #import "DataUserAnswersController.h"
 #import "predixerPlayQuestionDetailsViewController.h"
+#import "LoadingController.h"
 
 @interface predixerPointsDetailsViewController ()
 
@@ -19,6 +20,7 @@
 
 @synthesize dataController;
 @synthesize userAnswers;
+@synthesize loadingController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,7 +83,11 @@
     dataController.isGetCorrectAnswers = YES;
     [dataController getUserAnswers];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
     
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -95,6 +101,7 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+     */
 }
 
 - (void)didFinishLoadingData
@@ -105,6 +112,8 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
@@ -172,7 +181,7 @@
     }
     
      
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:16];
     
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;

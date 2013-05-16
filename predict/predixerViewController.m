@@ -7,28 +7,63 @@
 //
 
 #import "predixerViewController.h"
-#import "predixerAboutViewController.h"
 #import "predixerHowToViewController.h"
 #import "predixerGameMenuViewController.h"
 #import "predixerAppDelegate.h"
-#import "FBConnect.h"
 #import "SBJSON.h"
 #import "NSString+SBJSON.h"
 #import "NSString+HTML.h"
-
+#import "DataSystemUser.h"
+#import "DataSystemUserController.h"
+#import "LoadingController.h"
+#import "Constants.h"
+#import "DataAddDeviceToken.h"
 
 @interface predixerViewController ()
-- (void)showLoggedIn;
 @end
 
 @implementation predixerViewController
 
 @synthesize permissions;
+@synthesize dataUser;
+@synthesize dataController;
+@synthesize loadingController;
+@synthesize appDelegate;
+@synthesize menu;
+@synthesize deviceTokenController;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    //lblFailed.text = @"WE NEVER POST TO FACEBOOK.";
+    //lblFailed.textColor = [UIColor blackColor];
+    
+    appDelegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.hasInternetConnection == NO) {
+        vwNoInternet.hidden = NO;
+    }
+    else {
+        vwNoInternet.hidden = YES;
+    }
+    
+    if (dataController == nil) {
+        dataController = [[DataSystemUserController alloc] init];
+        
+    }
+    
+    
+    permissions = [[NSArray alloc] initWithObjects:@"offline_access",@"email", nil];
+    
+    nc = [NSNotificationCenter defaultCenter];
+    
+    //observer
+    [nc addObserver:self
+           selector:@selector(didFinishSystemUserLogin)
+               name:@"didFinishSystemUserLogin"
+             object:nil];
     
     UIImage *fbImage = [UIImage imageNamed:@"btn_Facebook_up.png"]; 
     [btnFacebook setImage:fbImage forState:UIControlStateHighlighted];
@@ -36,14 +71,17 @@
     UIImage *submitImage = [UIImage imageNamed:@"btn_Submit_up.png"]; 
     [btnSubmit setImage:submitImage forState:UIControlStateHighlighted];
     
-    UIImage *aboutImage = [UIImage imageNamed:@"btn_About_up.png"]; 
-    [btnAbout setImage:aboutImage forState:UIControlStateHighlighted];
+    //lblFailed.hidden = YES;
     
-    UIImage *howtoImage = [UIImage imageNamed:@"btn_HowTo_up.png"]; 
-    [btnHowTo setImage:howtoImage forState:UIControlStateHighlighted];
+    if (![[appDelegate facebook] isSessionValid])
+    {
+        //session invalid reauthorize
+        //[[appDelegate facebook] authorize:permissions];
+    } else {
+        [appDelegate apiGraphMe];
+        [self showLoggedIn];
+    }
     
-    // Initialize permissions
-    permissions = [[NSArray alloc] initWithObjects:@"offline_access",@"publish_stream",@"email",nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -51,19 +89,18 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-        
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (![[delegate facebook] isSessionValid]) {
-        //[self showLoggedOut];
-    } else {
-        [self showLoggedIn];
-    }
+    
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    // Release any retained subviews of the main view.    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -73,43 +110,212 @@
 
 - (void)showLoggedIn
 {
-    predixerGameMenuViewController *menu = [[predixerGameMenuViewController alloc] init];
-    [self.navigationController pushViewController:menu animated:YES];
+    if (menu != nil) {
+        [menu.view removeFromSuperview];
+        [menu removeFromParentViewController];
+        menu = nil;
+    }
     
-    [self apiFQLIMe];
+    menu = [[predixerGameMenuViewController alloc] init];
+    [self.navigationController pushViewController:menu animated:YES];    
 }
 
 - (IBAction)pressFacebook:(id)sender
 {
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (![[delegate facebook] isSessionValid]) {
-        [[delegate facebook] authorize:permissions];
+    if (![[appDelegate facebook] isSessionValid]) {
+        [[appDelegate facebook] authorize:permissions];
     } else {
         [self showLoggedIn];
     }
 }
 
+- (void)loginFailed {
+    //lblFailed.hidden = NO;
+    lblFailed.text = @"Failed Facebook login! Try again.";
+    lblFailed.textColor = [UIColor redColor];
+}
+
 - (IBAction)pressSubmit:(id)sender
 {
-    //PROCESS USER EMAIL AND PASSWORD
-    [self showLoggedIn];
+    
+    if (appDelegate.hasInternetConnection) {
+        if ([txtEmail isFirstResponder]) {
+            [txtEmail resignFirstResponder];
+        }
+        else if ([txtPassword isFirstResponder])
+        {
+            [txtPassword resignFirstResponder];
+        }
+        
+        //PROCESS USER EMAIL AND PASSWORD
+        
+        if ([txtEmail.text length] > 0 && [txtPassword.text length] > 0) {
+            
+            //check password length
+            if ([txtPassword.text length] < 6) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!"
+                                                                message:@"Password must be at least 6 characters long."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+                return;
+            }
+            
+            //check if Valid email.
+            
+            //NSLog(@"email %@", [txtEmail.text lowercaseString]);
+            
+            BOOL emailIsValid = [self isValidEmail:[txtEmail.text lowercaseString]];
+            
+            if (emailIsValid == YES) {
+                
+                loadingController = [[LoadingController alloc] init];
+                loadingController.strLoadingText = @"Logging in...";
+                [self.view addSubview:loadingController.view];
+                
+                /*
+                 baseAlert = [[UIAlertView alloc] initWithTitle:@"Logging In..."
+                 message:@""
+                 delegate:self
+                 cancelButtonTitle:nil
+                 otherButtonTitles:nil];
+                 [baseAlert show];
+                 
+                 
+                 //Activity indicator
+                 aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+                 aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
+                 [aiv startAnimating];
+                 [baseAlert addSubview:aiv];
+                 */
+                
+                [dataController checkSystemUser:txtEmail.text pwd:txtPassword.text];
+                
+            }
+            else {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR!"
+                                                                message:@"Please enter a valid Email Address."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+            
+            
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Input Reqired!"
+                                                            message:@"Kindly enter your Email and Password."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    
 }
 
-- (IBAction)pressAbout:(id)sender
+- (void)didFinishSystemUserLogin
 {
-    predixerAboutViewController *about = [[predixerAboutViewController alloc]init];
-    [self.navigationController pushViewController:about animated:YES];
+    [self performSelector:@selector(performDismiss) withObject:nil afterDelay:0.0f];
 }
 
-- (IBAction)pressHowTo:(id)sender
+- (void)performDismiss
 {
-    predixerHowToViewController *howto = [[predixerHowToViewController alloc]init];
-    [self.navigationController pushViewController:howto animated:YES];
+    
+    [loadingController.view removeFromSuperview];
+    
+    if (baseAlert != nil)
+    {
+        [aiv stopAnimating];
+        [baseAlert dismissWithClickedButtonIndex:0 animated:NO];
+        baseAlert = nil;
+    }
+    
+    if ([dataController countOfList] > 0) {
+        dataUser = [dataController objectInListAtIndex:0];
+        
+        if ([dataUser.userName length] > 0) {
+            
+            //NSLog(@"userId %@", dataUser.userID);
+            
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.userID forKey:@"userId"];
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.userID forKey:@"fbId"];
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.email forKey:@"fbEmail"];
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.userName forKey:@"fbName"];
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.userName forKey:@"fbFirstName"];
+            [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"fbLastName"];
+            [[NSUserDefaults standardUserDefaults] setValue:dataUser.userName forKey:@"fbUsername"];
+            [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"fbGender"];
+            [[NSUserDefaults standardUserDefaults] setValue:@"No" forKey:@"isFBUser"];
+            
+            if (deviceTokenController == nil) {
+                deviceTokenController = [[DataAddDeviceToken alloc] init];
+                
+                
+                //save token to database
+                [deviceTokenController addToken:[NSString stringWithFormat:@"%@",appDelegate.appDeviceToken]];
+            }
+            
+            
+            if ([dataUser.isWrongPassword isEqualToString:@"Yes"]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Error!"
+                                                                message:@"You have entered a wrong Password."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
+            else {
+                
+                txtEmail.text = @"";
+                txtPassword.text = @"";
+                
+                [self showLoggedIn];
+            }
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Error!"
+                                                            message:@"Kindly check your Email and Password."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Error!"
+                                                        message:@"Kindly check your Email and Password."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+    }
+    
+    
+    [nc postNotificationName:@"didSystemLogin" object:nil];
+}
+
+-(BOOL)isValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES; 
+    NSString *stricterFilterString = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSString *laxString = @".+@.+\\.[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
+    if (IS_IPHONE5 == NO) {
         CGRect frame = self.view.frame;
         frame.origin.y = -138.0f;
         
@@ -120,6 +326,7 @@
         [UIView setAnimationDelegate:self];
         self.view.frame = frame;
         [UIView commitAnimations];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -131,6 +338,7 @@
     }
     else if ([txtPassword isFirstResponder])
     {
+        if (IS_IPHONE5 == NO) {
         CGRect frame =  self.view.frame;
         frame.origin.y = 0.0f;
         
@@ -141,6 +349,7 @@
         [UIView setAnimationDelegate:self];
         self.view.frame = frame;
         [UIView commitAnimations];
+        }
         
         [txtPassword resignFirstResponder];
     }
@@ -148,261 +357,12 @@
     return YES;
 }
 
-- (IBAction)textFieldDidEndEditing:(UITextField *)textField:(id)sender
+- (IBAction)textFieldDidEndEditing:(UITextField *)textField :(id)sender
 {
     [sender resignFirstResponder];
 }
 
 
-#pragma mark - Facebook API Calls
-/**
- * Make a Graph API Call to get information about the current logged in user.
- */
-- (void)apiFQLIMe {
-    // Using the "pic" picture since this currently has a maximum width of 100 pixels
-    // and since the minimum profile picture size is 180 pixels wide we should be able
-    // to get a 100 pixel wide version of the profile picture
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"SELECT uid, name, pic FROM user WHERE uid=me()", @"query",
-                                   nil];
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate facebook] requestWithMethodName:@"fql.query"
-                                     andParams:params
-                                 andHttpMethod:@"POST"
-                                   andDelegate:self];
-}
 
-- (void)apiGraphUserPermissions {
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate facebook] requestWithGraphPath:@"me/permissions" andDelegate:self];
-}
-
-- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
-    [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-}
-
-#pragma mark - FBSessionDelegate Methods
-/**
- * Called when the user has logged in successfully.
- */
-- (void)fbDidLogin {
-    [self showLoggedIn];
-    
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [self storeAuthData:[[delegate facebook] accessToken] expiresAt:[[delegate facebook] expirationDate]];
-    
-    //[pendingApiCallsController userDidGrantPermission];
-}
-
--(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    NSLog(@"token extended");
-    [self storeAuthData:accessToken expiresAt:expiresAt];
-}
-
-/**
- * Called when the user canceled the authorization dialog.
- */
--(void)fbDidNotLogin:(BOOL)cancelled {
-    //[pendingApiCallsController userDidNotGrantPermission];
-}
-
-/**
- * Called when the request logout has succeeded.
- */
-- (void)fbDidLogout {
-    //pendingApiCallsController = nil;
-    
-    // Remove saved authorization information if it exists and it is
-    // ok to clear it (logout, session invalid, app unauthorized)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"FBAccessTokenKey"];
-    [defaults removeObjectForKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
-    //[self showLoggedOut];
-}
-
-/**
- * Called when the session has expired.
- */
-- (void)fbSessionInvalidated {
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Auth Exception"
-                              message:@"Your session has expired."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil,
-                              nil];
-    [alertView show];
-    [self fbDidLogout];
-}
-
-#pragma mark - FBRequestDelegate Methods
-/**
- * Called when the Facebook API request has returned a response.
- *
- * This callback gives you access to the raw response. It's called before
- * (void)request:(FBRequest *)request didLoad:(id)result,
- * which is passed the parsed response object.
- */
-- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    //NSLog(@"received response");
-}
-
-/**
- * Called when a request returns and its response has been parsed into
- * an object.
- *
- * The resulting object may be a dictionary, an array or a string, depending
- * on the format of the API response. If you need access to the raw response,
- * use:
- *
- * (void)request:(FBRequest *)request
- *      didReceiveResponse:(NSURLResponse *)response
- */
-- (void)request:(FBRequest *)request didLoad:(id)result {
-    
-    
-    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-   
-    NSData * dt = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/me/?access_token=%@", delegate.facebook.accessToken]]];
-    
-    //NSDictionary *response = (NSDictionary*)[[JSONDecoder decoder] objectWithData:dt];
-    
-    NSString *response = [[NSString alloc] initWithData:dt encoding:NSUTF8StringEncoding];
- 	NSLog(@"Login JSON Response: %@", response);
-	
-	//Parse response for JSON values and save to dictionary
-	NSDictionary *responseInfo = [response JSONValue];
-
-    
-    NSLog(@"fb response %@",response);
-    
-    if (response.length > 0)
-    {
-        // Check and retrieve authorization information
-        
-        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"userId"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"id"] forKey:@"fbId"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"email"] forKey:@"fbEmail"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"name"] forKey:@"fbName"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"first_name"] forKey:@"fbFirstName"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"last_name"] forKey:@"fbLastName"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"username"] forKey:@"fbUsername"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseInfo objectForKey:@"gender"] forKey:@"fbGender"];
-        
-       
-        
-        //NSLog(@"email item: %@", [responseInfo objectForKey:@"email"]);
-        //NSLog(@"email item: %@", [[responseInfo objectForKey:@"email"] stringByDecodingHTMLEntities]);
-        //NSLog(@"email item: %@", [[responseInfo objectForKey:@"email"] stringByConvertingHTMLToPlainText]);
-        
-        NSDictionary *aLocation = [responseInfo objectForKey:@"location"];
-        
-        // NSLog(@"arrlocation item: %@", aLocation);
-        
-        
-        // NSString *locationString = [NSString stringWithUTF8String:[[aLocation objectForKey:@"name"] cStringUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSString *str = [aLocation objectForKey:@"name"];
-        
-        str = [str stringByReplacingOccurrencesOfString:@"\u00f1"
-                                             withString:@"ñ"];
-        
-        NSLog(@"arrlocation item: %@", str);
-        
-        NSLog(@"aLocation item: %@", [[aLocation objectForKey:@"name"] stringByDecodingHTMLEntities]);
-        
-        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"fbLocation"];
-        
-        [[NSUserDefaults standardUserDefaults] setValue:delegate.facebook.accessToken forKey:@"FBAccessTokenKey"];
-        [[NSUserDefaults standardUserDefaults] setValue:delegate.facebook.expirationDate forKey:@"FBExpirationDateKey"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    
-        //[self apiGraphUserPermissions];        
-    }
-    /*
-    
-    if ([result isKindOfClass:[NSArray class]]) {
-        result = [result objectAtIndex:0];
-    }
-    
-    NSLog(@"Result: %@", result);
-    NSDictionary *userInfo = (NSDictionary *)result;
-    NSString *userName = [userInfo objectForKey:@"name"];
-    NSString *fb_id = [userInfo objectForKey:@"uid"];
-    
-    NSLog(@"userName: %@", userName);
-    NSLog(@"fb_id: %@", fb_id);
-    
-    for (id key in result) {        
-        NSLog(@"key: %@, value: %@", key, [result objectForKey:key]);
-    }
-    
-    
-    
-    // This callback can be a result of getting the user's basic
-    // information or getting the user's permissions.
-    if ([result objectForKey:@"name"]) {
-        // If basic information callback, set the UI objects to
-        // display this.
-        //nameLabel.text = [result objectForKey:@"name"];
-        // Get the profile image
-        
-        NSLog(@"name: %@", [result objectForKey:@"name"]);
-        NSLog(@"id: %@", [result objectForKey:@"id"]);
-        
-        
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[result objectForKey:@"pic"]]]];
-        
-        // Resize, crop the image to make sure it is square and renders
-        // well on Retina display
-        float ratio;
-        float delta;
-        float px = 100; // Double the pixels of the UIImageView (to render on Retina)
-        CGPoint offset;
-        CGSize size = image.size;
-        if (size.width > size.height) {
-            ratio = px / size.width;
-            delta = (ratio*size.width - ratio*size.height);
-            offset = CGPointMake(delta/2, 0);
-        } else {
-            ratio = px / size.height;
-            delta = (ratio*size.height - ratio*size.width);
-            offset = CGPointMake(0, delta/2);
-        }
-        CGRect clipRect = CGRectMake(-offset.x, -offset.y,
-                                     (ratio * size.width) + delta,
-                                     (ratio * size.height) + delta);
-        UIGraphicsBeginImageContext(CGSizeMake(px, px));
-        UIRectClip(clipRect);
-        [image drawInRect:clipRect];
-        //UIImage *imgThumb = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        //[profilePhotoImageView setImage:imgThumb];
-       
-        
-        [self apiGraphUserPermissions];
-    } else {
-        // Processing permissions information
-        predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [delegate setUserPermissions:[[result objectForKey:@"data"] objectAtIndex:0]];
-    }
-           */
-     nc = [NSNotificationCenter defaultCenter];
-    [nc postNotificationName:@"didFinishFacebookLoginRequest" object:nil];
-}
-
-/**
- * Called when an error prevents the Facebook API request from completing
- * successfully.
- */
-- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
-    NSLog(@"Err message: %@", [[error userInfo] objectForKey:@"error_msg"]);
-    NSLog(@"Err code: %d", [error code]);
-}
 
 @end

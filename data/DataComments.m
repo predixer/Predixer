@@ -19,14 +19,15 @@
 @synthesize comment;
 @synthesize commentDate;
 @synthesize totalLikes;
+@synthesize totalComments;
 
-+ (DataComments *)commentWithID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes {
++ (DataComments *)commentWithID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes totalComments:(NSString *)aTotalComments {
     
-    return [[DataComments alloc] initWithCommentID:aCommentID questionID:aQuestionID userID:aUserID fbUserID:aFbUserID fbName:aFbName fbUserEmail:aFbUserEmail comment:aComment commentDate:aCommentDate totalLikes:aTotalLikes];
+    return [[DataComments alloc] initWithCommentID:aCommentID questionID:aQuestionID userID:aUserID fbUserID:aFbUserID fbName:aFbName fbUserEmail:aFbUserEmail comment:aComment commentDate:aCommentDate totalLikes:aTotalLikes totalComments:aTotalComments];
     
 }
 
-- (id)initWithCommentID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes {
+- (id)initWithCommentID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes totalComments:(NSString *)aTotalComments {
     
     if ((self = [super init])) {
         commentID = [aCommentID copy];
@@ -38,6 +39,7 @@
 		comment = [aComment copy];
 		commentDate = [aCommentDate copy];
         totalLikes = [aTotalLikes copy];
+        totalComments = [aTotalComments copy];
 	}
 	return self;
     

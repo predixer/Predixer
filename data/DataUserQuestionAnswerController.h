@@ -26,8 +26,8 @@
 @property (nonatomic, strong)DataUserQuestionAnswer *questionAnswer;
 @property (nonatomic, strong)NSString *questionID;
 
-
 - (void)getAnswer;
+- (void)getUserAnswer;
 - (unsigned)countOfList;
 - (DataUserQuestionAnswer *)objectInListAtIndex:(unsigned)theIndex;
 

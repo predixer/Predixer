@@ -7,25 +7,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "predict/facebookAPIViewController.m"
-         timestampString = "368528368.747919"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "887"
-         endingLineNumber = "887"
-         landmarkName = "-request:didLoad:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "predict/predixerGameFindFriendsViewController.m"
-         timestampString = "365008115.893711"
+         timestampString = "373058952.596666"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "126"
+         endingLineNumber = "126"
          landmarkName = "-pressSettings:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/predixerGameFindFriendsPlayController.m"
-         timestampString = "361791184.499407"
+         timestampString = "373058952.596666"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
+         startingLineNumber = "213"
+         endingLineNumber = "213"
          landmarkName = "-tableView:numberOfRowsInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/predixerGameFindFriendsInviteController.m"
-         timestampString = "361813927.572472"
+         timestampString = "373058952.596666"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "256"
-         endingLineNumber = "256"
+         startingLineNumber = "255"
+         endingLineNumber = "255"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,65 +47,26 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/predixerPlayNewsViewController.m"
-         timestampString = "368528368.747919"
+         timestampString = "381181161.680103"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "270"
-         endingLineNumber = "270"
-         landmarkName = "-tableView:didSelectRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "predict/predixerViewController.m"
-         timestampString = "364926780.872725"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
-         landmarkName = "-fbSessionInvalidated"
-         landmarkType = "5">
+         startingLineNumber = "409"
+         endingLineNumber = "409"
+         landmarkName = "@implementation predixerPlayNewsViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "data/DataFacebookUserAdd.m"
-         timestampString = "364895573.215406"
+         timestampString = "375416135.588935"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "31"
-         endingLineNumber = "31"
-         landmarkName = "-addFBUser"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "data/DataFacebookUserAdd.m"
-         timestampString = "364930558.552175"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
-         landmarkName = "-connectionDidFinishLoading:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "predict/predixerViewController.m"
-         timestampString = "364929350.558512"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "316"
-         endingLineNumber = "316"
-         landmarkName = "-request:didLoad:"
-         landmarkType = "5">
+         startingLineNumber = "33"
+         endingLineNumber = "33"
+         landmarkName = "@implementation DataFacebookUserAdd"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -138,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/predixerPlayCommentsController.m"
-         timestampString = "368534857.887657"
+         timestampString = "372223005.508861"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,76 +99,48 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/facebookAPIViewController.m"
-         timestampString = "368528368.747919"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1146"
-         endingLineNumber = "1146"
-         landmarkName = "-dialogCompleteWithUrl:"
-         landmarkType = "5">
+         startingLineNumber = "599"
+         endingLineNumber = "599"
+         landmarkName = "@implementation facebookAPIViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/facebookAPIViewController.m"
-         timestampString = "368528368.747919"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "566"
-         endingLineNumber = "566"
-         landmarkName = "-apiDialogRequestsSendToNonAppUsers:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "data/DataFriendInviteController.m"
-         timestampString = "367685994.48455"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
-         landmarkName = "-connectionDidFinishLoading:"
-         landmarkType = "5">
+         startingLineNumber = "1507"
+         endingLineNumber = "1507">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/facebookAPIViewController.m"
-         timestampString = "368528368.747919"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1449"
-         endingLineNumber = "1449"
-         landmarkName = "-inviteAllFriends:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "predict/facebookAPIViewController.m"
-         timestampString = "368528368.747919"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "548"
-         endingLineNumber = "548"
-         landmarkName = "-apiDialogRequestsSendToNonUsers:"
-         landmarkType = "5">
+         startingLineNumber = "581"
+         endingLineNumber = "581"
+         landmarkName = "@implementation facebookAPIViewController"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataUserPointsController.m"
-         timestampString = "368430886.57811"
+         timestampString = "369653686.270995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "138"
-         endingLineNumber = "138"
+         startingLineNumber = "141"
+         endingLineNumber = "141"
          landmarkName = "-connectionDidFinishLoading:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -228,103 +148,116 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "predict/predixerPlayEntertainmentDetailsViewController.m"
-         timestampString = "368641206.45104"
+         filePath = "predict/facebookAPIViewController.m"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "240"
-         endingLineNumber = "240"
-         landmarkName = "-didFinishLoadingUserAnswer"
+         startingLineNumber = "1379"
+         endingLineNumber = "1379"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "predict/predixerPlayNewsDetailsViewController.m"
-         timestampString = "368534857.887657"
+         filePath = "predict/facebookAPIViewController.m"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "457"
-         endingLineNumber = "457"
-         landmarkName = "-submitAnswer:"
+         startingLineNumber = "655"
+         endingLineNumber = "655"
+         landmarkName = "@implementation facebookAPIViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "predict/facebookAPIViewController.m"
+         timestampString = "374078343.929066"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "460"
+         endingLineNumber = "460"
+         landmarkName = "-apiDialogFeedUser"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "predict/predixerPlayNewsDetailsViewController.m"
-         timestampString = "368534857.887657"
+         filePath = "predict/facebookAPIViewController.m"
+         timestampString = "374078343.929066"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "527"
-         endingLineNumber = "527"
-         landmarkName = "-didFinishSubmittingUserAnswer"
+         startingLineNumber = "1147"
+         endingLineNumber = "1147"
+         landmarkName = "-request:didLoad:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataCommentsController.m"
-         timestampString = "368524433.393882"
+         filePath = "predict/predixerPlaySportsDetailsViewController.m"
+         timestampString = "381130390.752311"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "160"
-         endingLineNumber = "160"
-         landmarkName = "-getComments"
+         startingLineNumber = "540"
+         endingLineNumber = "540"
+         landmarkName = "-publishComment"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "predict/predixerGameMenuViewController.m"
+         timestampString = "389641238.568142"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "401"
+         endingLineNumber = "401"
+         landmarkName = "@implementation predixerGameMenuViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "predict/predixerPlayCommentsViewController.m"
+         timestampString = "380745212.620911"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "411"
+         endingLineNumber = "411"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataCommentsController.m"
-         timestampString = "368524439.0438"
+         filePath = "predict/predixerGameMenuViewController.m"
+         timestampString = "389641238.568142"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
-         landmarkName = "-likeComment"
+         startingLineNumber = "473"
+         endingLineNumber = "473"
+         landmarkName = "-viewDidUnload"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "predict/predixerPlayNewsDetailsViewController.m"
-         timestampString = "368531877.604941"
+         filePath = "data/DataTopCommentsController.m"
+         timestampString = "381084791.256659"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "277"
-         endingLineNumber = "277"
-         landmarkName = "-didFinishAddingUserComment"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataUserQuestionAnswerController.m"
-         timestampString = "368526860.952885"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "121"
-         endingLineNumber = "121"
-         landmarkName = "-connection:didFailWithError:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataCommentsController.m"
-         timestampString = "368640892.196159"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
          landmarkName = "-getTopComments"
          landmarkType = "5">
       </FileBreakpoint>
@@ -332,13 +265,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../../../Volumes/MacData/MyProjects/PrediXer/App/iPhone/predict/data/DataCommentsController.m"
-         timestampString = "368640900.260777"
+         filePath = "predict/predixerPlayEntertainmentViewController.m"
+         timestampString = "381179309.635896"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "298"
-         endingLineNumber = "298"
-         landmarkName = "-connectionDidFinishLoading:"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
+         landmarkName = "-didBecomeActive:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -346,12 +279,90 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "predict/predixerPlayEntertainmentDetailsViewController.m"
-         timestampString = "368641064.203814"
+         timestampString = "381169933.32927"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
-         landmarkName = "-viewDidLoad"
+         startingLineNumber = "813"
+         endingLineNumber = "813"
+         landmarkName = "-showPicture:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "predict/predixerViewController.m"
+         timestampString = "382896747.844585"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "133"
+         endingLineNumber = "133"
+         landmarkName = "-loginFailed"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "data/DataUserQuestionAnswerController.m"
+         timestampString = "389641214.496423"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "109"
+         endingLineNumber = "109"
+         landmarkName = "-getUserAnswer"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "data/DataFacebookUserAdd.m"
+         timestampString = "389641228.665128"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "81"
+         endingLineNumber = "81"
+         landmarkName = "-addUserFacebook"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "data/DataFacebookUserAdd.m"
+         timestampString = "389641232.185094"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "-connectionDidFinishLoading:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "data/DataFriendInviteController.m"
+         timestampString = "389643832.970623"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "73"
+         endingLineNumber = "73"
+         landmarkName = "-inviteFacebookFriend:name:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "data/DataFriendInviteController.m"
+         timestampString = "389644377.496341"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "161"
+         endingLineNumber = "161"
+         landmarkName = "-connectionDidFinishLoading:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

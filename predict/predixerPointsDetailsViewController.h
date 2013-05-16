@@ -10,11 +10,13 @@
 
 @class DataUserAnswers;
 @class DataUserAnswersController;
+@class LoadingController;
 
 @interface predixerPointsDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
     DataUserAnswers *userAnswers;
     DataUserAnswersController *dataController;
+    LoadingController *loadingController;
     
     IBOutlet UITableView *tblPredictions;
     
@@ -26,6 +28,7 @@
 
 @property (nonatomic, strong)DataUserAnswersController *dataController;
 @property (nonatomic, strong)DataUserAnswers *userAnswers;
+@property (strong, nonatomic)LoadingController *loadingController;
 
 - (void)didFinishLoadingData;
 - (void)performDismiss;

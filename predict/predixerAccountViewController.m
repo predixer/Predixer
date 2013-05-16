@@ -9,8 +9,8 @@
 #import "predixerAccountViewController.h"
 #import "DataFacebookUser.h"
 #import "DataFacebookUserController.h"
-#import "facebookAPIViewController.h"
-
+#import "LoadingController.h"
+#import "predixerAppDelegate.h"
 
 @interface predixerAccountViewController ()
 
@@ -20,6 +20,7 @@
 
 @synthesize fbUser;
 @synthesize dataController;
+@synthesize loadingController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +31,7 @@
         if (dataController == nil) {
 			dataController = [[DataFacebookUserController alloc] init];
 			
-			NSLog(@"Count at init: %d", [dataController countOfList]);
+			//NSLog(@"Count at init: %d", [dataController countOfList]);
 		}
 		
         
@@ -85,6 +86,11 @@
     dataController.fbUserID = fbUserID;
     [dataController getFBUser];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
+    
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -98,6 +104,7 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+     */
 }
 
 - (void)didFinishLoadingData
@@ -108,6 +115,8 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
@@ -132,7 +141,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return 3;
 }
 
 
@@ -165,18 +174,14 @@
 		fbUser = [dataController objectInListAtIndex:0];
 
         if (indexPath.row == 0) {
-            cell.textLabel.text = [NSString stringWithFormat:@"FB ID:"];
-            cell.detailTextLabel.text = fbUser.facebookUserID;
-        }
-        else if (indexPath.row == 1) {
             cell.textLabel.text = [NSString stringWithFormat:@"Name:"];
             cell.detailTextLabel.text = fbUser.facebookName;
         }
-        else if (indexPath.row == 2) {
+        else if (indexPath.row == 1) {
             cell.textLabel.text = [NSString stringWithFormat:@"Email:"];
             cell.detailTextLabel.text = fbUser.facebookUserEmail;
         }
-        else if (indexPath.row == 3) {
+        else if (indexPath.row == 2) {
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"MMMM d, YYYY"];
@@ -186,8 +191,8 @@
             cell.detailTextLabel.text = dateStr;
         }
         
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:15];
+        cell.detailTextLabel.font = [UIFont fontWithName: @"Verdana" size:15];
     }
     
     
@@ -196,8 +201,8 @@
 
 - (IBAction)logout:(id)sender
 {
-    facebookAPIViewController *fbApi = [[facebookAPIViewController alloc] init];
-    [fbApi apiLogout];
+    predixerAppDelegate *appDelegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate logout];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

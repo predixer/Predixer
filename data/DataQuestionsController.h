@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sqlite3.h>
 
 @class DataQuestions;
 
@@ -17,7 +18,8 @@
     NSMutableData *receivedData;
     NSString *categoryID;
     
-    BOOL dataReady;
+    BOOL isGetToday;
+    BOOL isGetOneQuestion;
     
     NSNotificationCenter *nc;
 
@@ -25,10 +27,16 @@
 
 @property (nonatomic, strong)DataQuestions *questionsData;
 @property (nonatomic, strong)NSString *categoryID;
+@property (nonatomic, strong)NSMutableArray *arrQuestions;
 
 
 - (void)getQuestions;
+- (void)getQuestionsToday;
+- (void)getQuestion:(NSString *)questionID;
 - (unsigned)countOfList;
 - (DataQuestions *)objectInListAtIndex:(unsigned)theIndex;
+- (void)loadToLocal:(NSString*)sqlCommand;
+- (void)getQuestionsFromLocal;
+- (void)getQuestionsFromDB;
 
 @end

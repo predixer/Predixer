@@ -11,7 +11,7 @@
 #import "DataQuestions.h"
 #import "DataQuestionsController.h"
 #import "predixerSettingsViewControllerViewController.h"
-
+#import "LoadingController.h"
 
 @interface predixerPlaySportsViewController ()
 
@@ -21,6 +21,7 @@
 
 @synthesize dataController;
 @synthesize dataQuestions;
+@synthesize loadingController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -109,6 +110,11 @@
     //[dataController getQuestions];
 	[dataController getQuestionsFromLocal];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
+    
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self 
@@ -122,6 +128,7 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+     */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -139,6 +146,8 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
@@ -192,7 +201,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 85.0f;
+    return 90.0f;
 }
 
 // Customize the appearance of table view cells.
@@ -214,9 +223,9 @@
 		dataQuestions = [dataController objectInListAtIndex:indexPath.row];
         
         cell.textLabel.text = dataQuestions.questionText;
-        cell.textLabel.numberOfLines = 2;
+        cell.textLabel.numberOfLines = 4;
         cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-        cell.textLabel.font = [UIFont systemFontOfSize:18];
+        cell.textLabel.font = [UIFont fontWithName: @"Comic Sans MS" size:15];
         
         NSString *strNumber = [NSString stringWithFormat:@"n%d.png",indexPath.row]; 
         UIImage *numberImage = [UIImage imageNamed:strNumber];

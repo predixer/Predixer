@@ -10,6 +10,7 @@
 #import "DataFacebookUser.h"
 #import "SBJSON.h"
 #import "NSString+SBJSON.h"
+#import "Constants.h"
 
 @implementation DataFacebookUserController
 
@@ -22,7 +23,10 @@
 		if ([arrUser count] == 0) {
 			arrUser = [[NSMutableArray alloc] init];
 			facebookUser = [[DataFacebookUser alloc] init];
-			receivedData = [[NSMutableData alloc] init];            
+			receivedData = [[NSMutableData alloc] init];
+            
+            nc = [NSNotificationCenter defaultCenter];
+
 		}
 	}
 	
@@ -61,9 +65,9 @@
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init]; 
     
-    NSLog(@"%@", fbUserID);
+    //NSLog(@"%@", fbUserID);
     
-    NSString *urlString = [NSString stringWithFormat:@"http://www.predixer.com/svc/predixerservice.svc/GetFacebookUser?fb=%@", fbUserID];
+    NSString *urlString = [NSString stringWithFormat:@"%@GetFacebookUser?fb=%@", WebServiceSource, fbUserID];
     NSString* escapedUrl = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [request setURL:[NSURL URLWithString:escapedUrl]];  
@@ -79,19 +83,22 @@
     
 	if (theConnection)
 	{
-        NSLog(@"Connection created successfully");
+        //NSLog(@"Connection created successfully");
 		receivedData = nil;
 		receivedData = [NSMutableData data];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 	}
 	else
 	{
+        /*
 		//Alert user for connection null response
 		UIAlertView *baseAlert = [[UIAlertView alloc] 
 								  initWithTitle:@"Cannot Connect!" message:@"Either the service is down or you don't have an internet connection." 
 								  delegate:self cancelButtonTitle:@"OK" 
 								  otherButtonTitles:nil, nil]; 
-		[baseAlert show];
+		[baseAlert show];*/
+        
+        [nc postNotificationName:@"didFinishLoadingFacebookUser" object:nil];
 	} 
 }
 
@@ -114,20 +121,21 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"%@", error);
+    //NSLog(@"%@", error);
 	receivedData = nil;
     
+    /*
     // inform the user
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connection Error"
-													message:@"There was an error while connecting to the server."
+													message:@"There was an error while connecting to the server. "
                           "Either the service is down or you don't have an internet connection."
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
-	[alert show];
+	[alert show];*/
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
-    nc = [NSNotificationCenter defaultCenter]; 
 	[nc postNotificationName:@"didFinishLoadingFacebookUser" object:nil];
 }
 
@@ -138,18 +146,19 @@
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];   
     
-    NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
+    //NSLog(@"Succeeded! Received %d bytes of data",[receivedData length]);
     
 	//Transform response to string
 	NSString *response = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
- 	NSLog(@"Login JSON Response: %@", response);
+ 	//NSLog(@"Login JSON Response: %@", response);
 	
 	//Parse response for JSON values and save to dictionary
 	NSDictionary *userInfo = [response JSONValue];
     
+    /*
     for (id key in userInfo) {        
         NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
-    }
+    }*/
     
     
     NSDictionary *aUser= [userInfo objectForKey:@"GetFacebookUserResult"];
@@ -226,7 +235,7 @@
     else {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss a"];
         addedDate = [dateFormatter dateFromString:dateEntered ];
     }
     
@@ -240,7 +249,7 @@
     else {
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setDateFormat:@"MM/dd/yyyy HH:mm:ss a"];
         updatedDate = [dateFormatter dateFromString:lastLogin];
     }
     
@@ -249,7 +258,6 @@
     
     dataReady = YES;
 	
-	nc = [NSNotificationCenter defaultCenter]; 
     [nc postNotificationName:@"didFinishLoadingFacebookUser" object:nil];
     
 	receivedData = nil;

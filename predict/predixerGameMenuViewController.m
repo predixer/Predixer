@@ -7,32 +7,38 @@
 //
 
 #import "predixerGameMenuViewController.h"
-#import "predixerGamePlayViewController.h"
-#import "predixerGameFindFriendsViewController.h"
+#import "predixerGameViewController.h"
 #import "predixerHowToViewController.h"
-#import "predixerGameLeaguesViewController.h"
-#import "facebookAPIViewController.h"
 #import "DataFacebookUser.h"
 #import "DataFacebookUserController.h"
 #import "DataFacebookUserAdd.h"
 #import "DataFacebookUserRecordLogin.h"
 #import "predixerSettingsViewControllerViewController.h"
-
+#import "DataDrawDate.h"
+#import "DataDrawDateController.h"
+#import "LoadingController.h"
+#import "predixerAppDelegate.h"
+#import "predixerFBFriendsViewController.h"
+#import "Constants.h"
+#import "predixerLeaderboardViewController.h"
 
 @interface predixerGameMenuViewController ()
-
-- (void)didFinishLoadingFacebookFriends:(NSNotification *)notification;
-- (void)didFinishLoadingFacebookFriendsWithApp:(NSNotification *)notification;
 
 @end
 
 @implementation predixerGameMenuViewController
 
 @synthesize fbApi;
+@synthesize isSystemLogin;
 @synthesize dataController;
 @synthesize dataUser;
 @synthesize addUser;
 @synthesize updateUserLogin;
+@synthesize dataDrawDate;
+@synthesize drawDateController;
+@synthesize loadingController;
+@synthesize appDelegate;
+@synthesize leaderboard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,8 +48,16 @@
         if (dataController == nil) {
             dataController = [[DataFacebookUserController alloc] init];
             
-            NSLog(@"Count at init: %d", [dataController countOfList]);
+            //NSLog(@"Count at init: %d", [dataController countOfList]);
         }
+        
+        if (drawDateController == nil) {
+            drawDateController = [[DataDrawDateController alloc] init];
+        }
+    
+        
+        appDelegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
         
     }
     return self;
@@ -53,9 +67,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+
     
-    
-    //LEFT NAV BUTTON    
+    //LEFT NAV BUTTON
     // Set the custom back button
 	UIImage *backButtonNormalImage = [UIImage imageNamed:@"btn_Logo.png"];
 	UIImage *backButtonHighlightImage = [UIImage imageNamed:@"btn_Logo.png"];
@@ -96,17 +110,46 @@
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
     
     //HIGHLIGHTS
-    UIImage *playImage = [UIImage imageNamed:@"btn_menu_play_up.png"]; 
-    [btnPlayGame setImage:playImage forState:UIControlStateHighlighted];
+    UIImage *playImage = [UIImage imageNamed:@"btn_menu_play"];
+    UIImage *playImageUp = [UIImage imageNamed:@"btn_menu_play_up"];
+    [btnPlayGame setImage:playImage forState:UIControlStateNormal];
+    [btnPlayGame setImage:playImageUp forState:UIControlStateHighlighted];
     
-    UIImage *friendsImage = [UIImage imageNamed:@"btn_menu_findfriends_up.png"]; 
-    [btnFindFriends setImage:friendsImage forState:UIControlStateHighlighted];
+    UIImage *friendsImage = [UIImage imageNamed:@"btn_menu_findfriends"];
+    UIImage *friendsImageUp = [UIImage imageNamed:@"btn_menu_findfriends_up"];
+    [btnFindFriends setImage:friendsImage forState:UIControlStateNormal];
+    [btnFindFriends setImage:friendsImageUp forState:UIControlStateHighlighted];
     
-    UIImage *pointsImage = [UIImage imageNamed:@"btn_menu_pointforprizes_up.png"]; 
-    [btnPointsForPrizes setImage:pointsImage forState:UIControlStateHighlighted];
+    UIImage *pointsImage = [UIImage imageNamed:@"btn_menu_howto"];
+    UIImage *pointsImageUp = [UIImage imageNamed:@"btn_menu_howto_up"];
+    [btnPointsForPrizes setImage:pointsImage forState:UIControlStateNormal];
+    [btnPointsForPrizes setImage:pointsImageUp forState:UIControlStateHighlighted];
     
-    UIImage *leaguesImage = [UIImage imageNamed:@"btn_menu_leagues_up.png"]; 
-    [btnLeagues setImage:leaguesImage forState:UIControlStateHighlighted];
+    UIImage *leaguesImage = [UIImage imageNamed:@"btn_menu_winners"];
+    UIImage *leaguesImageUp = [UIImage imageNamed:@"btn_menu_winners_up"];
+    [btnLeagues setImage:leaguesImage forState:UIControlStateNormal];
+    [btnLeagues setImage:leaguesImageUp forState:UIControlStateHighlighted];
+    
+    UIImage *nextDrawImage = [UIImage imageNamed:@"bkd_Draw"];
+    vwNextDraw.image = nextDrawImage;
+        
+    //CHECK FOR IPHONE 5
+    if (IS_IPHONE5 == YES) {
+        
+        btnPlayGame.frame = CGRectMake(21.0f, 40.0f, playImage.size.width, playImage.size.height);
+        btnFindFriends.frame = CGRectMake(21.0f, 140.0f, friendsImage.size.width, friendsImage.size.height);
+        btnPointsForPrizes.frame = CGRectMake(21.0f, 265.0f, friendsImage.size.width, friendsImage.size.height);
+        btnLeagues.frame = CGRectMake(21.0f, 371.0f, friendsImage.size.width, friendsImage.size.height);
+        
+        vwNextDraw.frame = CGRectMake(75.0f, 480.0f, nextDrawImage.size.width, nextDrawImage.size.height);
+        
+        lblDays.frame = CGRectMake(147.0f, 475.0f, lblDays.frame.size.width, lblDays.frame.size.height);
+        lblHours.frame = CGRectMake(172.0f, 475.0f, lblHours.frame.size.width, lblHours.frame.size.height);
+        lblMins.frame = CGRectMake(197.0f, 475.0f, lblMins.frame.size.width, lblMins.frame.size.height);
+        lblSec.frame = CGRectMake(220.0f, 475.0f, lblSec.frame.size.width, lblSec.frame.size.height);
+
+    }
+    
     
     
     nc = [NSNotificationCenter defaultCenter];
@@ -129,33 +172,26 @@
     [nc addObserver:self 
            selector:@selector(didFinishLoadingData) 
                name:@"didFinishAddingFacebookUser" 
+             object:nil];    
+    
+    [nc addObserver:self
+           selector:@selector(didFinishLoadingDrawDate)
+               name:@"didFinishLoadingDrawDate"
              object:nil];
     
-    /*
-    //observer 
-    [nc addObserver:self 
-           selector:@selector(didFinishLoadingFacebookFriends:) 
-               name:@"didFinishLoadingFacebookFriends" 
+    [nc addObserver:self
+           selector:@selector(didSystemLogin)
+               name:@"didSystemLogin"
              object:nil];
     
-    
-    //observer 
-    [nc addObserver:self 
-           selector:@selector(didFinishLoadingFacebookFriends:) 
-               name:@"didFinishLoadingFacebookFriendsWithApp" 
-             object:nil];
-    
-    
-    //observer 
-    [nc addObserver:self 
-           selector:@selector(didFinishLoadingFacebookFriends:) 
-               name:@"didFinishLoadingFacebookFriendsWithNoApp" 
-             object:nil];
-    */
-    
-    fbApi = [[facebookAPIViewController alloc] init];
     
     //ALERT
+    
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Updating data...";
+    [self.view addSubview:loadingController.view];
+    
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Updating data..."
                                            message:@""
                                           delegate:self 
@@ -169,10 +205,14 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [baseAlert addSubview:aiv];
     [aiv startAnimating];
+     */
+    
+
 }
 
 - (void)didFinishFacebookRequest
 {
+    
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     dataController.fbUserID = [NSString stringWithFormat:@"%@", [defaults objectForKey:@"fbId"]];
     
@@ -191,7 +231,7 @@
     
     if ([dataUser.fbRecordID intValue] > 0) {
         //user already exists in database
-        NSLog(@"User already exist with recordID %@", dataUser.fbRecordID);
+        //NSLog(@"User already exist with recordID %@", dataUser.fbRecordID);
         
         [[NSUserDefaults standardUserDefaults] setValue:dataUser.userID forKey:@"userId"];
         
@@ -204,7 +244,7 @@
     }
     else {
         //add user to database
-        NSLog(@"User not yet in database, adding...");
+        //NSLog(@"User not yet in database, adding...");
         
         addUser = [[DataFacebookUserAdd alloc] init];
         
@@ -221,14 +261,122 @@
         addUser.facebookUser.facebookUserGender = [NSString stringWithFormat:@"%@", [defaults objectForKey:@"fbGender"]];
         addUser.facebookUser.facebookUserLocation = [NSString stringWithFormat:@"%@", [defaults objectForKey:@"fbLocation"]];
         
-        [addUser addFBUser];
+        //[addUser addFBUser];
+        [addUser addUserFacebook];
         
     }
 }
 
 - (void)didFinishUpdatingFacebookUserLogin
 {
+    //Get drawdate
+    [drawDateController getDrawDate];
+}
+
+- (void)didSystemLogin
+{
+    isSystemLogin = YES;
+    //Get drawdate
+    [drawDateController getDrawDate];
+}
+
+- (void)didFinishLoadingDrawDate
+{
+    if ([drawDateController countOfList] > 0) {
+        dataDrawDate = [drawDateController objectInListAtIndex:0];
+        
+        lblDrawDate.text = [NSString stringWithFormat:@"%@", dataDrawDate.drawDate];
+        
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        
+        NSDateComponents *dateComponents = [gregorian components:(NSDayCalendarUnit | NSHourCalendarUnit  | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:[NSDate date] toDate:dataDrawDate.drawDate options:0];
+
+        day = [dateComponents day];
+        hour = [dateComponents hour];
+        minute = [dateComponents minute];
+        second = [dateComponents second];
+
+        NSDate * now = [NSDate date];
+        NSDate * draw = dataDrawDate.drawDate;
+        NSComparisonResult result = [now compare:draw];
+                
+        //NSLog(@"Draw: %@, today:  %@", draw, now );
+        
+        if(result==NSOrderedAscending){
+            //NSLog(@"Draw is in the future");
+            
+            lblDays.text = [NSString stringWithFormat:@"%d", day];
+            lblHours.text = [NSString stringWithFormat:@"%d", hour];
+            lblMins.text = [NSString stringWithFormat:@"%d", minute];
+            lblSec.text = [NSString stringWithFormat:@"%d", second];
+            
+            timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+        }
+        else if(result==NSOrderedDescending)
+        {
+            //NSLog(@"Draw is in the past");
+            lblDays.text = @"00";
+            lblHours.text = @"00";
+            lblMins.text = @"00";
+            lblSec.text = @"00";
+            
+            
+        }
+        else {
+            //NSLog(@"Both dates are the same");
+            lblDays.text = @"00";
+            lblHours.text = @"00";
+            lblMins.text = @"00";
+            lblSec.text = @"00";
+        }
+        
+
+    }
+    
     [self didFinishLoadingData];
+}
+
+-(void)timerFired
+{
+    if((minute > 0 || second >=0) && minute>=0)
+    {
+        if(second==0)
+        {
+            minute-=1;
+            second=60;
+        }
+        else if(second>0)
+        {
+            second-=1;
+        }
+        
+        if (minute == 0) {
+            hour -= 1;
+            minute = 60;
+        }
+        
+        if(minute>-1)
+        {
+            //[lblDrawDate setText:[NSString stringWithFormat:@"%@%d%@%02d",@"Time : ",minute,@":",second]];
+        
+            
+            lblDays.text = [NSString stringWithFormat:@"%d", day];
+            lblHours.text = [NSString stringWithFormat:@"%d", hour];
+            lblMins.text = [NSString stringWithFormat:@"%d", minute];
+            lblSec.text = [NSString stringWithFormat:@"%d", second];
+        }
+        
+        if (hour>-1) {
+            lblDays.text = [NSString stringWithFormat:@"%d", day];
+            lblHours.text = [NSString stringWithFormat:@"%d", hour];
+            lblMins.text = [NSString stringWithFormat:@"%d", minute];
+            lblSec.text = [NSString stringWithFormat:@"%d", second];
+        }
+    }
+    else
+    {
+        [timer invalidate];
+    }
 }
 
 - (void)didFinishLoadingData
@@ -238,59 +386,50 @@
 
 - (void)performDismiss
 {
+    
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
         [baseAlert dismissWithClickedButtonIndex:0 animated:NO];
         baseAlert = nil;
     }
+    
+    
 }
 
 - (IBAction)playGame:(id)sender
 { 
-    predixerGamePlayViewController *playGame = [[predixerGamePlayViewController alloc] init];
+    predixerGameViewController *playGame = [[predixerGameViewController alloc] init];
     [self.navigationController pushViewController:playGame animated:YES];
 }
 
 - (IBAction)findFriends:(id)sender
 {    
     
-    [self.navigationController pushViewController:fbApi animated:YES];
-    [fbApi getUserFriendsWithApp];
-}
-
-- (void)didFinishLoadingFacebookFriends:(NSNotification *)notification
-{
-    
-    predixerGameFindFriendsViewController *findFriends = [[predixerGameFindFriendsViewController alloc] init];
-    
-    findFriends.friendsData = (NSMutableArray*)[notification object];
-    
+    predixerFBFriendsViewController *findFriends = [[predixerFBFriendsViewController alloc] init];
+    findFriends.isSystemLogin = self.isSystemLogin;
     [self.navigationController pushViewController:findFriends animated:YES];
 }
 
-- (void)didFinishLoadingFacebookFriendsWithApp:(NSNotification *)notification
-{
-    
-    predixerGameFindFriendsViewController *findFriends = [[predixerGameFindFriendsViewController alloc] init];
-    
-    findFriends.friendsData = (NSMutableArray*)[notification object];
-    
-    [self.navigationController pushViewController:findFriends animated:YES];
-}
 
-- (IBAction)pointsForPrizes:(id)sender
+- (IBAction)howToPlay:(id)sender
 {
     predixerHowToViewController *howTo = [[predixerHowToViewController alloc] init];
     [self.navigationController pushViewController:howTo animated:YES];
     
 }
 
-- (IBAction)gotoLeagues:(id)sender
+- (IBAction)gotoWinners:(id)sender
 {
-    predixerGameLeaguesViewController *leagues = [[predixerGameLeaguesViewController alloc] init];
-    [self.navigationController pushViewController:leagues animated:YES];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.predixer.com/Winners.aspx"]];
+}
+
+- (IBAction)gotoLeaderboard:(id)sender{
+    leaderboard = [[predixerLeaderboardViewController alloc] init];
     
+    [self.navigationController pushViewController:leaderboard animated:YES];
 }
 
 - (void)pressBack:(id)sender
@@ -313,7 +452,17 @@
     
     UINavigationBar *navBar = [[self navigationController] navigationBar];
     UIImage *backgroundImage = [UIImage imageNamed:@"bkd_navBar_Logo.png"];
-    [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];    
+    [navBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    
+    if (timer != nil) {
+        timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired) userInfo:nil repeats:YES];
+    }
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [timer invalidate];
 }
 
 - (void)viewDidUnload
@@ -321,11 +470,17 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [timer invalidate];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end

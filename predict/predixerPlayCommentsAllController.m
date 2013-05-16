@@ -216,7 +216,7 @@
         cell.textLabel.text = dataComments.comment;
         cell.textLabel.numberOfLines = 2;
         cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.font = [UIFont fontWithName: @"Comic Sans MS" size:14];
         
         cell.detailTextLabel.text = [NSString stringWithFormat:@"By %@ on %@", dataComments.fbName, dataComments.commentDate];
     }

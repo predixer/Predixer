@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FBConnect.h"
 
-@interface predixerGameFindFriendsInviteController : UITableViewController <FBRequestDelegate>
+@interface predixerGameFindFriendsInviteController : UITableViewController 
 {
     
     NSMutableArray *myData;

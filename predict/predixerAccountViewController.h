@@ -10,6 +10,7 @@
 
 @class DataFacebookUser;
 @class DataFacebookUserController;
+@class LoadingController;
 
 @interface predixerAccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
@@ -19,6 +20,7 @@
     
     DataFacebookUser *fbUser;
     DataFacebookUserController *dataController;
+    LoadingController *loadingController;
     
     UIAlertView *baseAlert;
 	UIActivityIndicatorView *aiv;
@@ -28,6 +30,7 @@
 
 @property (nonatomic, strong)DataFacebookUserController *dataController;
 @property (nonatomic, strong)DataFacebookUser *fbUser;
+@property (strong, nonatomic) LoadingController *loadingController;
 
 - (void)didFinishLoadingData;
 - (void)performDismiss;

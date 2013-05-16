@@ -22,6 +22,7 @@
 @synthesize dataQuestion;
 @synthesize dataComment;
 @synthesize commentCount;
+@synthesize commentsDataController;
 
 - (id)initWithQuestion:(int)questionID comment:(DataComments *)comment count:(int)count
 {
@@ -76,6 +77,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    lblQuestion.font = [UIFont fontWithName: @"Comic Sans MS" size:16];
+    lblCommentDate.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblCommentLikes.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblCommentNumber.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblCommentUser.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    txtComment.font = [UIFont fontWithName: @"Comic Sans MS" size:14];
+    
+    lblBy.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblComment.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblDate.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
+    lblLikes.font = [UIFont fontWithName: @"Comic Sans MS" size:13];
     
     //LEFT NAV BUTTON
     // Set the custom back button
@@ -207,6 +220,7 @@
         btnLike.hidden = NO;
     }
 }
+
 - (void)performDismiss
 {
     if (baseAlert != nil)

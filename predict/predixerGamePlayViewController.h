@@ -14,7 +14,10 @@
     IBOutlet UIButton *btnStocks;
     IBOutlet UIButton *btnSports;
     IBOutlet UIButton *btnNews;
+    
+    
 }
+
 
 - (IBAction)playEntertainment:(id)sender;
 - (IBAction)playStocks:(id)sender;

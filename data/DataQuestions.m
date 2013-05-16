@@ -16,22 +16,28 @@
 @synthesize dateAdded;
 @synthesize dateUpdated;
 @synthesize questionPoints;
+@synthesize questionDate;
+@synthesize imageName;
+@synthesize videoURL;
 
-+ (DataQuestions *)questionWithID:(NSString *)aQuestionID categoryID:(NSString *)aCategoryID question:(NSString *)aQuestionText questionPoints:(int)aQuestionPoints dateAdded:(NSDate *)aDateAdded dateUpdated:(NSDate *)aDateUpdated {
++ (DataQuestions *)questionWithID:(NSString *)aQuestionID categoryID:(NSString *)aCategoryID question:(NSString *)aQuestionText questionPoints:(int)aQuestionPoints questionDate:(NSString *)aQuestionDate dateAdded:(NSDate *)aDateAdded dateUpdated:(NSDate *)aDateUpdated imageName:(NSString *)aImageName videoURL:(NSString *)aVideoURL {
     
-    return [[DataQuestions alloc] initWithQuestionID:aQuestionID categoryID:aCategoryID question:aQuestionText questionPoints:aQuestionPoints dateAdded:aDateAdded dateUpdated:aDateUpdated];
+    return [[DataQuestions alloc] initWithQuestionID:aQuestionID categoryID:aCategoryID question:aQuestionText questionPoints:aQuestionPoints questionDate:aQuestionDate dateAdded:aDateAdded dateUpdated:aDateUpdated imageName:aImageName videoURL:aVideoURL];
     
 }
 
-- (id)initWithQuestionID:(NSString *)aQuestionID categoryID:(NSString *)aCategoryID question:(NSString *)aQuestionText questionPoints:(int)aQuestionPoints dateAdded:(NSDate *)aDateAdded dateUpdated:(NSDate *)aDateUpdated {
+- (id)initWithQuestionID:(NSString *)aQuestionID categoryID:(NSString *)aCategoryID question:(NSString *)aQuestionText questionPoints:(int)aQuestionPoints questionDate:(NSString *)aQuestionDate dateAdded:(NSDate *)aDateAdded dateUpdated:(NSDate *)aDateUpdated imageName:(NSString *)aImageName videoURL:(NSString *)aVideoURL{
     
     if ((self = [super init])) {		
         questionID = [aQuestionID copy];
         categoryID = [aCategoryID copy];
-		questionText = [aQuestionText copy];	
+		questionText = [aQuestionText copy];
 		questionPoints = aQuestionPoints;
+        questionDate = [aQuestionDate copy];
 		dateAdded = [aDateAdded copy];
-		dateUpdated = [aDateUpdated copy];	
+		dateUpdated = [aDateUpdated copy];
+        imageName = [aImageName copy];
+        videoURL = [aVideoURL copy];
 	}
 	return self;
     

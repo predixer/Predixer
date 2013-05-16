@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FBConnect.h"
 
-@interface predixerGameFindFriendsPlayController : UITableViewController <FBRequestDelegate> {
+@interface predixerGameFindFriendsPlayController : UITableViewController{
     
     NSMutableArray *myData;
     NSMutableDictionary *sections;  

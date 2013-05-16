@@ -15,23 +15,15 @@
 #import "DataUserQuestionAnswer.h"
 #import "DataUserQuestionAnswerSubmitController.h"
 #import "DataCommentAddController.h"
-#import "predixerPlayCommentsController.h"
-#import "predixerPlayCommentsAllController.h"
-
+#import "predixerPlayCommentsOneController.h"
+#import "predixerPlayCommentsViewController.h"
+#import "MSLabel.h"
+#import "DataComments.h"
+#import "LoadingController.h"
+#import "predixerAppDelegate.h"
 
 @interface predixerPlayQuestionDetailsViewController ()
-- (void)didFinishLoadingQuestion;
-- (void)didFinishLoadingQuestionAnswers;
-- (void)didFinishLoadingData;
-- (void)didFinishSubmittingUserAnswer;
-- (void)didFinishLoadingUserAnswer;
-- (void)didFinishAddingUserComment;
-- (void)didFinishLoadingCommentsToTable;
-- (void)performDismiss;
-- (void)pressBack:(id)sender;
-- (IBAction)submitAnswer:(id)sender;
-- (IBAction)submitComment:(id)sender;
-- (IBAction)showMoreComment:(id)sender;
+
 @end
 
 @implementation predixerPlayQuestionDetailsViewController
@@ -48,6 +40,7 @@
 @synthesize tblListComments;
 @synthesize addCommentsController;
 @synthesize userCommentsDataController;
+@synthesize loadingController;
 
 - (id)initWithQuestion:(NSString *)questionID
 {
@@ -56,39 +49,6 @@
         
         
 		nc = [NSNotificationCenter defaultCenter];
-		
-		//observer
-		[nc addObserver:self
-			   selector:@selector(didFinishLoadingQuestion)
-				   name:@"didFinishLoadingQuestion"
-				 object:nil];
-        
-		[nc addObserver:self
-			   selector:@selector(didFinishLoadingQuestionAnswers)
-				   name:@"didFinishLoadingQuestionAnswers"
-				 object:nil];
-        
-        
-		[nc addObserver:self
-			   selector:@selector(didFinishLoadingUserAnswer)
-				   name:@"didFinishLoadingUserQuestionAnswer"
-				 object:nil];
-        
-        [nc addObserver:self
-			   selector:@selector(didFinishSubmittingUserAnswer)
-				   name:@"didFinishSubmittingUserAnswer"
-				 object:nil];
-        
-        
-        [nc addObserver:self
-			   selector:@selector(didFinishAddingUserComment)
-				   name:@"didFinishAddingUserComment"
-				 object:nil];
-        
-        [nc addObserver:self
-			   selector:@selector(didFinishLoadingCommentsToTable)
-				   name:@"didFinishLoadingCommentsToTable"
-				 object:nil];
         
         
         if (nil != questionID) {
@@ -109,9 +69,50 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    
+    
+    
+    //observer
+    [nc addObserver:self
+           selector:@selector(didFinishLoadingQuestion)
+               name:@"didFinishLoadingQuestion"
+             object:nil];
+    
+    [nc addObserver:self
+           selector:@selector(didFinishLoadingQuestionAnswers)
+               name:@"didFinishLoadingQuestionAnswers"
+             object:nil];
+    
+    
+    [nc addObserver:self
+           selector:@selector(didFinishLoadingUserAnswer)
+               name:@"didFinishLoadingUserQuestionAnswer"
+             object:nil];
+    
+    [nc addObserver:self
+           selector:@selector(didFinishSubmittingUserAnswer)
+               name:@"didFinishSubmittingUserAnswer"
+             object:nil];
+    
+    
+    [nc addObserver:self
+           selector:@selector(didFinishAddingUserComment)
+               name:@"didFinishAddingUserComment"
+             object:nil];
+    
+    [nc addObserver:self
+           selector:@selector(didFinishLoadingCommentsToTable)
+               name:@"didFinishLoadingCommentsToTable"
+             object:nil];
+}
+
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingQuestion" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingQuestionAnswers" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserQuestionAnswer" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishSubmittingUserAnswer" object:nil];
@@ -136,12 +137,17 @@
     
     //self.title = @"News";
     
+    lblCharCount.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
+    lblCharNumText.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
+    lblAnswerResult.font = [UIFont fontWithName: @"Comic Sans MS" size:12];
+    
     tblListAnswer.backgroundColor = [UIColor clearColor];
     tblListComments.backgroundColor = [UIColor clearColor];
     
     if (userCommentsDataController == nil) {
-        userCommentsDataController = [[predixerPlayCommentsController alloc]init];
-        userCommentsDataController.view.frame = CGRectMake(15.0f, 288.0f, 290.0f, 140.0f);
+        userCommentsDataController = [[predixerPlayCommentsOneController alloc]init];
+        userCommentsDataController.view.backgroundColor = [UIColor clearColor];
+        userCommentsDataController.view.frame = CGRectMake(13.0f, 335.0f, 296.0f, 92.0f);
         
         userCommentsDataController.dataQuestion = dataQuestions;
         
@@ -192,7 +198,53 @@
 	//create a UIBarButtonItem with the button as a custom view
 	UIBarButtonItem *customSettingsBarItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
+    
+    UIImage *fbButtonNormalImage = [UIImage imageNamed:@"btn_PostToFB"];
+	UIImage *fbButtonHighlightImage = [UIImage imageNamed:@"btn_PostToFB_Up"];
+    
+	[btnPostToFB setImage:fbButtonNormalImage forState:UIControlStateNormal];
+	[btnPostToFB setImage:fbButtonHighlightImage forState:UIControlStateSelected];
+    
+    UIImage *btnSubmitAnswerNormalImage = [UIImage imageNamed:@"btn_qSubmit"];
+	UIImage *btnSubmitAnswerHighlightImage = [UIImage imageNamed:@"btn_qSubmit_up"];
+    
+	[btnSubmitAnswer setImage:btnSubmitAnswerNormalImage forState:UIControlStateNormal];
+	[btnSubmitAnswer setImage:btnSubmitAnswerHighlightImage forState:UIControlStateHighlighted];
+    
+	[btnSubmitComment setImage:btnSubmitAnswerNormalImage forState:UIControlStateNormal];
+	[btnSubmitComment setImage:btnSubmitAnswerHighlightImage forState:UIControlStateHighlighted];
+    
+    //lblQuestion.text = dataQuestions.questionText;
+    //lblQuestion.lineBreakMode = UILineBreakModeWordWrap;
+    //lblQuestion.numberOfLines = 4;
+    //lblQuestion.font = [UIFont fontWithName: @"Comic Sans MS" size:16];
+    
+    MSLabel *titleLabel = [[MSLabel alloc] initWithFrame:CGRectMake(7.0f, 2.0f, 307.0f, 85.0f)];
+    titleLabel.text = dataQuestions.questionText;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.lineHeight = 18;
+    titleLabel.numberOfLines = 4;
+    titleLabel.font = [UIFont fontWithName: @"Comic Sans MS" size:15];
+    [self.view addSubview:titleLabel];
+    
+    questionPoints.text = [NSString stringWithFormat:@"Points: %d", dataQuestions.questionPoints];
+    questionPoints.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
+    
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    questionDate.text = [dateFormat stringFromDate:today];
+    questionDate.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
+    
+    answersDataController.questionID = dataQuestions.questionID;
+    //[answersDataController getAnswers];
+    //[answersDataController getAnswersFromLocal];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
+    
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -206,6 +258,7 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+    */
     
     checkedAnswer = NO;
 }
@@ -216,13 +269,16 @@
     
     lblQuestion.text = dataQuestions.questionText;
     lblQuestion.lineBreakMode = UILineBreakModeWordWrap;
-    lblQuestion.numberOfLines = 2;
+    lblQuestion.numberOfLines = 4;
+    lblQuestion.font = [UIFont fontWithName: @"Comic Sans MS" size:16];
     
     questionPoints.text = [NSString stringWithFormat:@"Points: %d", dataQuestions.questionPoints];
+    questionPoints.font = [UIFont fontWithName: @"Comic Sans MS" size:10];    
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy"];
     NSString *dateStr = [formatter stringFromDate:dataQuestions.questionDate];
+    questionDate.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
     
     questionDate.text = dateStr;
     
@@ -231,15 +287,10 @@
     [answersDataController getAnswers];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO];
-    
-}
 
 - (IBAction)showMoreComment:(id)sender
 {
-    predixerPlayCommentsAllController *allComments = [[predixerPlayCommentsAllController alloc] init];
+    predixerPlayCommentsViewController *allComments = [[predixerPlayCommentsViewController alloc] init];
     allComments.dataQuestion = dataQuestions;
     
     [self.navigationController pushViewController:allComments animated:YES];
@@ -256,7 +307,7 @@
     [userAnswerController getAnswer];
     
     if ([answersDataController countOfList] > 2) {
-        lineArrow.hidden = NO;
+        //lineArrow.hidden = NO;
     }
 }
 
@@ -273,10 +324,42 @@
             
             btnSubmitAnswer.enabled = NO;
             
-            NSString *answerTime  = [userAnswer.answerDate substringFromIndex:8];
+            NSLog(@" userAnswer.answerDate %@",userAnswer.answerDate);
             
-            //lblAnswerResult.text = [NSString stringWithFormat:@"Answered at %@.", userAnswer.answerDate];
-            lblAnswerResult.text = [NSString stringWithFormat:@"Answered at %@.", answerTime];
+            NSArray *arrayDate = [userAnswer.answerDate componentsSeparatedByString:@" "];
+            
+            NSString *strHour = @"";
+            NSString *strMin = @"";
+            NSString *strDay = @"";
+            
+            for (int i=0; i < [arrayDate count]; i++) {
+                
+                NSLog(@" arrayDate %@",[arrayDate objectAtIndex:i]);
+                
+                if (i == 1) {
+                    NSLog(@" time %@",[arrayDate objectAtIndex:i]);
+                    
+                    NSArray *arrayTime = [[arrayDate objectAtIndex:i] componentsSeparatedByString:@":"];
+                    
+                    for (int j=0; j < [arrayTime count]; j++) {
+                        
+                        if (j==0) {
+                            strHour = [NSString stringWithFormat:@"%@", [arrayTime objectAtIndex:j]];
+                        }
+                        else if (j==1) {
+                            strMin = [NSString stringWithFormat:@"%@", [arrayTime objectAtIndex:j]];
+                        }
+                    }
+                }
+                else if (i == 2) {
+                    strDay = [NSString stringWithFormat:@"%@", [arrayDate objectAtIndex:i]];
+                }
+            }
+            
+            NSLog(@" answerTime %@:%@ %@", strHour, strMin, strDay);
+            
+            lblAnswerResult.text = [NSString stringWithFormat:@"Answered at %@:%@ %@", strHour, strMin, strDay];
+            
             lblAnswerResult.hidden = NO;
             
             btnSubmitAnswer.hidden = YES;
@@ -296,9 +379,34 @@
 {
     [self didFinishLoadingData];
     
-    lblCommentsCount.text = [NSString stringWithFormat:@"%d", userCommentsDataController.commentsCount];
+    [userCommentsDataController.tableView reloadData];
+    [userCommentsDataController.tableView setNeedsDisplay];
+    
+    DataComments *dataComments = userCommentsDataController.dataComments;
+    
+    NSLog(@"dataComments.totalComments %@", dataComments.totalComments);
+    
+    if ([dataComments.totalComments intValue] <= 1)
+    {
+        btnViewComments.hidden = YES;
+    }
+    else
+    {
+        btnViewComments.hidden = NO;
+    }
+    
+    if (dataComments.totalComments == nil) {
+        lblCommentsCount.text = @"0";
+    }
+    else{
+        lblCommentsCount.text = [NSString stringWithFormat:@"%@", dataComments.totalComments];
+    }
+    
+    lblCommentsCount.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
     
     NSLog(@"userComments.commentsCount %d", userCommentsDataController.commentsCount);
+    
+    [self.view setNeedsDisplay];
     
 }
 
@@ -306,6 +414,26 @@
 {
     [self didFinishLoadingData];
     [userCommentsDataController getComments];
+    
+    if (isPostToFB == YES) {
+        // Create the parameters dictionary that will keep the data that will be posted.
+        NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
+        [params setObject:@"179699488824039" forKey:@"app_id"];
+        [params setObject:[NSString stringWithFormat:@"Comment on the prediction: %@", dataQuestions.questionText] forKey:@"name"];
+        [params setObject:@"https://www.facebook.com/Predixer" forKey:@"caption"];
+        [params setObject:@"http://www.predixer.com/XLogo_small.png" forKey:@"picture"];
+        [params setObject:@"https://www.facebook.com/Predixer" forKey:@"link"];
+        [params setObject:@"PrediXer is a fun and simple game! Users play by predicting the outcomes of real life events and earn points for a chance to win cash prizes!" forKey:@"description"];
+        [params setObject:[NSString stringWithFormat:@"%@", txtComment.text] forKey:@"message"];
+        
+        //predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        // Publish.
+        // This is the most important method that you call. It does the actual job, the message posting.
+        //[[delegate facebook]  requestWithGraphPath:@"me/feed" andParams:params andHttpMethod:@"POST" andDelegate:nil];
+        
+    }
+    
     txtComment.text = @"";
 }
 
@@ -316,6 +444,8 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
@@ -356,7 +486,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40.0f;
+    return 31.0f;
 }
 
 // Customize the appearance of table view cells.
@@ -366,7 +496,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         
         //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
@@ -409,6 +539,11 @@
                 
                 rb.btn_RadioButton.enabled = NO;
             }
+            
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f%%", questionAnswers.answerPercent * 100];
+            cell.detailTextLabel.font = [UIFont fontWithName: @"Comic Sans MS" size:14];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
         }
         
     }
@@ -481,6 +616,11 @@
     
     if (selectedAnswerID != 0) {
         
+        loadingController = [[LoadingController alloc] init];
+        loadingController.strLoadingText = @"Submitting your answer...";
+        [self.view addSubview:loadingController.view];
+        
+        /*
         baseAlert = [[UIAlertView alloc] initWithTitle:@"Submitting your answer..."
                                                message:@""
                                               delegate:self
@@ -494,6 +634,7 @@
         aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
         [aiv startAnimating];
         [baseAlert addSubview:aiv];
+        */
         
         //SUBMIT ANSWER
         submitAnswer = [[DataUserQuestionAnswerSubmitController alloc] init];
@@ -522,17 +663,6 @@
          }
          }
          */
-        
-        btnSubmitAnswer.enabled = NO;
-        
-        for (UIButton *btn in self.view.subviews) {
-            if (btn.tag == 0) {
-                btn.enabled = NO;
-            }
-            else if (btn.tag ==1) {
-                btn.enabled = NO;
-            }
-        }
     }
     else {
         UIAlertView *bAlert = [[UIAlertView alloc] initWithTitle:@"No Answer!"
@@ -550,12 +680,8 @@
 {
     [self didFinishLoadingData];
     
-    UIAlertView *bAlert = [[UIAlertView alloc] initWithTitle:@"Submitted!"
-                                                     message:@"Your Answer has been submitted. Kindly post your comments below."
-                                                    delegate:self
-                                           cancelButtonTitle:nil
-                                           otherButtonTitles:@"OK", nil];
-    [bAlert show];
+    btnSubmitAnswer.enabled = NO;
+
 }
 
 #pragma mark Delegate Functions
@@ -573,6 +699,11 @@
     
     if ([txtComment.text length] != 0) {
         
+        loadingController = [[LoadingController alloc] init];
+        loadingController.strLoadingText = @"Submitting your comment...";
+        [self.view addSubview:loadingController.view];
+        
+        /*
         baseAlert = [[UIAlertView alloc] initWithTitle:@""
                                                message:@"Submitting your comment..."
                                               delegate:self
@@ -586,12 +717,14 @@
         aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
         [aiv startAnimating];
         [baseAlert addSubview:aiv];
+        */
         
         //SUBMIT COMMENT
         addCommentsController = [[DataCommentAddController alloc] init];
         addCommentsController.questionID = dataQuestions.questionID;
         addCommentsController.commentText = txtComment.text;
         
+        isAddNewComment = YES;
         [addCommentsController addUserComment];
         
     }
@@ -607,11 +740,11 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    int count = 199;
+    int count = 349;
     
     if ([textView.text length] <= count) {
-        lblCharCount.text = [NSString stringWithFormat:@"%d of 200.", count - [textView.text length]];
-        lblCharCount.font = [UIFont systemFontOfSize:14.0f];
+        lblCharCount.text = [NSString stringWithFormat:@"%d", count - [textView.text length]];
+        lblCharCount.font = [UIFont fontWithName: @"Comic Sans MS" size:10];
     }
     else {
         [textView resignFirstResponder];
@@ -667,7 +800,7 @@
         return isReturn;
     }
     else {
-        if (newLength < 300) {
+        if (newLength < 350) {
             isReturn = YES;
         }
     }
@@ -675,5 +808,16 @@
     return isReturn;
 }
 
+- (IBAction)postToFB:(id)sender
+{
+    if (isPostToFB == NO) {
+        isPostToFB = YES;
+        btnPostToFB.selected = YES;
+    }
+    else {
+        isPostToFB = NO;
+        btnPostToFB.selected = NO;
+    }
+}
 
 @end

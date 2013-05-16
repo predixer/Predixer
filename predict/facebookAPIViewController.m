@@ -7,13 +7,13 @@
 //
 
 #import "facebookAPIViewController.h"
-#import "FBConnect.h"
 #import "predixerAppDelegate.h"
 #import "predixerViewController.h"
 #import "predixerGameFindFriendsPlayController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "predixerSettingsViewControllerViewController.h"
 #import "DataFriendInviteController.h"
+#import "LoadingController.h"
 
 @interface facebookAPIViewController ()
 - (void)hideMessage;
@@ -34,6 +34,7 @@
 @synthesize isFiltered;
 @synthesize filteredTableData;
 @synthesize selectedFriendID;
+@synthesize loadingController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -95,13 +96,18 @@
 	UIBarButtonItem *customSettingsBarItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
 	self.navigationItem.rightBarButtonItem = customSettingsBarItem;
     
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
     
+    /*
     // Activity Indicator
     int xPosition = (self.view.bounds.size.width / 2.0) - 15.0;
     int yPosition = (self.view.bounds.size.height / 2.0) - 15.0;
     activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(xPosition, yPosition, 30, 30)];
     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     [self.view addSubview:activityIndicator];
+    */
     
     // Message Label for showing confirmation and status messages
     CGFloat yLabelViewOffset = self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-30;
@@ -137,7 +143,7 @@
     
     [nc addObserver:self 
            selector:@selector(didFinishLoadingFacebookFriends:) 
-               name:@"didFinishLoadingFacebookFriendsWithApp" 
+               name:@"didFinishLoadingFacebookFriends"
              object:nil];
     
 }
@@ -187,7 +193,7 @@
     
     myData = [[NSMutableArray alloc] init];
     myData = (NSMutableArray*)[notification object];
-    NSLog(@"result %d", [myData count]);
+    NSLog(@"my data count  %d", [myData count]);
     
     
     friendsIDs = [[NSMutableArray alloc] init];
@@ -197,7 +203,7 @@
     {
         [[self.sections objectForKey:[[dict objectForKey:@"name"] substringToIndex:1]] addObject:dict];
         [friendsIDs addObject:[dict objectForKey:@"id"]];
-        NSLog(@"IDs %@", [dict objectForKey:@"id"]);
+        NSLog(@"Facebook IDs %@", [dict objectForKey:@"id"]);
     }    
     
     // Sort each section array
@@ -239,8 +245,13 @@
  * deactivates the table to avoid user input.
  */
 - (void)showActivityIndicator {
+    /*
     if (![activityIndicator isAnimating]) {
         [activityIndicator startAnimating];
+    }*/
+    
+    if (loadingController.view.hidden == YES) {
+        loadingController.view.hidden = NO;
     }
 }
 
@@ -249,9 +260,14 @@
  * and enables user interaction once more.
  */
 - (void)hideActivityIndicator {
+    /*
     if ([activityIndicator isAnimating]) {
         [activityIndicator stopAnimating];
         lblFacebook.text = @"";
+    }*/
+    
+    if (loadingController.view.hidden == NO) {
+        loadingController.view.hidden = YES;
     }
 }
 
@@ -330,7 +346,7 @@
     myData = nil;
     sections = nil;
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingFacebookFriendsWithApp" object:nil];
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingFacebookFriends" object:nil];
 }
 
 /**
@@ -341,11 +357,9 @@
 	NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
 	for (NSString *pair in pairs) {
 		NSArray *kv = [pair componentsSeparatedByString:@"="];
-		NSString *val =
-        [[kv objectAtIndex:1]
-         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
-		[params setObject:val forKey:[kv objectAtIndex:0]];
+		[params setObject:[[kv objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                   forKey:[[kv objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	}
     return params;
 }
@@ -439,7 +453,7 @@
  */
 - (void)apiDialogFeedUser {
     currentAPICall = kDialogFeedUser;
-    SBJSON *jsonWriter = [SBJSON new];
+    FBSBJSON *jsonWriter = [FBSBJSON new];
     
     // The action links to be shown with the post in the feed
     NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -449,8 +463,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"I'm using Predixer for iOS app", @"name",
                                    @"Predixer for iOS.", @"caption",
-                                   @"I would like to play a Predixer game with you on your iPhone. If you haven't done so, click here to download from the app store. Just use your Facebook account to start playing.", @"description",                                   @"http://www.predixer.com/", @"link",
-                                   @"http://www.yellowboat.org/Icon.png", @"picture",
+                                   @"I would like to invite you to play PrediXer.", @"description",                                   @"http://www.predixer.com/", @"link",
+                                   @"http://www.predixer.com/predLogo.png", @"picture",
                                    actionLinksStr, @"actions",
                                    nil];
     
@@ -459,6 +473,19 @@
                       andParams:params
                     andDelegate:self];
     
+}
+
+- (void)apiDialogPostToWall:(NSMutableDictionary *)params
+{
+    currentAPICall = kAPIGraphUserPost;
+    
+    //[self showActivityIndicator];
+    
+    predixerAppDelegate *delegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    // Publish.
+    // This is the most important method that you call. It does the actual job, the message posting.    
+    [[delegate facebook]  requestWithGraphPath:@"me/feed" andParams:params andHttpMethod:@"POST" andDelegate:nil];
 }
 
 /*
@@ -476,7 +503,7 @@
  */
 - (void)apiDialogFeedFriend:(NSString *)friendID {
     currentAPICall = kDialogFeedFriend;
-    SBJSON *jsonWriter = [SBJSON new];
+   FBSBJSON *jsonWriter = [FBSBJSON new];
     
     // The action links to be shown with the post in the feed
     NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -486,8 +513,8 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"I'm using Predixer for iOS app", @"name",
                                    @"Predixer for iOS.", @"caption",
-                                   @"I would like to play a Predixer game with you on your iPhone. If you haven't done so, click here to download from the app store. Just use your Facebook account to start playing.", @"description",                                   @"http://www.predixer.com/", @"link",
-                                   @"http://www.predixer.com/Icon.png", @"picture",
+                                   @"I would like to invite you to play PrediXer.", @"description",                                   @"http://www.predixer.com/", @"link",
+                                   @"http://www.predixer.com/predLogo.png", @"picture",
                                    actionLinksStr, @"actions",
                                    nil];
     
@@ -509,7 +536,7 @@
  */
 - (void)apiDialogRequestsSendToMany {
     currentAPICall = kDialogRequestsSendToMany;
-    SBJSON *jsonWriter = [SBJSON new];
+    FBSBJSON *jsonWriter = [FBSBJSON new];
     NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
                           @"5", @"social_karma",
                           @"1", @"badge_of_awesomeness",
@@ -517,7 +544,7 @@
     
     NSString *giftStr = [jsonWriter stringWithObject:gift];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"Have fun with your friends at Predixer!",  @"message",
+                                   @"I would like to invite you to play PrediXer.",  @"message",
                                    @"Check this out", @"notification_text",
                                    giftStr, @"data",
                                    nil];
@@ -549,7 +576,7 @@
     currentAPICall = kDialogRequestsSendToSelect;
     NSString *selectIDsStr = [selectIDs componentsJoinedByString:@","];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"I'm playing PrediXer for iOS. It's a great app! Try is now!",  @"message",
+                                   @"I would like to invite you to play PrediXer.",  @"message",
                                    @"Let's play Predixer!", @"notification_text",
                                    selectIDsStr, @"suggestions",
                                    nil];
@@ -567,7 +594,7 @@
     currentAPICall = kDialogRequestsSendToSelect;
 
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"I'm playing PrediXer for iOS. It's a great app! Try is now!",  @"message",
+                                   @"I would like to invite you to play PrediXer.",  @"message",
                                    @"Let's play Predixer!", @"notification_text",
                                    userID, @"to",
                                    nil];
@@ -587,7 +614,7 @@
     currentAPICall = kDialogRequestsSendToSelect;
     NSString *selectIDsStr = [selectIDs componentsJoinedByString:@","];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"It's your turn to visit the Predixer for iOS app.",  @"message",
+                                   @"I would like to invite you to play PrediXer.",  @"message",
                                    selectIDsStr, @"suggestions",
                                    nil];
     
@@ -605,7 +632,7 @@
     currentAPICall = kDialogRequestsSendToSelect;
 
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   @"I'm playing PrediXer game with you on your iPhone. If you haven't done so, click here to download from the app store. Just use your Facebook account to start playing.",  @"message",
+                                   @"I would like to invite you to play PrediXer.",  @"message",
                                    @"Let's play Predixer!", @"notification_text",
                                    userID, @"suggestions",
                                    nil];
@@ -622,9 +649,9 @@
 - (void)apiDialogRequestsSendTarget:(NSString *)friendID {
     currentAPICall = kDialogRequestsSendToTarget;
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                    @"I would like to play a Predixer game with you on your iPhone.",  @"message",
-                                   @"http://www.predixer.com/", @"link",
-                                   @"http://www.predixer.com/Icon.png", @"picture",
+                                    @"I would like to invite you to play PrediXer.",  @"message",
+                                   @"https://www.facebook.com/Predixer", @"link",
+                                   @"http://www.predixer.com/XLogo_small.png", @"picture",
                                    friendID, @"to",
                                    nil];
     
@@ -1121,6 +1148,11 @@
             [self showMessage:@"Video uploaded successfully."];
             break;
         }
+        case kAPIGraphUserPost:
+        {
+            [self showMessage:@"Posted to Facebook successfully."];
+            break;
+        }
         default:
             break;
     }
@@ -1133,7 +1165,7 @@
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
     [self hideActivityIndicator];
     NSLog(@"Error message: %@", [[error userInfo] objectForKey:@"error_msg"]);
-    [self showMessage:@"Oops, something went haywire."];
+    [self showMessage:@"Sorry! Either you have no friends or you are not using Facebook."];
 }
 
 #pragma mark - FBDialogDelegate Methods
@@ -1165,21 +1197,20 @@
         case kDialogRequestsSendToSelect:
         case kDialogRequestsSendToTarget:
         {
-            // Successful requests return one or more request_ids.
-            // Get any request IDs, will be in the URL in the form
-            // request_ids[0]=1001316103543&request_ids[1]=10100303657380180
-            NSMutableArray *requestIDs = [[NSMutableArray alloc] init];
+            // Successful requests return the id of the request
+            // and ids of recipients.
+            NSMutableArray *recipientIDs = [[NSMutableArray alloc] init];
             for (NSString *paramKey in params) {
-                if ([paramKey hasPrefix:@"request_ids"]) {
-                    [requestIDs addObject:[params objectForKey:paramKey]];
+                if ([paramKey hasPrefix:@"to["]) {
+                    [recipientIDs addObject:[params objectForKey:paramKey]];
                 }
             }
-            
-            NSLog(@"Request ID(s): %@", requestIDs);
-            
-            if ([requestIDs count] > 0) {
+            if ([params objectForKey:@"request"]){
+                NSLog(@"Request ID: %@", [params objectForKey:@"request"]);
+            }
+            if ([recipientIDs count] > 0) {
                 [self showMessage:@"Sent request successfully."];
-                NSLog(@"Request ID(s): %@", requestIDs);
+                NSLog(@"Recipient ID(s): %@", recipientIDs);
             }
 
             DataFriendInviteController *invite = [[DataFriendInviteController alloc] init];
@@ -1208,7 +1239,7 @@
 
 - (void)dialog:(FBDialog*)dialog didFailWithError:(NSError *)error {
     NSLog(@"Error message: %@", [[error userInfo] objectForKey:@"error_msg"]);
-    [self showMessage:@"Oops, something went haywire."];
+    [self showMessage:@"Sorry! Either you have no friends or you are not using Facebook."];
 }
 
 /**
@@ -1310,7 +1341,7 @@
     lblHeader.text = [[[self.sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];    
     lblHeader.textColor = [UIColor whiteColor];
     lblHeader.backgroundColor = [UIColor clearColor];
-    lblHeader.font = [UIFont boldSystemFontOfSize:16];
+    lblHeader.font = [UIFont fontWithName: @"Verdana Bold" size:16];
     
     [headerImage addSubview:lblHeader];
     [headerView addSubview:headerImage];
@@ -1335,9 +1366,10 @@
     {
         NSDictionary *dict = [[self.sections valueForKey:[[[self.sections allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
         
+        NSLog(@"sections count %d", [sections count]);
         
         cell.textLabel.text = [dict objectForKey:@"name"];            
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:14];
         cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
         cell.textLabel.numberOfLines = 2;
         cell.detailTextLabel.text = @"Invite to PrediXer!"; 

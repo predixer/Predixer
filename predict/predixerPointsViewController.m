@@ -9,7 +9,10 @@
 #import "predixerPointsViewController.h"
 #import "DataUserPoints.h"
 #import "DataUserPointsController.h"
-#import "predixerPointsDetailsViewController.h"
+#import "predixerUserInviteViewController.h"
+#import "LoadingController.h"
+#import "DataLeaderboard.h"
+#import "DataLeaderboardController.h"
 
 @interface predixerPointsViewController ()
 
@@ -19,6 +22,9 @@
 
 @synthesize dataController;
 @synthesize dataUserPoints;
+@synthesize loadingController;
+@synthesize leaderboardDataController;
+@synthesize dataLeaderboard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,15 +32,21 @@
     if (self) {
         // Custom initialization
         if (items == nil) {
-            items = [NSMutableArray arrayWithObjects:@"Correct Predictions", @"Friend invite & sign up", @"Most liked Comment", @"TOTAL POINTS:", @"Draw entries earned:",nil];
+            items = [NSMutableArray arrayWithObjects:@"Points this week", @"Overall standing",nil];
         }
         
         if (dataController == nil) {
 			dataController = [[DataUserPointsController alloc] init];
 			
-			NSLog(@"Count at init: %d", [dataController countOfList]);
+			//NSLog(@"Count at init: %d", [dataController countOfList]);
 		}
 		
+        // Custom initialization
+        if (leaderboardDataController == nil) {
+			leaderboardDataController = [[DataLeaderboardController alloc] init];
+			
+			//NSLog(@"Count at init: %d", [dataController countOfList]);
+		}
         
 		nc = [NSNotificationCenter defaultCenter];
 		
@@ -42,6 +54,12 @@
 		[nc addObserver:self
 			   selector:@selector(didFinishLoadingData)
 				   name:@"didFinishLoadingUserPoints"
+				 object:nil];
+        
+        //observer
+		[nc addObserver:self
+			   selector:@selector(didFinishLoadingUserLeaderboard)
+				   name:@"didFinishLoadingUserLeaderboard"
 				 object:nil];
     }
     return self;
@@ -51,6 +69,7 @@
 {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserPoints" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"didFinishLoadingUserLeaderboard" object:nil];
 }
 
 - (void)viewDidLoad
@@ -79,8 +98,17 @@
 	UIBarButtonItem *customBackBarItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 	self.navigationItem.leftBarButtonItem = customBackBarItem;
     
-    [dataController getPoints];
+    [self getWeek];
+    
+    [leaderboardDataController getUserLeaderboard];
+    
+    //[dataController getPoints];
 	
+    loadingController = [[LoadingController alloc] init];
+    loadingController.strLoadingText = @"Loading...";
+    [self.view addSubview:loadingController.view];
+    
+    /*
     baseAlert = [[UIAlertView alloc] initWithTitle:@"Loading..."
                                            message:@""
                                           delegate:self
@@ -94,6 +122,48 @@
     aiv.center = CGPointMake(baseAlert.bounds.size.width / 2.0f, baseAlert.bounds.size.height / 1.5f);
     [aiv startAnimating];
     [baseAlert addSubview:aiv];
+     */
+}
+
+- (void)getWeek
+{
+    NSDate *today = [NSDate date];
+    //NSLog(@"Today date is %@",today);
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy"];
+    
+    //Week Start Date
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorian components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+    
+    int dayofweek = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:today] weekday];// this will give you current day of week
+    
+    [components setDay:([components day] - ((dayofweek) - 1))];// for beginning of the week.
+    
+    NSDate *beginningOfWeek = [gregorian dateFromComponents:components];
+    NSDateFormatter *dateFormat_first = [[NSDateFormatter alloc] init];
+    [dateFormat_first setDateFormat:@"MM/dd/yyyy"];
+    
+    NSString *startWeekDate = [dateFormat stringFromDate:beginningOfWeek];
+    
+    //Week End Date
+    NSCalendar *gregorianEnd = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *componentsEnd = [gregorianEnd components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:today];
+    
+    int Enddayofweek = [[[NSCalendar currentCalendar] components:NSWeekdayCalendarUnit fromDate:today] weekday];// this will give you current day of week
+    
+    [componentsEnd setDay:([componentsEnd day]+(6-Enddayofweek)+1)];// for end day of the week
+    
+    NSDate *EndOfWeek = [gregorianEnd dateFromComponents:componentsEnd];
+    NSDateFormatter *dateFormat_End = [[NSDateFormatter alloc] init];
+    [dateFormat_End setDateFormat:@"MM/dd/yyyy"];
+    
+    NSString *endWeekDate = [dateFormat stringFromDate:EndOfWeek];
+    
+    
+    lblWeek.text = [NSString stringWithFormat:@"Week: %@ - %@", startWeekDate, endWeekDate];
 }
 
 - (void)didFinishLoadingData
@@ -104,12 +174,21 @@
 
 - (void)performDismiss
 {
+    [loadingController.view removeFromSuperview];
+    
     if (baseAlert != nil)
     {
         [aiv stopAnimating];
         [baseAlert dismissWithClickedButtonIndex:0 animated:NO];
         baseAlert = nil;
     }
+}
+
+
+- (void)didFinishLoadingUserLeaderboard
+{
+	[tblPoints reloadData];
+	[self performSelector:@selector(performDismiss) withObject:nil afterDelay:0.0f];
 }
 
 - (void)pressBack:(id)sender
@@ -154,10 +233,39 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MyIdentifier"];
         
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
     
+    if ([leaderboardDataController countOfList] != 0) {
+        
+        dataLeaderboard = [leaderboardDataController objectInListAtIndex:0];
+        
+        //Correct Prediction
+        if (indexPath.row == 0) {
+            
+            cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",dataLeaderboard.questionPoints];
+        }
+        else if (indexPath.row == 1) {
+            //draw points
+            cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",dataLeaderboard.recordID];
+        }
+    }
+    else {
+        if (indexPath.row == 0) {
+            
+            cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = @"0";
+        }
+        else if (indexPath.row == 1) {
+            //draw points
+            cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
+            cell.detailTextLabel.text = @"0";
+        }
+    }
+    
+    /*
     dataUserPoints = [dataController objectInListAtIndex:0];
     
     //Correct Prediction
@@ -167,28 +275,13 @@
         cell.detailTextLabel.text = dataUserPoints.totalPredictPoints;
     }
     else if (indexPath.row == 1) {
-        //friend invite
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.invitePoints;
-    }
-    else if (indexPath.row == 2) {
-        //top comments
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.topCommentPoints;
-    }
-    else if (indexPath.row == 3) {
-        //grand total
-        cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-        cell.detailTextLabel.text = dataUserPoints.grandTotalPoints;
-    }
-    else if (indexPath.row == 4) {
         //draw points
         cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
         cell.detailTextLabel.text = dataUserPoints.drawPoints;
     }
+    */
     
-    
-    cell.textLabel.font = [UIFont systemFontOfSize:16];
+    cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:16];
     
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;
@@ -197,11 +290,6 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if (indexPath.row == 0) {
-        
-        predixerPointsDetailsViewController *pointsDetails = [[predixerPointsDetailsViewController alloc] init];
-        [self.navigationController pushViewController:pointsDetails animated:YES];
-    }
     
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	

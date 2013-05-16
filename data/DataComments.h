@@ -19,6 +19,7 @@
 	NSString *comment;
 	NSString *commentDate;
 	NSString *totalLikes;
+	NSString *totalComments;
 }
 
 @property (nonatomic, strong)NSString *commentID;
@@ -30,10 +31,11 @@
 @property (nonatomic, strong)NSString *comment;
 @property (nonatomic, strong)NSString *commentDate;
 @property (nonatomic, strong)NSString *totalLikes;
+@property (nonatomic, strong)NSString *totalComments;
 
 
-+ (DataComments *)commentWithID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes;
++ (DataComments *)commentWithID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes totalComments:(NSString *)aTotalComments;
 
-- (id)initWithCommentID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes;
+- (id)initWithCommentID:(NSString *)aCommentID questionID:(NSString *)aQuestionID userID:(NSString *)aUserID fbUserID:(NSString *)aFbUserID fbName:(NSString *)aFbName fbUserEmail:(NSString *)aFbUserEmail comment:(NSString *)aComment commentDate:(NSString *)aCommentDate totalLikes:(NSString *)aTotalLikes totalComments:(NSString *)aTotalComments;
 
 @end

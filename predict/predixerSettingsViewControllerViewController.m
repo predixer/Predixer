@@ -7,12 +7,10 @@
 //
 
 #import "predixerSettingsViewControllerViewController.h"
-#import "facebookAPIViewController.h"
-#import "predixerAboutViewController.h"
 #import "predixerAccountViewController.h"
 #import "predixerHistoryViewController.h"
 #import "predixerPointsViewController.h"
-#import "predixerPrivacyViewController.h"
+#import "predixerAppDelegate.h"
 #import "predixerTermsViewController.h"
 
 @interface predixerSettingsViewControllerViewController ()
@@ -28,7 +26,7 @@
         // Custom initialization
         
         if (items == nil) {
-            items = [NSMutableArray arrayWithObjects:@"Your Points", @"Predictions", @"Account", @"Terms", @"Privacy", @"About", @"Logout",nil];
+            items = [NSMutableArray arrayWithObjects:@"Your Points", @"Predictions", @"Account", @"Terms", @"Privacy", @"Official Rules", @"About", @"Logout",nil];
         }
     }
     return self;
@@ -68,11 +66,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    vwDeauthorized.hidden = YES;
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    vwDeauthorized.hidden = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -91,7 +95,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)t heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50.0f;
+    return 38.0f;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,14 +107,14 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewStylePlain reuseIdentifier:@"MyIdentifier"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyIdentifier"];
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@" ,[items objectAtIndex:indexPath.row]];
-    cell.textLabel.font = [UIFont systemFontOfSize:20];
+    cell.textLabel.font = [UIFont fontWithName: @"Verdana" size:18];
     //cell.textLabel.textAlignment = UITextAlignmentCenter;
     return cell;
 }
@@ -138,7 +142,7 @@
         //predixerTermsViewController *terms = [[predixerTermsViewController alloc] init];
         //[self.navigationController pushViewController:terms animated:YES];
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/Terms.aspx"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.predixer.com/TermsOfService.aspx"]];
         
     }
     else if (indexPath.row == 4) {
@@ -146,21 +150,28 @@
         //predixerPrivacyViewController *privacy = [[predixerPrivacyViewController alloc] init];
         //[self.navigationController pushViewController:privacy animated:YES];
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/Privacy.aspx"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.predixer.com/PrivacyPolicy.aspx"]];
     }
     else if (indexPath.row == 5) {
-       //About
-        //predixerAboutViewController *about = [[predixerAboutViewController alloc] init];
-        //[self.navigationController pushViewController:about animated:YES];
+            //Contest Rules
+            //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.predixer.com/ContestRules.aspx"]];
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://predixer.com/PredixerWeb_deploy/About.aspx"]];
+        predixerTermsViewController *terms = [[predixerTermsViewController alloc] init];
+        [self.navigationController pushViewController:terms animated:YES];
     }
     else if (indexPath.row == 6) {
+            //About
+            //predixerAboutViewController *about = [[predixerAboutViewController alloc] init];
+            //[self.navigationController pushViewController:about animated:YES];
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.predixer.com/About.aspx"]];
+    }
+    else if (indexPath.row == 7) {
         //Logout
         
-        facebookAPIViewController *fbApi = [[facebookAPIViewController alloc] init];
-        [fbApi apiLogout];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        predixerAppDelegate *appDelegate = (predixerAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate logout];
+        //[self.navigationController popToRootViewControllerAnimated:YES];
     }
     
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];

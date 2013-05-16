@@ -12,6 +12,7 @@
     
     NSMutableArray *items;
     IBOutlet UITableView *tblSettings;
+    IBOutlet UIImageView *vwDeauthorized;
 }
 
 - (void)pressBack:(id)sender;
